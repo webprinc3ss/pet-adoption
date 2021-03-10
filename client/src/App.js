@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Home from './pages/Home';
 import SavedPets from './pages/SavedPets';
 import Mission from './pages/Mission';
+import SubmitPet from './pages/SubmitPet';
 import './index.css';
 
 // const client = new ApolloClient({
@@ -38,6 +39,7 @@ function App() {
             <Route exact path='/' component={Home} />
             <Route exact path='/saved' component={SavedPets} />
             <Route exact path='/mission' component={Mission} />
+            <Route exact path='/submit_pet' component={SubmitPet} />
             <Route exact path='/login' component={Login} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>

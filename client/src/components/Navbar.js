@@ -28,6 +28,9 @@ const Navbar = () => {
                         <Link to="/saved">Saved Pets</Link>
                     </li>
                     <li>
+                        <Link to="/submit_pet">Submit Pet</Link>
+                    </li>
+                    <li>
                         <Link to="/login">Login/SignUp</Link>
 
                     </li>
