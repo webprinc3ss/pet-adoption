@@ -2,10 +2,10 @@ import React from 'react';
 
 const Mission = () => {
     return (
-        <>
-            <H1>Eevee's Mission</H1>
+        <section>
+            <h2>Eevee's Mission</h2>
             <p>Hi!  I am Eevee and this is my story and why I want to help other hard-to-place-pets. </p>
-        </>
+        </section>
     );
 };
 

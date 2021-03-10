@@ -3,8 +3,8 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <>
-            <h1>Search for Pets</h1>
+        <section>
+            <h2>Search for Pets</h2>
             <form>
                 <input></input>
                 <button type='submit' variant='success' size='lg'>
@@ -13,7 +13,7 @@ const Home = () => {
             </form>
             <br></br>
             <div>Pet Cards go here.</div>
-        </>
+        </section>
     )
 }
 

@@ -5,10 +5,10 @@ import React from 'react';
 
 const SavedPets = () => {
     return (
-        <>
-            <h1>Viewing YOUR saved pets!</h1>
+        <section>
+            <h2>Viewing YOUR saved pets!</h2>
             <div>Pet Cards go here.</div>
-        </>
+        </section>
     )
 }
 
