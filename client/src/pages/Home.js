@@ -1,9 +1,20 @@
 import React from 'react';
+//See SearchBook.js from Book Project
 
-const SavedPets = () => {
+const Home = () => {
     return (
-        <div></div>
+        <>
+            <h1>Search for Pets</h1>
+            <form>
+                <input></input>
+                <button type='submit' variant='success' size='lg'>
+                    Submit Search
+                            </button>
+            </form>
+            <br></br>
+            <div>Pet Cards go here.</div>
+        </>
     )
 }
 
-export default SavedPets;
+export default Home;

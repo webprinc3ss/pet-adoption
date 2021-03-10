@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import SignUpForm from './SignupForm';
 // import LoginForm from './LoginForm';
 
@@ -11,10 +11,7 @@ const Navbar = () => {
         <>
             <nav>
                 <ul>
-                    <li>MUSTFIT pets
-         </li>
-                    <li>
-                        Search for Pets
+                    <li>MUSTFIT Pet Search
          </li>
                     <li>Our Mission
          </li>
