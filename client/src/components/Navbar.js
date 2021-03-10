@@ -12,18 +12,25 @@ const Navbar = () => {
         <>
             <nav>
                 <ul>
-                    <li as={Link} to='/'>
+                    <li> <Link to="/">
                         <img src={logo} style={{ height: "50px", width: "50px", float: "left" }} alt="MustFit Pets" />
-                        <h1>MustFit Pets</h1>
+                    </Link>
+                        <Link to="/"><h1>MustFit Pets</h1></Link>
                     </li>
-                    <li as={Link} to='/'>Find Pets
-         </li>
-                    <li>Our Mission
-         </li>
-                    <li as={Link} to='/saved'>Saved Pets
-         </li>
-                    <li as={Link} to='/login'>Login/SignUp
-         </li>
+                    <li>
+                        <Link to="/">Find Pets</Link>
+                    </li>
+                    <li>
+                        <Link to="/mission">Our Mission</Link>
+
+                    </li>
+                    <li>
+                        <Link to="/saved">Saved Pets</Link>
+                    </li>
+                    <li>
+                        <Link to="/login">Login/SignUp</Link>
+
+                    </li>
                 </ul>
             </nav>
         </>
