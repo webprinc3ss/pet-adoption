@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import ApolloClient from 'apollo-boost';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Mission from './pages/Mission';
 import Footer from './components/Footer';
 import SavedPets from './pages/SavedPets';
 import './index.css';
@@ -35,6 +37,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/saved' component={SavedPets} />
+            <Route exact path='/mission' component={Mission} />
+            <Route exact path='/login' component={Login} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </main>
