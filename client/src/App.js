@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import { ApolloProvider } from '@apollo/react-hooks';
 // import ApolloClient from 'apollo-boost';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Mission from './pages/Mission';
 import Footer from './components/Footer';
+import Login from './components/Login';
+import Home from './pages/Home';
 import SavedPets from './pages/SavedPets';
+import Mission from './pages/Mission';
 import './index.css';
 
 // const client = new ApolloClient({
