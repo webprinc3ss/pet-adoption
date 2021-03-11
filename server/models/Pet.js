@@ -7,12 +7,12 @@ const petSchema = new Schema(
             required: true,
             trim: true
         },
-        type: {
+        ageClass: {
             type: String,
             required: true,
         },
-        shelterTime: {
-            type: Number,
+        enterDate: {
+            type: Date,
             required: true,
         },
         age: {
