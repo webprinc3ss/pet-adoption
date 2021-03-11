@@ -30,7 +30,7 @@ const Home = () => {
                         </Form.Group>
                         <Form.Group widths='2'>
                             <Form.Group grouped>
-                                <label>Behavior</label><br />
+                                <label>Behavior</label>
                                 <Form.Field label='No kids' control='input' type='checkbox' />
                                 <Form.Field label='Only pet' control='input' type='checkbox' />
                                 <Form.Field label='No Cats' control='input' type='checkbox' />
@@ -41,6 +41,7 @@ const Home = () => {
                                 <Form.Field label='yes' control='input' type='checkbox' />
                             </Form.Group>
                         </Form.Group>
+
                         <Grid>
                             <Grid.Column textAlign="center">
                                 <Button type='submit' fluid color='blue'>Submit</Button>
