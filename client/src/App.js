@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Home from './pages/Home';
 import SavedPets from './pages/SavedPets';
 import Mission from './pages/Mission';
@@ -33,7 +34,6 @@ function App() {
         <header>
           <Navbar />
         </header>
-        <hr></hr>
         <main>
           <Switch>
             <Route exact path='/' component={Home} />
@@ -41,6 +41,7 @@ function App() {
             <Route exact path='/mission' component={Mission} />
             <Route exact path='/submit_pet' component={SubmitPet} />
             <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </main>

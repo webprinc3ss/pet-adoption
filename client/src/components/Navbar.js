@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Image, Menu, Header } from 'semantic-ui-react';
-import logo from '../assets/images/mustfit_logo.png';
+import logo from '../assets/images/pet_logo_final.png';
 import { Link } from 'react-router-dom';
 // import SignUpForm from './SignupForm';
 // import LoginForm from './LoginForm';
@@ -17,11 +17,13 @@ const Navbar = () => {
                         <Image
 
                             src={logo}
+
                             centered
-                            style={{ height: "50px", width: "50px" }}
+                            style={{ height: "60px" }}
                         />
-                        <Header as='h1'>MustFit Pets</Header>
+                        {/* <Header as='h2'>MustFit Pets</Header> */}
                     </Menu.Item>
+
 
 
                     <Menu.Menu position="right">

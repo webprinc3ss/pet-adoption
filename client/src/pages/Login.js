@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     Button,
     Form,
@@ -37,7 +38,7 @@ const Login = () => {
                     </Form>
                 </Segment>
                 <Message>
-                    Not registered yet? <a href="#">Sign Up</a>
+                    Not registered yet?  <Link to="/signup">Sign Up</Link>
                 </Message>
             </Grid.Column>
         </Grid>
