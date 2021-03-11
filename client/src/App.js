@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import ApolloClient from 'apollo-boost';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Login from './components/Login';
+import Login from './pages/Login';
 import Home from './pages/Home';
 import SavedPets from './pages/SavedPets';
 import Mission from './pages/Mission';
