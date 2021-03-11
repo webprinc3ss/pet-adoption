@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Image, Menu, Header } from 'semantic-ui-react';
 import logo from '../assets/images/mustfit_logo.png';
 import { Link } from 'react-router-dom';
 // import SignUpForm from './SignupForm';
@@ -10,7 +11,30 @@ const Navbar = () => {
 
     return (
         <>
-            <nav>
+            <Menu>
+                <Container>
+                    <Menu.Item as="a" header as={Link} to="/">
+                        <Image
+                            size="tiny"
+                            src={logo}
+                            centered
+                        />
+                        <Header as='h1'>MustFit Pets</Header>
+                    </Menu.Item>
+
+
+                    <Menu.Menu position="right">
+                        <Menu.Item as="a" name="login">
+                            Login
+        </Menu.Item>
+
+                        <Menu.Item as="a" name="register">
+                            Register
+        </Menu.Item>
+                    </Menu.Menu>
+                </Container>
+            </Menu>
+            {/* <nav>
                 <ul>
                     <li> <Link to="/">
                         <img src={logo} style={{ height: "50px", width: "50px", float: "left" }} alt="MustFit Pets" />
@@ -35,7 +59,7 @@ const Navbar = () => {
 
                     </li>
                 </ul>
-            </nav>
+            </nav> */}
         </>
 
     );
