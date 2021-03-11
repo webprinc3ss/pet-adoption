@@ -34,7 +34,6 @@ function App() {
         <header>
           <Navbar />
         </header>
-        <hr></hr>
         <main>
           <Switch>
             <Route exact path='/' component={Home} />
