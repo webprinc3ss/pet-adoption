@@ -13,6 +13,11 @@ const Home = () => {
                     <Form>
                         <Form.Group widths='equal'>
 
+                            <Form.Field label='Type' control='select'>
+                                <option value='cat'>Cat</option>
+                                <option value='dog'>Dog</option>
+                            </Form.Field>
+
                             <Form.Field label='Sex' control='select'>
                                 <option value='male'>Male</option>
                                 <option value='female'>Female</option>
