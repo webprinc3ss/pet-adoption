@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image, Menu, Header } from 'semantic-ui-react';
+import { Container, Image, Menu } from 'semantic-ui-react';
 import logo from '../assets/images/pet_logo_final.png';
 import { Link } from 'react-router-dom';
 // import SignUpForm from './SignupForm';
@@ -11,8 +11,9 @@ const Navbar = () => {
 
     return (
         <>
+
             <Menu>
-                <Container>
+                <Container >
                     <Menu.Item as="a" header as={Link} to="/">
                         <Image
 
@@ -50,6 +51,11 @@ const Navbar = () => {
                     </Menu.Menu>
                 </Container>
             </Menu>
+
+
+
+
+
             {/* <nav>
                 <ul>
                     <li> <Link to="/">

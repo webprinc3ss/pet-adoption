@@ -51,7 +51,15 @@ const Home = () => {
                 </Segment>
             </Container>
             <br></br>
-            <div>Pet Cards go here.</div>
+            <Container>
+                <Grid centered columns={1}>
+                    <Grid.Column>
+                        <Segment>
+                            Pet Cards go here.
+                    </Segment>
+                    </Grid.Column>
+                </Grid>
+            </Container>
         </section>
     )
 }
