@@ -12,20 +12,45 @@ const Navbar = () => {
     return (
         <>
 
-            <div class="ui six item menu">
-                <a class="item"> <Image
+            <Menu>
+                <Container >
+                    <Menu.Item as="a" header as={Link} to="/">
+                        <Image
 
-                    src={logo}
+                            src={logo}
 
-                    centered
-                    style={{ height: "60px" }}
-                /></a>
-                <a class="item">Find Pets</a>
-                <a class="item">Mission</a>
-                <a class="item">Saved Pets</a>
-                <a class="item">Submit Pet</a>
-                <a class="item">Login</a>
-            </div>
+                            centered
+                            style={{ height: "60px" }}
+                        />
+                        {/* <Header as='h2'>MustFit Pets</Header> */}
+                    </Menu.Item>
+
+
+
+                    <Menu.Menu position="right">
+                        <Menu.Item as="a" name="Find Pets" as={Link} to="/">
+                            Find Pets
+        </Menu.Item>
+
+                        <Menu.Item as="a" name="Mission" as={Link} to="/mission">
+                            Mission
+        </Menu.Item>
+
+                        <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
+                            Saved Pets
+        </Menu.Item>
+
+                        <Menu.Item as="a" name="Submit Pet" as={Link} to="/submit_pet">
+                            Submit Pet
+        </Menu.Item>
+
+                        <Menu.Item as="a" name="login" as={Link} to="/login">
+                            Login
+        </Menu.Item>
+
+                    </Menu.Menu>
+                </Container>
+            </Menu>
 
 
 
