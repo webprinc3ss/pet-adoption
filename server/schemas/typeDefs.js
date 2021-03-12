@@ -15,26 +15,29 @@ const typeDefs = gql`
     type Pet {
         _id: ID
         name: String
+        ageClass: String
         type: String
-        shelterTime: Number
+        enterDate: Date
         age: Number
         size: String
         behavior: [String]
         medical: Boolean
         photo: String
+        about: String
         sex: String
     }
 
     input PetInput {
         name: String!
         type: String!
-        shelterTime: Number
         age: Number
+        ageClass: String
         size: String
         behavior: [String]
         medical: Boolean
         photo: String
         sex: String
+        about: String
     }
 
     input PetFilterInput {
