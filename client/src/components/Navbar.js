@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image, Menu, Header } from 'semantic-ui-react';
+import { Container, Image, Menu } from 'semantic-ui-react';
 import logo from '../assets/images/pet_logo_final.png';
 import { Link } from 'react-router-dom';
 // import SignUpForm from './SignupForm';
@@ -11,45 +11,26 @@ const Navbar = () => {
 
     return (
         <>
-            <Menu>
-                <Container>
-                    <Menu.Item as="a" header as={Link} to="/">
-                        <Image
 
-                            src={logo}
+            <div class="ui six item menu">
+                <a class="item"> <Image
 
-                            centered
-                            style={{ height: "60px" }}
-                        />
-                        {/* <Header as='h2'>MustFit Pets</Header> */}
-                    </Menu.Item>
+                    src={logo}
+
+                    centered
+                    style={{ height: "60px" }}
+                /></a>
+                <a class="item">Find Pets</a>
+                <a class="item">Mission</a>
+                <a class="item">Saved Pets</a>
+                <a class="item">Submit Pet</a>
+                <a class="item">Login</a>
+            </div>
 
 
 
-                    <Menu.Menu position="right">
-                        <Menu.Item as="a" name="Find Pets" as={Link} to="/">
-                            Find Pets
-        </Menu.Item>
 
-                        <Menu.Item as="a" name="Mission" as={Link} to="/mission">
-                            Mission
-        </Menu.Item>
 
-                        <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
-                            Saved Pets
-        </Menu.Item>
-
-                        <Menu.Item as="a" name="Submit Pet" as={Link} to="/submit_pet">
-                            Submit Pet
-        </Menu.Item>
-
-                        <Menu.Item as="a" name="login" as={Link} to="/login">
-                            Login
-        </Menu.Item>
-
-                    </Menu.Menu>
-                </Container>
-            </Menu>
             {/* <nav>
                 <ul>
                     <li> <Link to="/">

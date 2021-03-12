@@ -15,3 +15,16 @@ code {
 .ui.ui.container.topPadding {
   padding-top: 30px;
 }
+
+div.ui.menu {
+  background-color: #fdc973;
+}
+
+.ui.menu .item:before {
+  width: 0px;
+}
+
+.ui.menu:not(.vertical) .item {
+  display: flex;
+  align-items: flex-end
+}
