@@ -36,6 +36,10 @@ const petSchema = new Schema(
         photo: {
             type: String,
             required: false,
+        },
+        about: {
+            type: String,
+            required: true
         }
     }
 );

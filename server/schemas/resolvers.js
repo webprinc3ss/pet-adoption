@@ -10,9 +10,9 @@ const resolvers = {
     Query: {
         // get single user - check authentication from context
         me: async (parent, args, context) => {
-            // if authenticated user exists
-            console.log(context.user);
+             console.log(context.user);
             
+             // if authenticated user exists
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id})
                 // exclude mongoose id and pw
@@ -22,6 +22,11 @@ const resolvers = {
             }
             // if user does not exist
             throw new AuthenticationError('Not Logged In');
+        },
+
+        pets: async (parent, { filter } ) => {
+            console.log(filter);
+            return Pet.find(filter);
         }
     },
 
@@ -53,7 +58,18 @@ const resolvers = {
             // create and sign user token
             const token = signToken(user);
             return { token, user };
-        }, 
+        },
+
+        createPet: async (parent, { petData }, context ) => {
+            console.log("petData:", petData);
+            if (context.user) {
+                const createdPet = await Pet.Create(petData);
+
+                return createdPet;
+            }
+
+            
+        },
 
         savePet: async (parent, { petData }, context ) => {
             console.log("petData:", petData);
