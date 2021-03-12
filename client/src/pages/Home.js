@@ -1,44 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PetSearchResults from "../components/PetSearchResults";
+// import { useQuery } from '@apollo/react-hooks';
+// import { Pets } from '../utils/queries';
 import { Container, Form, Header, Button, Segment, Grid } from 'semantic-ui-react'
 //See SearchBook.js from Book Project
 
 
 const Home = () => {
 
+    const [filter, setFilter] = useState();
+
+    // create method to search for pets and set state on form submit
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const newFilter = Object.fromEntries(new FormData(event.target).entries())
+        setFilter(newFilter)
+        //convert Array of arrays in to object
+    };
+
     return (
         <section>
             <Container className="topPadding">
                 <Header as='h1' textAlign="center">Search for Pets</Header>
                 <Segment>
-                    <Form>
+                    <Form onSubmit={handleFormSubmit}>
                         <Form.Group widths='equal'>
-
-                            <Form.Field label='Type' control='select'>
+                            <Form.Field label='Type' control='select'
+                                name="type"
+                            >
                                 <option value='cat'>Cat</option>
                                 <option value='dog'>Dog</option>
                             </Form.Field>
 
-                            <Form.Field label='Sex' control='select'>
+                            <Form.Field label='Sex' control='select'
+                                name="sex"
+                            >
                                 <option value='male'>Male</option>
                                 <option value='female'>Female</option>
                             </Form.Field>
-                            <Form.Field label='Age' control='select'>
+                            <Form.Field label='Age' control='select' name="ageClass"    >
                                 <option value='young'>Young</option>
                                 <option value='adult'>Adult</option>
                                 <option value='senior'>Senior</option>
                             </Form.Field>
                         </Form.Group>
                         <Form.Group widths='2'>
-                            <Form.Group grouped>
+                            <Form.Group grouped name="behavior">
                                 <label>Behavior</label>
-                                <Form.Field label='No kids' control='input' type='checkbox' />
-                                <Form.Field label='Only pet' control='input' type='checkbox' />
-                                <Form.Field label='No Cats' control='input' type='checkbox' />
-                                <Form.Field label='No dogs' control='input' type='checkbox' />
+                                <Form.Field label='No kids' control='input' type='checkbox'
+
+                                />
+                                <Form.Field label='Only pet' control='input' type='checkbox'
+
+                                />
+                                <Form.Field label='No Cats' control='input' type='checkbox'
+
+                                />
+                                <Form.Field label='No dogs' control='input' type='checkbox'
+
+                                />
                             </Form.Group>
                             <Form.Group grouped>
                                 <label>Medical Condition?</label>
-                                <Form.Field label='yes' control='input' type='checkbox' />
+                                <Form.Field label='yes' control='input' type='checkbox' name="medical" />
                             </Form.Group>
                         </Form.Group>
 
@@ -51,15 +75,7 @@ const Home = () => {
                 </Segment>
             </Container>
             <br></br>
-            <Container>
-                <Grid centered columns={1}>
-                    <Grid.Column>
-                        <Segment>
-                            Pet Cards go here.
-                    </Segment>
-                    </Grid.Column>
-                </Grid>
-            </Container>
+            {filter && <PetSearchResults filter={filter} />}
         </section>
     )
 }
