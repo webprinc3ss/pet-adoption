@@ -78,7 +78,7 @@ const PetSearchResults = ({ filter }) => {
                                 )
                             })}
                         </Card.Group> */}
-
+                        {/* End of card data: */}
 
                         {/* Adjust for auth and logged in */}
                         {/* {Auth.loggedIn() && (
