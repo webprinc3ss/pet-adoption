@@ -1,3 +1,4 @@
+// import Schema constructor and model function
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
@@ -19,6 +20,7 @@ const userSchema = new Schema(
             required: true,
             minlength: 6
         },
+        // tell mongoose to expect an ObjectId from the Pet model
         savedPets: [
             {
                type: Schema.Types.ObjectId,
@@ -28,6 +30,7 @@ const userSchema = new Schema(
     }
 );
 
+// create the User model using the userSchema
 const User = model('User', userSchema);
-
+// export the User model
 module.exports = User;

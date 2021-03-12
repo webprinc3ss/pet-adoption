@@ -7,6 +7,14 @@ const petSchema = new Schema(
             required: true,
             trim: true
         },
+        type: {
+            type: String,
+            required: true,
+        },
+        age: {
+            type: Number,
+            required: true,
+        },
         ageClass: {
             type: String,
             required: true,
@@ -14,10 +22,7 @@ const petSchema = new Schema(
         enterDate: {
             type: Date,
             required: true,
-        },
-        age: {
-            type: Number,
-            required: true,
+            default: Date.now,
         },
         size: {
             type: String,
@@ -36,6 +41,14 @@ const petSchema = new Schema(
         photo: {
             type: String,
             required: false,
+        },
+        sex: {
+            type: String,
+            required: true
+        },
+        about: {
+            type: String,
+            required: true
         }
     }
 );
