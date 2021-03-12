@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
+import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image } from 'semantic-ui-react';
 
 const PetSearchResults = ({ filter }) => {
@@ -24,7 +25,7 @@ const PetSearchResults = ({ filter }) => {
                         </h2> */}
 
                         <Card>
-                            <Image src='https://placekitten.com/200/287' wrapped ui={false} />
+                            <Image src={defaultImage} wrapped ui={false} />
                             <Card.Content>
                                 <Card.Header>Whiskers</Card.Header>
                                 <Card.Meta>
@@ -46,20 +47,57 @@ const PetSearchResults = ({ filter }) => {
                             </Card.Content>
                         </Card>
 
+                        {/* Use for card data: */}
+                        {/* <Card.Group>
+                            {data.map((pet) => {
+                                return (
+                                    <Card key={pet._id} >
+                                        {pet.image ? (
+                                            <Image src={pet.image} alt={`Image of ${pet.name}`} wrapped ui={false} />
+
+                                        ) : <Image src={defaultImage} wrapped ui={false} />}
+                                        <Card.Content>
+                                            <Card.Header>{pet.name}</Card.Header>
+                                            <Card.Meta>
+                                                <span className='date'>{pet.enterDate} `{' , ' + pet.age}` `{' , ' + pet.sex}`</span>
+                                            </Card.Meta>
+                                            <Card.Description>
+                                                {pet.about}
+                                                <br /><br />
+
+                                                <i>{pet.behavior}<br />
+                                                    {pet.medical}</i>
+
+                                            </Card.Description>
+                                        </Card.Content>
+                                        <Card.Content extra>
+                                            <a>
+                                                <Icon name='paw' /> Save</a>
+                                        </Card.Content>
+                                    </Card>
+                                )
+                            })}
+                        </Card.Group> */}
+
+
+                        {/* Adjust for auth and logged in */}
+                        {/* {Auth.loggedIn() && (
+                                                <Button
+                                                    disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
+                                                    className='btn-block btn-info'
+                                                    onClick={() => handleSaveBook(book.bookId)}>
+                                                    {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
+                                                        ? 'This book has already been saved!'
+                                                        : 'Save this Book!'}
+                                                </Button>
+                                            )}
+
+                                        
+                                ); */}
 
 
 
 
-
-                        {/* data.map(item => (pet)
-)) */}
-
-
-                        {/* <ul>
- {searchResults.map(item => (
-  <li>{item}</li>
-))}
-</ul> */}
                         {JSON.stringify(data)}
 
 
