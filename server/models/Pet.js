@@ -12,7 +12,7 @@ const petSchema = new Schema(
             required: true,
         },
         age: {
-            type: Number,
+            type: String,
             required: true,
         },
         ageClass: {
@@ -30,8 +30,8 @@ const petSchema = new Schema(
         },
         behavior: [
             {
-            type: String,
-            required: false,
+                type: String,
+                required: false,
             }
         ],
         medical: {
