@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 // import ApolloClient from 'apollo-boost';
 import Navbar from './components/Navbar';
@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import SavedPets from './pages/SavedPets';
 import Mission from './pages/Mission';
 import SubmitPet from './pages/SubmitPet';
+import Upload from './pages/Upload.js';
 import './index.css';
 
 const client = new ApolloClient({
@@ -46,7 +47,27 @@ function App() {
               overflowX: "hidden",
               overflowY: "auto",
             }}>
+                      {/* <div className="container">
+            <Router>
+                <nav className="nav">
+                    <div className="nav-brand">Cloudinary Demo</div>
+                    <ul className="nav-items">
+                        <li className="nav-item">
+                            <Link to="/">Gallery</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/upload">Upload</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <Switch>
+                    <Route component={Upload} path="/upload" />
+                    <Route component={Home} path="/" />
+                </Switch>
+            </Router>
+        </div> */}
               <Switch>
+                <Route exact path='/upload' component={Upload} />
                 <Route exact path='/' component={Home} />
                 <Route exact path='/saved' component={SavedPets} />
                 <Route exact path='/mission' component={Mission} />
