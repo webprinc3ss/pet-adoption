@@ -34,7 +34,7 @@ const PetSearchResults = ({ filter }) => {
                                 <Card.Description>
                                     Meet Whiskers, a sad kitty no one adopts, who has been waiting for a loving furever home at an animal shelter for more than 2 and a half years now. The kitty was found as a stray in Flint, Michigan, and has been spending his lonely days at the Detroit Animal Welfare Group (DAWG) ever since.  He suffers from psoraisis and needs constant care. He is skittish and prefers to be the only pet.<br /><br />
 
-                                    <i>no kids, no dogs, no cats<br />
+                                    <i>kids, dogs, cats ok<br />
                                    medical condition</i>
 
                                 </Card.Description>

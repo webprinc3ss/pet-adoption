@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f9e7c9 !important;
 }
 
 html, body, #root
@@ -78,4 +79,8 @@ div.right.menu a.item {
   text-align: center;
 
   color: black;
+}
+
+button {
+  background-color: #0292c9;
 }
