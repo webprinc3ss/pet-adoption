@@ -31,21 +31,33 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <header>
-            <Navbar />
-          </header>
-          <main>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/saved' component={SavedPets} />
-              <Route exact path='/mission' component={Mission} />
-              <Route exact path='/submit_pet' component={SubmitPet} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/signup' component={Signup} />
-              <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
-            </Switch>
-          </main>
-          <Footer />
+          <div
+            style={{
+              //see some additional required styles in index.css
+              display: "flex",
+              flexDirection: "column",
+              height: "100%"
+            }}>
+            <header>
+              <Navbar />
+            </header>
+            <main style={{
+              flexGrow: 1,
+              overflowX: "hidden",
+              overflowY: "auto",
+            }}>
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/saved' component={SavedPets} />
+                <Route exact path='/mission' component={Mission} />
+                <Route exact path='/submit_pet' component={SubmitPet} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/signup' component={Signup} />
+                <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
+              </Switch>
+            </main>
+            <Footer />
+          </div>
         </>
       </Router>
     </ApolloProvider>

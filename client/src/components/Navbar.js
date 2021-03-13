@@ -12,44 +12,51 @@ const Navbar = () => {
     return (
         <>
 
-            <Menu>
-                <Container >
-                    <Menu.Item as="a" header as={Link} to="/">
-                        <Image
+            <Menu borderless
+                style={{
+                    flexShrink: 0, //don't allow flexbox to shrink it
+                    borderRadius: 0, //clear semantic-ui style
+                    margin: 0
 
-                            src={logo}
+                }}
+            //clear semantic-ui style
+            >
 
-                            centered
-                            style={{ height: "60px" }}
-                        />
-                        {/* <Header as='h2'>MustFit Pets</Header> */}
-                    </Menu.Item>
+                <Menu.Item as="a" header as={Link} to="/">
+                    <Image
+
+                        src={logo}
+                        centered
+                        style={{ height: "60px" }}
+                    />
+                    {/* <Header as='h2'>MustFit Pets</Header> */}
+                </Menu.Item>
 
 
 
-                    <Menu.Menu position="right">
-                        <Menu.Item as="a" name="Find Pets" as={Link} to="/">
-                            Find Pets
+                <Menu.Menu position="right">
+                    <Menu.Item as="a" name="Find Pets" as={Link} to="/">
+                        Find Pets
         </Menu.Item>
 
-                        <Menu.Item as="a" name="Mission" as={Link} to="/mission">
-                            Mission
+                    <Menu.Item as="a" name="Mission" as={Link} to="/mission">
+                        Mission
         </Menu.Item>
 
-                        <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
-                            Saved Pets
+                    <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
+                        Saved Pets
         </Menu.Item>
 
-                        <Menu.Item as="a" name="Submit Pet" as={Link} to="/submit_pet">
-                            Submit Pet
+                    <Menu.Item as="a" name="Submit Pet" as={Link} to="/submit_pet">
+                        Submit Pet
         </Menu.Item>
 
-                        <Menu.Item as="a" name="login" as={Link} to="/login">
-                            Login
+                    <Menu.Item as="a" name="login" as={Link} to="/login">
+                        Login
         </Menu.Item>
 
-                    </Menu.Menu>
-                </Container>
+                </Menu.Menu>
+
             </Menu>
 
 

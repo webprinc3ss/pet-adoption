@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import PetSearchResults from "../components/PetSearchResults";
-// import { useQuery } from '@apollo/react-hooks';
-// import { Pets } from '../utils/queries';
 import { Container, Form, Header, Button, Segment, Grid } from 'semantic-ui-react'
-//See SearchBook.js from Book Project
-
 
 const Home = () => {
 
@@ -65,7 +61,6 @@ const Home = () => {
                                 <Form.Field label='yes' control='input' type='checkbox' name="medical" />
                             </Form.Group>
                         </Form.Group>
-
                         <Grid>
                             <Grid.Column textAlign="center">
                                 <Button type='submit' fluid color='blue'>Submit</Button>

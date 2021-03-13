@@ -7,6 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body, #root
+{
+	/* we don't want any of these to scroll */
+	overflow: hidden;
+	height: 100%;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -14,6 +21,7 @@ code {
 
 .ui.ui.container.topPadding {
   padding-top: 30px;
+
 }
 
 div.ui.menu {
@@ -27,4 +35,32 @@ div.ui.menu {
 .ui.menu:not(.vertical) .item {
   display: flex;
   align-items: flex-end
+}
+
+.ui.inverted.menu {
+  background-color: #fdc973;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+/* div.ui .container .topPadding .footer-container {
+  width: 100%;
+  
+} */
+
+/* div.ui .borderless .inverted .menu {
+
+ text-align: center !important;
+} */
+
+div.header.item {
+  
+  text-align: center !important;
+}
+
+.footer-container {
+  text-align: center;
+
+  color: black;
 }

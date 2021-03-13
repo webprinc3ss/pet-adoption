@@ -1,24 +1,36 @@
 import React from 'react';
-import { Container, Header, Grid } from 'semantic-ui-react';
+import { Container, Header, Grid, Menu } from 'semantic-ui-react';
 
 
 const Footer = () => {
     return (
 
-        <Container className="topPadding">
-            <Grid centered columns={2}>
-                <Grid.Column textAlign="center">
-                    <footer>
+        <Menu
+            inverted
+            borderless
+            style={{
+                flexShrink: 0, //don't allow flexbox to shrink it
+                borderRadius: 0, //clear semantic-ui style
+                margin: 0 //clear semantic-ui style
+            }}>
+            <Menu.Item>
+                <Container className="footer-container">
+                    <Grid className="footer-grid">
+                        <Grid.Column textAlign="center">
 
-                        <p>Thank you for visiting!</p>
-                        <p>
-                        </p>
-                        <span>
-                            © MustFit Pets 2021
-  </span>
-                    </footer></Grid.Column>
-            </Grid>
-        </Container>
+
+                            <span>Thank you for visiting!<br /><br />
+                                    © MustFit Pets 2021
+          </span>
+                        </Grid.Column>
+                    </Grid>
+                </Container>
+            </Menu.Item>
+        </Menu>
+
+
+
+
 
 
 
