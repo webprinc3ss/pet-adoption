@@ -39,7 +39,7 @@ app.get('*', (req, res) => {
 
 app.get('/api/images', async (req, res) => {
   const { resources } = await cloudinary.search
-      .expression('folder:Pets')
+      .expression('folder:PetsImage')
       .sort_by('public_id', 'desc')
       .max_results(30)
       .execute();
@@ -51,7 +51,7 @@ app.post('/api/upload', async (req, res) => {
   try {
       const fileStr = req.body.data;
       const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-          upload_preset: 'Pets',
+          upload_preset: 'PetsImage',
       });
       console.log(uploadResponse);
       res.json({ msg: 'uploaded' });
