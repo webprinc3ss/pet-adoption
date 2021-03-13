@@ -6,10 +6,10 @@ import { Container, Form, Header, Button, Segment, Grid, Input, TextArea } from 
 // import Auth from '../utils/auth';
 
 const SubmitPet = () => {
-    //Push to our database here.  Change this code to refer to CREATE_PET, ADD_USER.
-    const [userFormData, setUserFormData] = useState({ name: '', email: '', password: '' });
+    //Push to our database here..
+    const [userFormData, setUserFormData] = useState({ name: '', behavior: '', medical: '', photo: '', about: '' });
 
-    const [addUser, { error }] = useMutation(CREATE_PET);
+    const [createPet, { error }] = useMutation(CREATE_PET);
 
     // set state for form validation
     const [validated] = useState(false);
@@ -28,7 +28,7 @@ const SubmitPet = () => {
         // }
 
         try {
-            const { data } = await addUser({
+            const { data } = await createPet({
                 variables: { ...userFormData }
             });
             // Auth.login(data.addUser.token);
@@ -37,9 +37,11 @@ const SubmitPet = () => {
         }
 
         setUserFormData({
-            username: '',
-            email: '',
-            password: '',
+            name: '',
+            behavior: '',
+            medical: '',
+            photo: '',
+            about: '',
         });
     };
 
