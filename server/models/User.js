@@ -30,6 +30,20 @@ const userSchema = new Schema(
     }
 );
 
+// hash user password
+userSchema.pre('save', async function (next) {
+    if (this.isNew || this.isModified('password')) {
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
+    }
+    next();
+});
+
+// custom method to compare and validate password for logging in using isCorrectPassword
+userSchema.methods.isCorrectPassword = async function (password) {
+    return bcrypt.compare(password, this.password);
+  };
+
 // create the User model using the userSchema
 const User = model('User', userSchema);
 // export the User model
