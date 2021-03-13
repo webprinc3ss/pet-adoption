@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Alert from '../components/Alert';
+// import Alert from '../components/Alert';
 
 export default function Upload() {
     const [fileInputState, setFileInputState] = useState('');
@@ -54,8 +54,8 @@ export default function Upload() {
     return (
         <div>
             <h1 className="title">Upload an Image</h1>
-            <Alert msg={errMsg} type="danger" />
-            <Alert msg={successMsg} type="success" />
+            {/* <Alert msg={errMsg} type="danger" />
+            <Alert msg={successMsg} type="success" /> */}
             <form onSubmit={handleSubmitFile} className="form">
                 <input
                     id="fileInput"

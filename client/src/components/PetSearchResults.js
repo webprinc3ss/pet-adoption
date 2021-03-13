@@ -80,6 +80,17 @@ const PetSearchResults = ({ filter }) => {
                         </Card.Group> */}
                         {/* End of card data: */}
 
+                        {/* USE FOR SAVED BOOKS */}
+                        {/* {Auth.loggedIn() && (
+                    <Button icon
+                      disabled={savedPetIds?.some((savedPetId) => savedPetId === pet. _id)}
+                      onClick={() => handleSavePet(pet. _id)}><Icon name='paw' />
+                      {savedPetIds?.some((savedPetId) => savedPetId === pet.petId)
+                        ? 'This pet has already been saved!'
+                        : 'Save this Pet!'}
+                    </Button> */}
+
+
                         {/* Adjust for auth and logged in */}
                         {/* {Auth.loggedIn() && (
                                                 <Button
