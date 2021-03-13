@@ -27,17 +27,24 @@ const userSchema = new Schema(
                ref: 'Pet',
             }
         ]
+    },
+    {
+        toJSON: {
+            virtuals: true
+        }
     }
 );
 
-// hash user password
-userSchema.pre('save', async function (next) {
+// set up pre-save middleware to hash password
+userSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
-        const saltRounds = 10;
-        this.password = await bcrypt.hash(this.password, saltRounds);
+      const saltRounds = 10;
+      this.password = await bcrypt.hash(this.password, saltRounds);
+      console.log("password:", this.password);
     }
+  
     next();
-});
+  });
 
 // custom method to compare and validate password for logging in using isCorrectPassword
 userSchema.methods.isCorrectPassword = async function (password) {
