@@ -16,7 +16,8 @@ const Navbar = () => {
                 style={{
                     flexShrink: 0, //don't allow flexbox to shrink it
                     borderRadius: 0, //clear semantic-ui style
-                    margin: 0
+                    margin: 0,
+
 
                 }}
             //clear semantic-ui style

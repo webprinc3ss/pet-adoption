@@ -41,18 +41,15 @@ div.ui.menu {
   background-color: #fdc973;
   align-items: center;
   justify-content: center;
-  
 }
 
-/* div.ui .container .topPadding .footer-container {
-  width: 100%;
-  
-} */
+div.ui.borderless.menu {
+  flex-wrap: wrap;
+}
 
-/* div.ui .borderless .inverted .menu {
-
- text-align: center !important;
-} */
+div.right.menu {
+flex-wrap: wrap;
+}
 
 div.header.item {
   
