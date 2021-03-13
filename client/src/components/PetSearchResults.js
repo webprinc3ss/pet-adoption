@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
 import defaultImage from '../assets/images/card_default.png';
-import { Container, Grid, Segment, Card, Icon, Image } from 'semantic-ui-react';
+import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
 
 const PetSearchResults = ({ filter }) => {
 
@@ -101,7 +101,16 @@ const PetSearchResults = ({ filter }) => {
                         {JSON.stringify(data)}
 
 
+                        <Pagination
+                            boundaryRange={0}
+                            defaultActivePage={1}
+                            ellipsisItem={null}
+                            firstItem={null}
+                            lastItem={null}
+                            siblingRange={1}
+                            totalPages={5}
 
+                        />
 
 
                     </Segment>

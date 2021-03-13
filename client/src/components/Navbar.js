@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image, Menu } from 'semantic-ui-react';
+import { Container, Image, Menu, } from 'semantic-ui-react';
 import logo from '../assets/images/pet_logo_final.png';
 import { Link } from 'react-router-dom';
 // import SignUpForm from './SignupForm';
