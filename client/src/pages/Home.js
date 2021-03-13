@@ -46,9 +46,7 @@ const Home = () => {
                                 <Form.Field label='No kids' control='input' type='checkbox'
 
                                 />
-                                <Form.Field label='Only pet' control='input' type='checkbox'
 
-                                />
                                 <Form.Field label='No Cats' control='input' type='checkbox'
 
                                 />

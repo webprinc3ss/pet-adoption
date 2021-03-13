@@ -11,7 +11,7 @@ const resolvers = {
     Date: new GraphQLScalarType({
         name: 'Date',
         serialize(value) {
-            return JSON.stringify(value)
+            return value.toISOString()
         },
         parseValue(value) {
             const date = new Date(value)

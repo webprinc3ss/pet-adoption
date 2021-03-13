@@ -44,7 +44,8 @@ const petSchema = new Schema(
         },
         sex: {
             type: String,
-            required: true
+            required: true,
+            enum: ["M", "F"]
         },
         about: {
             type: String,
