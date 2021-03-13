@@ -8,6 +8,8 @@ const PetSearchResults = ({ filter }) => {
 
     const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } })
 
+
+
     if (loading)
         return <>loading</>
 
@@ -19,13 +21,45 @@ const PetSearchResults = ({ filter }) => {
             <Grid centered columns={1}>
                 <Grid.Column>
                     <Segment>
-                        {/* <h2>
-                            {data.length
-                                ? `Viewing ${data.length} results:`
-                                : 'Search for a Pet to begin'}
-                        </h2> */}
+                        <h2>
+                            {pets.length
 
-                        <Card>
+                                ? `Viewing ${data.length} results:`
+                                : 'No results'}
+                        </h2>
+
+                        <Card.Group>
+                            {pets.map((pet) => (
+                                <Card key={pet._id} >
+                                    {pet.image ? (
+                                        <Image src={pet.image} alt={`Image of ${pet.name}`} wrapped ui={false} />
+
+                                    ) : <Image src={defaultImage} wrapped ui={false} />}
+                                    <Card.Content>
+                                        <Card.Header>{pet.name}</Card.Header>
+                                        <Card.Meta>
+                                            <span className='date'>{new Date(pet.enterDate).toLocaleDateString()} , {pet.age} , {pet.sex} </span>
+                                        </Card.Meta>
+                                        <Card.Description>
+                                            {pet.about}
+                                            <br /><br />
+
+                                            <i>{pet.behavior}<br />
+                                                {pet.medical}</i>
+
+                                        </Card.Description>
+                                    </Card.Content>
+                                    <Card.Content extra>
+                                        <a>
+                                            <Icon name='paw' /> Save</a>
+                                    </Card.Content>
+                                </Card>
+                            )
+                            )}
+                        </Card.Group>
+
+
+                        {/* <Card>
                             <Image src={defaultImage} wrapped ui={false} />
                             <Card.Content>
                                 <Card.Header>Whiskers</Card.Header>
@@ -46,10 +80,11 @@ const PetSearchResults = ({ filter }) => {
         Save
       </a>
                             </Card.Content>
-                        </Card>
+                        </Card> */}
 
                         {/* Use for card data: */}
-                        {/* <Card.Group>
+                        {/* 
+                        <Card.Group>
                             {data.map((pet) => {
                                 return (
                                     <Card key={pet._id} >
@@ -78,7 +113,8 @@ const PetSearchResults = ({ filter }) => {
                                     </Card>
                                 )
                             })}
-                        </Card.Group> */}
+                        </Card.Group>
+                         */}
                         {/* End of card data: */}
 
                         {/* USE FOR SAVED BOOKS */}

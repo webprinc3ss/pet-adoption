@@ -31,8 +31,8 @@ const Home = () => {
                             <Form.Field label='Sex' control='select'
                                 name="sex"
                             >
-                                <option value='male'>Male</option>
-                                <option value='female'>Female</option>
+                                <option value='M'>Male</option>
+                                <option value='F'>Female</option>
                             </Form.Field>
                             <Form.Field label='Age' control='select' name="ageClass"    >
                                 <option value='young'>Young</option>

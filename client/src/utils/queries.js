@@ -29,12 +29,14 @@ export const GET_PETS = gql`
             _id
             name
             type
-            # shelterTime
-            # age
-            # size
-            # behavior
-            # medical
-            # photo
+            sex
+            about
+            photo
+            behavior
+            enterDate
+            age
+            medical
+            
         }
     }
 `;
