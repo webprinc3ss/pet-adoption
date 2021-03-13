@@ -4,6 +4,7 @@ const { gql } = require('apollo-server-express');
 
 // create typeDefs - all data the client will expect to work with
 const typeDefs = gql`
+    scalar Date
     type User {
         _id: ID
         username: String
@@ -18,7 +19,7 @@ const typeDefs = gql`
         ageClass: String
         type: String
         enterDate: Date
-        age: Number
+        age: Int
         size: String
         behavior: [String]
         medical: Boolean
@@ -30,7 +31,7 @@ const typeDefs = gql`
     input PetInput {
         name: String!
         type: String!
-        age: Number
+        age: Int
         ageClass: String
         size: String
         behavior: [String]
@@ -42,8 +43,10 @@ const typeDefs = gql`
 
     input PetFilterInput {
         type: String
-        age: Number
+        age: Int
+        ageClass: String
         size: String
+        sex: String
         behavior: [String!]
         medical: Boolean
     }

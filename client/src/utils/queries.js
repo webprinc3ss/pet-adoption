@@ -24,17 +24,17 @@ export const GET_ME = gql`
 `;
 
 export const GET_PETS = gql`
-    query($filter:PetFilterInput){
+    query ($filter:PetFilterInput){
         pets(filter:$filter) {
             _id
             name
             type
-            shelterTime
-            age
-            size
-            behavior
-            medical
-            photo
+            # shelterTime
+            # age
+            # size
+            # behavior
+            # medical
+            # photo
         }
     }
 `;

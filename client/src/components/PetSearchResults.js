@@ -11,7 +11,8 @@ const PetSearchResults = ({ filter }) => {
     if (loading)
         return <>loading</>
 
-
+    const { pets } = data;
+    console.log(pets)
 
     return (
         <Container>
@@ -96,7 +97,7 @@ const PetSearchResults = ({ filter }) => {
 
 
 
-                        {JSON.stringify(data)}
+
 
 
                         <Pagination
@@ -107,7 +108,7 @@ const PetSearchResults = ({ filter }) => {
                             lastItem={null}
                             siblingRange={1}
                             totalPages={5}
-                            centered
+
                         />
 
 
