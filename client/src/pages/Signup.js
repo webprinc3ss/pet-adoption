@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 import {
     Button,
     Form,
@@ -17,41 +17,34 @@ import {
 
 const Signup = () => {
 
-
-    const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-
+    const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [addUser, { error }] = useMutation(ADD_USER);
 
-    // set state for form validation
-    const [validated] = useState(false);
-    // set state for alert
-    const [showAlert, setShowAlert] = useState(false);
 
+    // update state based on form input changes
+    const handleChange = (event) => {
+        const { name, value } = event.target;
 
-    const handleFormSubmit = async (event) => {
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    };
+
+    // submit form (notice the async!)
+    const handleFormSubmit = async event => {
         event.preventDefault();
 
-        // check if form has everything (as per react-bootstrap docs)
-        const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
-
+        // use try/catch instead of promises to handle errors
         try {
             const { data } = await addUser({
-                variables: { ...userFormData }
+                variables: { ...formState }
             });
-            // Auth.login(data.addUser.token);
+
+            Auth.login(data.addUser.token);
         } catch (e) {
             console.error(e);
         }
-
-        setUserFormData({
-            username: '',
-            email: '',
-            password: '',
-        });
     };
 
 
@@ -72,30 +65,36 @@ const Signup = () => {
                                 fluid
                                 icon="user"
                                 iconPosition="left"
+                                name="email"
                                 placeholder="Email address"
-                                error={{
-                                    content: 'Please enter a valid email address',
-                                    pointing: 'below',
-                                }}
-                                header='Action Forbidden'
-                                content='You can only sign up for an account once with a given e-mail address.'
+                                value={formState.email}
+                                onChange={handleChange}
+                            // header='Action Forbidden'
+                            // content='You can only sign up for an account once with a given e-mail address.'
                             />
                             <Form.Input
+                                name="username"
                                 fluid
                                 icon="lock"
                                 iconPosition="left"
                                 placeholder="Username"
                                 type="username"
-                                error='Please enter a username'
+                                value={formState.username}
+                                onChange={handleChange}
+
                             />
 
                             <Form.Input
+                                name="password"
                                 fluid
                                 icon="lock"
                                 iconPosition="left"
                                 placeholder="Password"
                                 type="password"
-                                error='Please enter a password'
+                                id='password'
+                                value={formState.password}
+                                onChange={handleChange}
+
                             />
 
                             <Button color="blue" fluid size="large">

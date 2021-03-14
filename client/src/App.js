@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-// import ApolloClient from 'apollo-boost';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './pages/Login';
@@ -11,20 +10,21 @@ import SavedPets from './pages/SavedPets';
 import Mission from './pages/Mission';
 import SubmitPet from './pages/SubmitPet';
 import Upload from './pages/Upload.js';
+import Auth from "./utils/auth";
 import './index.css';
 
 const client = new ApolloClient({
   uri: '/graphql',
-  cache: new InMemoryCache()
-  // request:
-  //   (operation) => {
-  //     const token = Auth.getToken();
-  //     operation.setContext({
-  //       headers: {
-  //         authorization: token ? `Bearer ${token}` : ''
-  //       }
-  //     })
-  //   }
+  cache: new InMemoryCache(),
+  request:
+    (operation) => {
+      const token = Auth.getToken();
+      operation.setContext({
+        headers: {
+          authorization: token ? `Bearer ${token}` : ''
+        }
+      })
+    }
 });
 
 function App() {
