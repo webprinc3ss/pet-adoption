@@ -9,7 +9,7 @@ const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require('./utils/auth');
 const db = require('./config/connection');
 const morgan = require('morgan');
-
+const multiparty = require('multiparty');
 const PORT = process.env.PORT || 3001;
 const app = express();
 var cors = require('cors');
@@ -33,28 +33,46 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.get('/api/images', async (req, res) => {
-  const { resources } = await cloudinary.search
-    .expression('folder:PetsImage')
-    .sort_by('public_id', 'desc')
-    .max_results(30)
-    .execute();
+// app.get('/api/images', async (req, res) => {
+//   const { resources } = await cloudinary.search
+//     .expression('folder:PetsImage')
+//     .sort_by('public_id', 'desc')
+//     .max_results(30)
+//     .execute();
 
-  const publicIds = resources.map((file) => file.public_id);
-  res.send(publicIds);
-});
-app.post('/api/upload', async (req, res) => {
+//   const publicIds = resources.map((file) => file.public_id);
+//   res.send(publicIds);
+// });
+app.post("/api/files", async (req, res) => {
+  const form = new multiparty.Form();
   try {
-    const fileStr = req.body.data;
-    const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-      upload_preset: 'PetsImage',
+  const [fields, files] = await new Promise((resolve, reject) => {
+    form.parse(req, (err, fields, files) => {
+      if (err) reject(err);
+      else resolve([fields, files])
     });
-    console.log(uploadResponse);
-    res.json({ msg: 'uploaded' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ err: 'Something went wrong' });
-  }
+  });
+  console.log(fields, "test");
+  const {photo: [{path}] } = files;
+  console.log({path})
+  const {url: imageUrl, ...result} = await cloudinary.uploader.upload(path);
+  const pet =  {
+    ...Object.fromEntries(
+      Object.entries(fields)
+        .map(([key, [value]]) => [key, value])
+    ),
+    imageUrl
+  };
+
+  console.log(pet, result);
+  // sends response object from server to client SubmitPet to mutate 
+  res.status(201).send(pet);
+} catch (err) {
+  console.error(err);
+  res.status(500).send({
+    message: "internal server error"
+  });
+}
 });
 
 app.get('*', (req, res) => {
