@@ -3,15 +3,15 @@ import { Container, Image, Menu, } from 'semantic-ui-react';
 import logo from '../assets/images/pet_logo_final.png';
 import { Link } from 'react-router-dom';
 
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 const Navbar = () => {
 
     // Turn on Logout when Auth is activated
-    // const logout = event => {
-    //     event.preventDefault();
-    //     Auth.logout();
-    // };
+    const logout = event => {
+        event.preventDefault();
+        Auth.logout();
+    };
 
 
     return (
@@ -47,7 +47,7 @@ const Navbar = () => {
         </Menu.Item>
 
                     {/* Use this menu below for Auth */}
-                    {/* {Auth.loggedIn() ? (
+                    {Auth.loggedIn() ? (
                         <>
                             <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
                                 Saved Pets
@@ -65,15 +65,15 @@ const Navbar = () => {
                     ) : (
                         <>
                             <Menu.Item as="a" name="login" as={Link} to="/login">
-                        Login
+                                Login
         </Menu.Item>
                         </>
-                    )} */}
+                    )}
                     {/* End of menu to be used for Auth */}
 
 
                     {/* Comment out rest of menu items below if using Auth */}
-                    <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
+                    {/* <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
                         Saved Pets
         </Menu.Item>
 
@@ -83,7 +83,7 @@ const Navbar = () => {
 
                     <Menu.Item as="a" name="login" as={Link} to="/login">
                         Login
-        </Menu.Item>
+        </Menu.Item> */}
 
                 </Menu.Menu>
 
