@@ -1,17 +1,60 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { useMutation } from '@apollo/client';
-// import { CREATE_PET } from '../utils/mutations';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { CREATE_PET } from '../utils/mutations';
 import { Container, Form, Header, Button, Segment, Grid, Input, TextArea } from 'semantic-ui-react';
 // import Auth from '../utils/auth';
 
 const SubmitPet = () => {
-    const [fileInputState, setFileInputState] = useState('');
-    const [selectedFile, setSelectedFile] = useState();
-    const [previewSource, setPreviewSource] = useState('');
+    //Push to our database here..
+    const [userFormData, setUserFormData] = useState({ name: '', behavior: '', medical: '', photo: '', about: '' });
+
+    const [createPet, { error }] = useMutation(CREATE_PET);
+
+    // set state for form validation
+    const [validated] = useState(false);
+    // set state for alert
     const [showAlert, setShowAlert] = useState(false);
 
-    //takes photo file in and saves to state
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+        // check if form has everything (as per react-bootstrap docs)
+        const form = event.currentTarget;
+        // if (form.checkValidity() === false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        // }
+
+        try {
+            const { data } = await createPet({
+                variables: { ...userFormData }
+            });
+            // Auth.login(data.addUser.token);
+        } catch (e) {
+            console.error(e);
+        }
+
+        setUserFormData({
+            name: '',
+            behavior: '',
+            medical: '',
+            photo: '',
+            about: '',
+        });
+    };
+
+
+
+
+
+    //Cloudinary code below
+    const [fileInputState, setFileInputState] = useState('');
+    const [previewSource, setPreviewSource] = useState('');
+    const [selectedFile, setSelectedFile] = useState();
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errMsg, setErrMsg] = useState('');
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         previewFile(file);
@@ -19,30 +62,43 @@ const SubmitPet = () => {
         setFileInputState(e.target.value);
     };
 
-    // allows to preview photo on page
     const previewFile = (file) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
+    
         reader.onloadend = () => {
             setPreviewSource(reader.result);
+            console.log(reader.result)
         };
     };
 
-    // Submit form to server side including all form inputs
-    const handleFormSubmit = async (e) => {
+    const handleSubmitFile = (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        console.log(e.target)
+        if (!selectedFile) return;
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = () => {
+            uploadImage(reader.result);
+        };
+        reader.onerror = () => {
+            console.error('Submit error!');
+            setErrMsg('something went wrong!');
+        };
+    };
+
+    const uploadImage = async (base64EncodedImage) => {
         try {
-            await fetch("/api/files", {
-                method: "POST",
-                body: formData
-            })
-                .then(res => res.json())
-                .then(console.log);
+            await fetch('/api/upload', {
+                method: 'POST',
+                body: JSON.stringify({ data: base64EncodedImage }),
+                headers: { 'Content-Type': 'application/json' },
+            });
+            setFileInputState('');
+            setPreviewSource('');
+            setSuccessMsg('Image uploaded successfully');
         } catch (err) {
             console.error(err);
-            setShowAlert('Something went wrong!');
+            setErrMsg('Something went wrong!');
         }
     };
 
@@ -51,9 +107,9 @@ const SubmitPet = () => {
             <Container className="topPadding">
                 <Header as="h1" textAlign="center">Submit A Pet</Header>
                 <Segment>
-                    <Form onSubmit={handleFormSubmit}>
+                    <Form>
                         <Form.Group widths="equal">
-                            <Form.Input label="Name" name="name">
+                            <Form.Input label="Name">
                                 <input placeholder='Pet name' />
                             </Form.Input>
                             <Form.Field label="Type" control='select' name="type">
@@ -74,16 +130,16 @@ const SubmitPet = () => {
                         <Form.Group widths='2'>
                             <Form.Group grouped name="behavior">
                                 <label>Behavior</label>
-                                <Form.Field label='kids' name="kids" control='input' type='checkbox' />
-                                <Form.Field label='only pet' name="onlyPet" control='input' type='checkbox' />
+                                <Form.Field label='kids' control='input' type='checkbox' />
+                                <Form.Field label='only pet' control='input' type='checkbox' />
                                 <Form.Field label='other cats' control='input' type='checkbox' />
                                 <Form.Field label='other dogs' control='input' type='checkbox' />
                             </Form.Group>
                             <Form.Group grouped>
-                                <Input label='Photo Upload'
+                                <Input label='Image Upload'
                                     id="fileInput"
                                     type="file"
-                                    name="photo" //photo???
+                                    name="image" //photo???
                                     onChange={handleFileInputChange}
                                     value={fileInputState}
                                     className="form-input"
