@@ -32,10 +32,7 @@ const Navbar = () => {
                         centered
                         style={{ height: "60px" }}
                     />
-                    {/* <Header as='h2'>MustFit Pets</Header> */}
                 </Menu.Item>
-
-
 
                 <Menu.Menu position="right">
                     <Menu.Item as="a" name="Find Pets" as={Link} to="/">
@@ -71,20 +68,6 @@ const Navbar = () => {
                         </>
                     )}
                     {/* End of menu to be used for Auth */}
-
-
-                    {/* Comment out rest of menu items below if using Auth */}
-                    {/* <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
-                        Saved Pets
-        </Menu.Item>
-
-                    <Menu.Item as="a" name="Submit Pet" as={Link} to="/submit_pet">
-                        Submit Pet
-        </Menu.Item>
-
-                    <Menu.Item as="a" name="login" as={Link} to="/login">
-                        Login
-        </Menu.Item> */}
 
                 </Menu.Menu>
 
