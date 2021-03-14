@@ -57,9 +57,10 @@ const Navbar = () => {
                                 Submit Pet
         </Menu.Item>
 
-                            <Menu.Item as="a" name="logout" as={Link} to="/">
+                            <Menu.Item onClick={logout} as="a" href="/">
+
                                 Logout
-        </Menu.Item>
+                     </Menu.Item>
 
                         </>
                     ) : (
