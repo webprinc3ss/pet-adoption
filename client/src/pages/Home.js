@@ -11,6 +11,7 @@ const Home = () => {
         event.preventDefault();
         const newFilter = Object.fromEntries(new FormData(event.target).entries())
         setFilter(newFilter)
+        console.log("filter", newFilter)
         //convert Array of arrays in to object
     };
 
