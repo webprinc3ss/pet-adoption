@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-// import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 import {
     Button,
     Form,
@@ -14,53 +14,33 @@ import {
 } from 'semantic-ui-react';
 
 const Login = () => {
-
-
-    const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-    // const [validated] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
+    const [formState, setFormState] = useState({ email: '', password: '' });
     const [login, { error }] = useMutation(LOGIN_USER);
 
-    const handleInputChange = (event) => {
+    // update state based on form input changes
+    const handleChange = (event) => {
         const { name, value } = event.target;
-        setUserFormData({ ...userFormData, [name]: value });
-    };
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-
-        // check if form has everything (as per react-bootstrap docs)
-        const form = event.currentTarget;
-        // if (form.checkValidity() === false) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        // }
-
-        try {
-
-            const { data } = await login({ variables: { ...userFormData } });
-
-            if (error) {
-                throw new Error('something went wrong!');
-            }
-
-
-            // console.log(user);
-            // Auth.login(data.login.token);
-
-        } catch (e) {
-            console.error(e);
-            setShowAlert(true);
-        }
-
-
-        setUserFormData({
-            username: '',
-            email: '',
-            password: '',
+        setFormState({
+            ...formState,
+            [name]: value,
         });
     };
 
+    // submit form
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+
+        try {
+            const { data } = await login({
+                variables: { ...formState }
+            });
+
+            Auth.login(data.login.token);
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
     return (
         <Container className="topPadding">
@@ -68,26 +48,35 @@ const Login = () => {
                 <Grid.Column>
                     <Header as="h2" textAlign="center">
                         Login
-      </Header>
+                    </Header>
                     <Segment>
-                        <Form size="large">
+                        <Form size="large" onSubmit={handleFormSubmit}>
                             <Form.Input
                                 fluid
                                 icon="user"
                                 iconPosition="left"
                                 placeholder="Email address"
+                                name='email'
+                                type='email'
+                                id='email'
+                                value={formState.email}
+                                onChange={handleChange}
                             />
                             <Form.Input
                                 fluid
                                 icon="lock"
                                 iconPosition="left"
-                                placeholder="Password"
-                                type="password"
+                                placeholder='******'
+                                name='password'
+                                type='password'
+                                id='password'
+                                value={formState.password}
+                                onChange={handleChange}
                             />
 
                             <Button color="blue" fluid size="large">
                                 Login
-          </Button>
+                        </Button>
                         </Form>
                     </Segment>
                     <Message>
