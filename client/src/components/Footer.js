@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Grid, Menu } from 'semantic-ui-react';
+import { Container, Grid, Menu } from 'semantic-ui-react';
 
 
 const Footer = () => {
