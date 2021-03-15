@@ -87,7 +87,7 @@ const SubmitPet = () => {
                                     onChange={handleFileInputChange}
                                     value={fileInputState}
                                     className="form-input"
-                                    style={{ width: "370px" }}
+                                // style={{ width: "370px" }}
                                 />
 
                                 {previewSource && (

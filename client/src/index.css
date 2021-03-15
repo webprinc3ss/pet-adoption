@@ -81,6 +81,72 @@ div.right.menu a.item {
   color: black;
 }
 
+/* input[type=checkbox]  */
+.ui.form input[type=checkbox], .ui.form textarea
+{
+  width: 20px;
+
+  position: relative;
+  right: 5px !important;
+
+  vertical-align: baseline !important;
+}
+
+.ui.form .field>label {  
+  width: 200px;
+
+  position: relative;
+  right: -20px;
+
+  display: inline-block;
+  vertical-align: baseline !important;
+}
+
+/* #root > div > main > section > div > div > form > label > input[type=checkbox] */
+
+
+
+/* input.ui.input[type=checkbox] */
+ /* {
+  vertical-align:text-bottom !important;
+} */
+
+/* #root > div > main > section > div > div > form > div.two.fields > div:nth-child(2) > div > label > input[type=checkbox] */
+
+
+input#fileInput {
+  width: 233px;
+}
+
+#root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
+  width: 347px !important;
+}
+
 button {
   background-color: #0292c9;
 }
+
+@media only screen and (max-width: 772px) {
+  .ui.menu .item {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    
+  }
+}
+
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+ 
+}
+
+/* Small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (phones, 480px and down) */
+@media only screen and (max-width: 480px) {
+
+}
+

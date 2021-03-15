@@ -96,6 +96,8 @@ const PetSearchResults = ({ filter }) => {
 
                                             <i>
 
+
+
                                                 {pet.behavior.length
 
                                                     ? `No `
@@ -105,8 +107,10 @@ const PetSearchResults = ({ filter }) => {
                                                 }
 
                                                 <br />
+                                                {pet.medical ? (`Medical Condition`) : ""}
 
-                                                {pet.medical}</i>
+
+                                            </i>
 
                                         </Card.Description>
                                     </Card.Content>
