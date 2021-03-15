@@ -89,8 +89,6 @@ const resolvers = {
 
                 return createdPet;
             }
-
-
         },
 
         savePet: async (parent, { petData }, context) => {

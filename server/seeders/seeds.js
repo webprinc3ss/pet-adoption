@@ -45,11 +45,16 @@ db.once('open', async () => {
         const behavior = faker.random.arrayElements(["kids", "cats", "dogs"]);
         
         // create medical
-        const medical = true;
+        const medical = faker.random.arrayElement([true, false]);
 
         // create random animal image
+        // if (type === "cat"){
+        //   const photo = faker.image.cats();
+        // } else {
+        //   const photo = faker.image.animals();
+        // }
         const photo = faker.image.animals();
-
+        
         // create animal sex
         const sex = faker.random.arrayElement(["M", "F"]);
 

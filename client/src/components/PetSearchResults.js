@@ -8,7 +8,10 @@ import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semanti
 
 const PetSearchResults = ({ filter }) => {
 
+    // filter gets ageClass, sex, type - need medical and behavior
+    console.log("filter:", filter);
     const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } })
+    
     // const [savePet, { error }] = useMutation(SAVE_PET);
 
     // create state to hold saved bookId values
@@ -21,20 +24,10 @@ const PetSearchResults = ({ filter }) => {
     // });
 
     if (loading)
-        return <>loading</>
+        return <>loading</> //spinning cat here
 
     const { pets } = data;
-    console.log(pets)
-
-    // const petData = items.map((pet) => ({
-    //     bookId: book.id,
-    //     authors: book.volumeInfo.authors || ['No author to display'],
-    //     title: book.volumeInfo.title,
-    //     description: book.volumeInfo.description,
-    //     image: book.volumeInfo.imageLinks?.thumbnail || '',
-    //   }));
-
-    // setSearchedPets(data);
+    console.log("pets:", pets)
 
 
     // const handleSavePet = async (petId) => {
