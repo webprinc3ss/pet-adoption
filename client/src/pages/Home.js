@@ -11,11 +11,14 @@ const Home = () => {
         event.preventDefault();
         const newFilter = Object.fromEntries(new FormData(event.target).entries())
         
-        console.log("filter: ", newFilter);
-        newFilter.behavior = [];
+        
         // check if medical has an "on" value (has been checked) - if so assign to true
         if (newFilter.medical) {
             newFilter.medical = true;
+        }
+
+        if (newFilter.kids || newFilter.cats || newFilter.dogs) {
+            newFilter.behavior = [];
         }
 
         if (newFilter.kids) {
@@ -34,9 +37,6 @@ const Home = () => {
         }
 
         
-        if (!newFilter.behavior.length) {
-            delete newFilter.behavior
-        }
         console.log("newFilter", newFilter);
         // set filter to form values
         setFilter(newFilter)
@@ -75,21 +75,21 @@ const Home = () => {
                         
                         <Form.Group widths='2'>
                             <Form.Group grouped name="behavior">
-                                <label>Behavior</label>
-                                <Form.Field label='No kids' control='input' type='checkbox'
+                                <label>Companion Behavior</label>
+                                <Form.Field label='Kids Ok' control='input' type='checkbox'
                                     name="kids"
                                 />
-                                <Form.Field label='No Cats' control='input' type='checkbox'
+                                <Form.Field label='Cats Ok' control='input' type='checkbox'
                                     name="cats"
                                 />
-                                <Form.Field label='No dogs' control='input' type='checkbox'
+                                <Form.Field label='Dogs Ok' control='input' type='checkbox'
                                     name="dogs"
                                 />
                             </Form.Group>
                             
                             <Form.Group grouped>
-                                <label>Medical Condition?</label>
-                                <Form.Field label='Yes' control='input' type='checkbox' name="medical" value={true} />
+                                <label>See Only Medical Condition?</label>
+                                <Form.Field label='Yes' control='input' type='checkbox' name="medical" />
                             </Form.Group>
                         
                         </Form.Group>

@@ -8,8 +8,8 @@ import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semanti
 
 const PetSearchResults = ({ filter }) => {
 
-    // filter gets ageClass, sex, type - need medical and behavior
-    console.log("filter:", filter);
+    // filter gets ageClass, sex, type medical and behavior
+    console.log("petfilter:", filter);
     const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } })
     
     // const [savePet, { error }] = useMutation(SAVE_PET);

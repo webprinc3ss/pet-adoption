@@ -25,7 +25,7 @@ db.once('open', async () => {
     // create Pets
     let petData = [];
     
-    for (let i = 0; i < 20; i += 1) {
+    for (let i = 0; i < 30; i += 1) {
       
         // create random name
         const name = faker.name.firstName();
@@ -47,19 +47,19 @@ db.once('open', async () => {
         // create medical
         const medical = faker.random.arrayElement([true, false]);
 
-        // create random animal image
-        // if (type === "cat"){
-        //   const photo = faker.image.cats();
-        // } else {
-        //   const photo = faker.image.animals();
-        // }
-        const photo = faker.image.animals();
-        
+    
+        // create random cat or animal image
+        if (type === "cat"){
+          photo = faker.image.cats();
+        } else {
+          photo = faker.image.animals();
+        }
+
         // create animal sex
         const sex = faker.random.arrayElement(["M", "F"]);
 
         // create about text
-        const about = faker.lorem.words(Math.round(Math.random() * 20) + 1);
+        const about = faker.lorem.words(Math.round(Math.random() * 30) + 1);
 
         petData.push({ name, type, age, ageClass, size, behavior, medical, photo, sex, about });
 

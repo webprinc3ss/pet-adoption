@@ -47,7 +47,7 @@ const resolvers = {
         },
 
         pets: async (parent, { filter }) => {
-            console.log(filter);
+            console.log("Resolver petfilter", filter);
             return Pet.find(filter);
         }
     },
