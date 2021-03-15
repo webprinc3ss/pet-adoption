@@ -28,16 +28,16 @@ export const CREATE_PET = gql`
     mutation createPet($petData: PetInput!) {
         createPet(petData: $petData) {
             _id
-            # name
-            # ageClass
-            # enterDate
-            # age
-            # size
-            # behavior
-            # medical
-            # photo
-            # about
-            # sex
+            name
+            ageClass
+            enterDate
+            age
+            size
+            behavior
+            medical
+            photo
+            about
+            sex
         }
     }
 `;

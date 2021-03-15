@@ -52,19 +52,20 @@ app.post("/api/files", async (req, res) => {
       else resolve([fields, files])
     });
   });
-  console.log(fields, "test");
+  // console.log(fields, "test");
   const {photo: [{path}] } = files;
-  console.log({path})
-  const {url: imageUrl, ...result} = await cloudinary.uploader.upload(path);
+  // console.log({path})
+  const {url: photo, ...result} = await cloudinary.uploader.upload(path);
   const pet =  {
     ...Object.fromEntries(
       Object.entries(fields)
         .map(([key, [value]]) => [key, value])
     ),
-    imageUrl
+    photo
   };
 
-  console.log(pet, result);
+  console.log( "result", result);
+  console.log( "pet", pet);
   // sends response object from server to client SubmitPet to mutate 
   res.status(201).send(pet);
 } catch (err) {
