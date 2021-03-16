@@ -88,7 +88,7 @@ app.post("/api/files", async (req, res) => {
 
 
   // console.log( "result", result);
-  console.log( "pet", pet);
+  // console.log( "pet", pet);
   // sends response object from server to client SubmitPet to mutate 
   res.status(201).send(pet);
 } catch (err) {
