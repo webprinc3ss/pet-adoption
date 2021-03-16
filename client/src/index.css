@@ -119,7 +119,8 @@ div.right.menu a.item {
 }
 
 input#fileInput {
-  width: 233px;
+  width: 200px;
+  font-size: 13px;
 }
 
 #root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
@@ -130,9 +131,22 @@ button {
   background-color: #0292c9;
 }
 
+@media only screen and (max-width: 1199px) {
+  input#fileInput {
+    width: 165px;
+    font-size: 10px;
+    
+  }
+}
+
 @media only screen and (max-width: 992px) {
   .ui.form .fields {
   display:block;
+}
+input#fileInput {
+  width: 185px;
+  font-size: 12px;
+  
 }
 }
 
@@ -144,6 +158,8 @@ button {
   .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
     width: 100% !important;
   } 
+
+
 }
 
 
@@ -152,6 +168,8 @@ button {
   .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
     width: 80% !important;
   }
+
+
  
 }
 
