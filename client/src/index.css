@@ -31,8 +31,6 @@ header {
 div.ui.menu {
   background-color: #fdc973;
   box-shadow: 0px 3px 8px 3px rgba(0,0,0,0.25);
-  
-
 }
 
 .ui.menu .item:before {
@@ -46,6 +44,17 @@ div.ui.menu {
 
 main {
   z-index:799;
+}
+
+.save-pet {
+  transition-property: color;
+  transition-duration: .1s;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+.save-pet:hover {
+  color: #1e70bf;
 }
 
 .ui.inverted.menu {
@@ -88,33 +97,26 @@ div.right.menu a.item {
 .ui.form input[type=checkbox], .ui.form textarea
 {
   width: 20px;
-
   position: relative;
   right: 5px !important;
-
   vertical-align: baseline !important;
 }
 
 .ui.form  .field>label {  
   width: 200px;
-
   position: relative;
   right:-5px;
-
   display: inline-block;
   vertical-align: baseline !important;
 }
 
 .ui.form .fields>label {  
   width: 200px;
-
   position: relative;
   right:0px;
-
   display: inline-block;
   vertical-align: baseline !important;
 }
-
 
 input#fileInput {
   width: 233px;

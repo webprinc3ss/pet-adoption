@@ -41,19 +41,24 @@ db.once('open', async () => {
         // create animal size
         const size = faker.random.arrayElement(["small", "medium", "large"]);
 
-        // create behavior
-        const behavior = faker.random.arrayElements(["kids", "cats", "dogs"]);
+        // create kids compatibility
+        const kids = faker.random.arrayElement(["Y", "N"]);
+
+        // create cats compatibility
+        const cats = faker.random.arrayElement(["Y", "N"]);
+
+        // create dogs compatibility
+        const dogs = faker.random.arrayElement(["Y", "N"]);
         
         // create medical
         const medical = faker.random.arrayElement([true, false]);
 
         // create random animal image
-        // if (type === "cat"){
-        //   const photo = faker.image.cats();
-        // } else {
-        //   const photo = faker.image.animals();
-        // }
-        const photo = faker.image.animals();
+        if (type === "cat"){
+          photo = faker.image.cats();
+        } else {
+          photo = faker.image.animals();
+        }
         
         // create animal sex
         const sex = faker.random.arrayElement(["M", "F"]);
@@ -61,7 +66,7 @@ db.once('open', async () => {
         // create about text
         const about = faker.lorem.words(Math.round(Math.random() * 20) + 1);
 
-        petData.push({ name, type, age, ageClass, size, behavior, medical, photo, sex, about });
+        petData.push({ name, type, age, ageClass, size, kids, cats, dogs, medical, photo, sex, about });
 
     }
   
