@@ -10,7 +10,7 @@ const SubmitPet = () => {
     const [selectedFile, setSelectedFile] = useState();
     const [previewSource, setPreviewSource] = useState('');
     const [showAlert, setShowAlert] = useState(false);
-    const [formState, setFormState] = useState({ name: '', type: '', sex: '', ageClass: '', kids: '', onlyPet: '', otherCats: '', otherDogs: '', medical: '', about: '' });
+    // const [formState, setFormState] = useState({ name: '', type: '', sex: '', ageClass: '', kids: '', onlyPet: '', otherCats: '', otherDogs: '', medical: '', about: '' });
     const [createPet, { error }] = useMutation(CREATE_PET);
     
     //takes photo file in and saves to state
@@ -46,33 +46,6 @@ const SubmitPet = () => {
             console.error(err);
             setShowAlert('Something went wrong!');
         }
-
-        formData.behavior = [];
-
-        if (formData.medical) {
-            formData.medical = true;
-        }
-
-        if (formData.kids) {
-            delete formData.kids
-            formData.behavior.push("kids");
-        }
-
-        if (formData.cats) {
-            delete formData.cats
-            formData.behavior.push("cats");
-        }
-
-        if (formData.dogs) {
-            delete formData.dogs
-            formData.behavior.push("dogs")
-        }
-
-        if (!formData.behavior.length) {
-            delete formData.behavior
-        }
-
-        console.log(formData);
     };
 
     return (
@@ -93,7 +66,7 @@ const SubmitPet = () => {
                             <Form.Field label="Type" 
                             control='select' 
                             name="type"
-                            value={formState.type}
+                            // value={formState.type}
                             >
                                 <option value='cat'>Cat</option>
                                 <option value='dog'>Dog</option>
@@ -103,7 +76,7 @@ const SubmitPet = () => {
                             label='Sex' 
                             control='select' 
                             name="sex"
-                            value={formState.sex}
+                            // value={formState.sex}
                             >
                                 <option value='M'>Male</option>
                                 <option value='F'>Female</option>
@@ -112,7 +85,7 @@ const SubmitPet = () => {
                             label='Age' 
                             control='select' 
                             name="ageClass"
-                            value={formState.ageClass}
+                            // value={formState.ageClass}
                             >
                                 <option value='young'>Young</option>
                                 <option value='adult'>Adult</option>
@@ -123,10 +96,14 @@ const SubmitPet = () => {
                             <Form.Group grouped 
                             name="behavior">
                                 <label>Behavior</label>
-                                <Form.Field label='kids' name="kids" control='input' type='checkbox' value={formState.kids}/>
-                                <Form.Field label='only pet' name="onlyPet" control='input' type='checkbox' value={formState.onlyPet}/>
-                                <Form.Field label='other cats' name="otherCats" control='input' type='checkbox' value={formState.otherCats}/>
-                                <Form.Field label='other dogs' name="otherDogs" control='input' type='checkbox' value={formState.otherDogs}/>
+                                <Form.Field label='kids' name="kids" control='input' type='checkbox' // value={formState.kids}
+                                    />
+                                <Form.Field label='only pet' name="onlyPet" control='input' type='checkbox' // value={formState.onlyPet}
+                                    />
+                                <Form.Field label='other cats' name="otherCats" control='input' type='checkbox' // value={formState.otherCats}
+                                    />
+                                <Form.Field label='other dogs' name="otherDogs" control='input' type='checkbox' // value={formState.otherDogs}
+                                    />
                             </Form.Group>
                             <Form.Group grouped>
                                 <Input label='Photo Upload'

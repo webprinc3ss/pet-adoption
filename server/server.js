@@ -63,8 +63,31 @@ app.post("/api/files", async (req, res) => {
     ),
     photo
   };
+  
 
-  console.log( "result", result);
+    
+        if (pet.medical == 'on') {
+            pet.medical = true;
+        }
+
+        if (pet.kids == 'on') {
+            pet.kids = "kids";
+        }
+
+        if (pet.otherCats == 'on') {
+            pet.otherCats = "cats";
+        }
+
+        if (pet.otherDogs == 'on') {
+            pet.otherDogs = "dogs";
+        }
+
+        if (pet.onlyPet == 'on') {
+          pet.onlyPet = "only pet";
+        }
+
+
+  // console.log( "result", result);
   console.log( "pet", pet);
   // sends response object from server to client SubmitPet to mutate 
   res.status(201).send(pet);
