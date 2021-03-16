@@ -9,9 +9,8 @@ const SubmitPet = () => {
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
     const [previewSource, setPreviewSource] = useState('');
-    const [data, setData] = useState('');
+    const [petData, setPetData] = useState('');
     const [showAlert, setShowAlert] = useState(false);
-    // const [formState, setFormState] = useState({ name: '', type: '', sex: '', ageClass: '', kids: '', otherCats: '', otherDogs: '', medical: '', about: '' });
     const [createPet, { error }] = useMutation(CREATE_PET);
 
     //takes photo file in and saves to state
@@ -43,14 +42,16 @@ const SubmitPet = () => {
             })
                 .then(res => res.json())
                 .then(data =>
-
                     console.log(data));
-            setData(data)
 
 
-            await createPet({
-                variables: { ...data }
-            });
+            // const petData = { data }
+
+            // setPetData(petData)
+
+            // await createPet({
+            //     variables: { ...petData }
+            // });
 
 
 
