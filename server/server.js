@@ -74,13 +74,13 @@ app.post("/api/files", async (req, res) => {
       pet.kids = "Y";
     } else { pet.kids = "N" }
 
-    if (pet.otherCats == 'on') {
-      pet.otherCats = "Y";
-    } else { pet.otherCats = "N" }
+    if (pet.cats == 'on') {
+      pet.cats = "Y";
+    } else { pet.cats = "N" }
 
-    if (pet.otherDogs == 'on') {
-      pet.otherDogs = "Y";
-    } else { pet.otherDogs = "N" }
+    if (pet.dogs == 'on') {
+      pet.dogs = "Y";
+    } else { pet.dogs = "N" }
 
     // if (pet.onlyPet == 'on') {
     //   pet.onlyPet = "only pet";

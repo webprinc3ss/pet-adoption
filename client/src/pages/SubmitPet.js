@@ -9,7 +9,7 @@ const SubmitPet = () => {
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
     const [previewSource, setPreviewSource] = useState('');
-    const [petData, setPetData] = useState('');
+    // const [petData, setPetData] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [createPet, { error }] = useMutation(CREATE_PET);
 
@@ -41,21 +41,13 @@ const SubmitPet = () => {
                 body: formData
             })
                 .then(res => res.json())
-                .then(data =>
-                    console.log(data));
+                .then(petData =>
+                    // createPet({ variables: { ...petData } }))
+                    console.log(petData))
+        }
 
 
-            // const petData = { data }
-
-            // setPetData(petData)
-
-            // await createPet({
-            //     variables: { ...petData }
-            // });
-
-
-
-        } catch (err) {
+        catch (err) {
             console.error(err);
             setShowAlert('Something went wrong!');
         }
@@ -102,7 +94,8 @@ const SubmitPet = () => {
                             >
                                 <option value='young'>Young</option>
                                 <option value='adult'>Adult</option>
-                                <option value='senior'>Senior</option>
+                                <option value='senior'>Senior
+                                </option>
                             </Form.Field>
                             <Form.Field
                                 label='Size'
@@ -123,9 +116,9 @@ const SubmitPet = () => {
                                 <label>Behavior</label>
                                 <Form.Field label='Can live with kids' name="kids" control='input' type='checkbox' // value={formState.kids}
                                 />
-                                <Form.Field label='Can live with cats' name="Cats" control='input' type='checkbox' // value={formState.otherCats}
+                                <Form.Field label='Can live with cats' name="cats" control='input' type='checkbox' // value={formState.otherCats}
                                 />
-                                <Form.Field label='Can live with dogs' name="Dogs" control='input' type='checkbox' // value={formState.otherDogs}
+                                <Form.Field label='Can live with dogs' name="dogs" control='input' type='checkbox' // value={formState.otherDogs}
                                 />
                             </Form.Group>
                             <Form.Group>
