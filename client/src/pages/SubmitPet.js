@@ -41,7 +41,8 @@ const SubmitPet = () => {
                 body: formData
             })
                 .then(res => res.json())
-                .then(data => console.log(data));
+                .then( data => createPet(data));
+                
         } catch (err) {
             console.error(err);
             setShowAlert('Something went wrong!');
