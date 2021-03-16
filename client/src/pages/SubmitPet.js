@@ -34,7 +34,7 @@ const SubmitPet = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        console.log(e.target)
+        console.log(e.target);
         try {
             await fetch("/api/files", {
                 method: "POST",
@@ -46,6 +46,33 @@ const SubmitPet = () => {
             console.error(err);
             setShowAlert('Something went wrong!');
         }
+
+        formData.behavior = [];
+
+        if (formData.medical) {
+            formData.medical = true;
+        }
+
+        if (formData.kids) {
+            delete formData.kids
+            formData.behavior.push("kids");
+        }
+
+        if (formData.cats) {
+            delete formData.cats
+            formData.behavior.push("cats");
+        }
+
+        if (formData.dogs) {
+            delete formData.dogs
+            formData.behavior.push("dogs")
+        }
+
+        if (!formData.behavior.length) {
+            delete formData.behavior
+        }
+
+        console.log(formData);
     };
 
     return (
