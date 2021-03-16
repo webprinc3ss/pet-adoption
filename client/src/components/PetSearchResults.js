@@ -1,60 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
-// import { useMutation } from '@apollo/react-hooks';
-// import { SAVE_PET } from '../utils/mutations';
+import { useMutation } from '@apollo/react-hooks';
+import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
+import { savePetIds, getSavedPetIds } from '../utils/localStorage';
+import Auth from '../utils/auth';
 
 const PetSearchResults = ({ filter }) => {
 
-    // filter gets ageClass, sex, type - need medical and behavior
-    console.log("filter:", filter);
-    const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } })
+    // create state for holding returned pet data
+    const [filteredPets, setFilteredPets] = useState([]);
+    // use SAVE_PET mutation to save pet to database
+    //const [savePet, { error }] = useMutation(SAVE_PET);
     
-    // const [savePet, { error }] = useMutation(SAVE_PET);
+    // filter gets ageClass, sex, type, medical and behavior
+    console.log("Pet Search Filter:", filter);
+    const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } })
 
-    // create state to hold saved bookId values
-    // const [savePetIds, setSavedPetIds] = useState(getSavedPetIds());
-
-    // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-    // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-    // useEffect(() => {
-    //     return () => saveBookIds(savedBookIds);
-    // });
-
-    if (loading)
+    
+    // if data isn't here yet - loading
+    if (loading) {
         return <>loading</> //spinning cat here
-
+    }
+    
+    //setFilteredPets(data.pets);
     const { pets } = data;
+    //console.log("filteredPets:", filteredPets)
     console.log("pets:", pets)
-
-
+    
+    // // create function to handle saving Pet to database
     // const handleSavePet = async (petId) => {
-    // find the book in `searchedBooks` state by the matching id
-    // const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
+    //     // find the pet in 'searchedPets state by the matching id
+    //     const petToSave = pets.find((pet) => pet._id === petId);
+        
+    //     // check for user token - get token
+    //     //const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    // get token
-    // const token = Auth.loggedIn() ? Auth.getToken() : null;
+    //     // if (!token) {
+    //     //     return false;
+    //     // }
 
-    // if (!token) {
-    //     return false;
-    // }
+    //     try {
+    //         // savePet mutation to save Pet
+    //         await savePet({
+    //             variables: {petData: petToSave}
+    //         });
 
-    // try {
-    // const response = await saveBook(bookToSave, token);
+    //         if (error) {
+    //             throw new Error('Something Went Wrong!');
+    //         }
 
-    // await saveBook({
-    //     variables: { bookData: bookToSave }
-    // });
+    //         // if Pet successfully saves to user's account, save book id to state
+    //         //setSavedPet([...savedPetIds, petToSave.petId]);
 
-    // if (error) {
-    //     throw new Error('something went wrong!');
-    // }
-
-    // if book successfully saves to user's account, save book id to state
-    //         setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     //     } catch (err) {
+    //         console.log(err);
     //         console.error(err);
     //     }
     // };
@@ -66,7 +68,6 @@ const PetSearchResults = ({ filter }) => {
                     <Segment>
                         <h1>
                             {pets.length
-
                                 ? `Viewing ${pets.length} results:`
                                 : 'No results'}
                         </h1>
@@ -88,45 +89,34 @@ const PetSearchResults = ({ filter }) => {
                                             <br /><br />
 
                                             <i>
+                                                {pet.kids === "Y"
+                                                    ? <p>Ok With Kids </p>
+                                                    : ''}
+                                              
+                                                {pet.cats === "Y"
+                                                    ? <p>Ok With Cats</p>
+                                                    : ''}
+                                                
+                                                {pet.dogs === "Y"
+                                                    ? <p>Ok With Dogs</p>
+                                                    : ''}
 
-
-
-                                                {pet.behavior.length
-
-                                                    ? `No `
-                                                    : ''} {
-                                                    pet.behavior.length ? pet.behavior.map((behavior) =>
-                                                        (<span> {behavior} </span>)) : '-'
-                                                }
-
-                                                <br />
                                                 {pet.medical ? (`Medical Condition`) : ""}
-
-
                                             </i>
 
                                         </Card.Description>
                                     </Card.Content>
                                     <Card.Content extra>
-                                        <a>
-                                            <Icon name='paw' /> Save</a>
+                                        {/* Save Pet button  */}
+                                        {/* <span className="save-pet" onClick={() => handleSavePet(pet._id)}> */}
+                                        <span className="save-pet">
+                                            <Icon name='paw' /> Save
+                                        </span>
                                     </Card.Content>
                                 </Card>
                             )
                             )}
                         </Card.Group>
-
-
-                        {/* USE FOR SAVED BOOKS */}
-                        {/* {Auth.loggedIn() && (
-                    <Button icon
-                      disabled={savedPetIds?.some((savedPetId) => savedPetId === pet. _id)}
-                      onClick={() => handleSavePet(pet. _id)}><Icon name='paw' />
-                      {savedPetIds?.some((savedPetId) => savedPetId === pet.petId)
-                        ? 'This pet has already been saved!'
-                        : 'Save this Pet!'}
-                    </Button> */}
-
 
                         <Pagination
                             boundaryRange={0}
@@ -136,15 +126,12 @@ const PetSearchResults = ({ filter }) => {
                             lastItem={null}
                             siblingRange={1}
                             totalPages={5}
-
                         />
-
 
                     </Segment>
                 </Grid.Column>
             </Grid>
         </Container>
-
     )
 }
 

@@ -21,7 +21,9 @@ const typeDefs = gql`
         enterDate: Date
         age: Int
         size: String
-        behavior: [String]
+        kids: String
+        dogs: String
+        cats: String
         medical: Boolean
         photo: String
         about: String
@@ -34,7 +36,9 @@ const typeDefs = gql`
         age: Int
         ageClass: String
         size: String
-        behavior: [String]
+        kids: String
+        dogs: String
+        cats: String
         medical: Boolean
         photo: String
         sex: String
@@ -43,11 +47,12 @@ const typeDefs = gql`
 
     input PetFilterInput {
         type: String
-        age: Int
         ageClass: String
         size: String
         sex: String
-        behavior: [String!]
+        kids: String
+        dogs: String
+        cats: String
         medical: Boolean
     }
 

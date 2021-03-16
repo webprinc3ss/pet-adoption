@@ -13,7 +13,9 @@ export const GET_ME = gql`
                 enterDate
                 age
                 size
-                behavior
+                kids
+                cats
+                dogs
                 medical
                 photo
                 about
@@ -32,8 +34,10 @@ export const GET_PETS = gql`
             sex
             about
             photo
-            behavior
             enterDate
+            kids
+            cats
+            dogs
             age
             medical
             

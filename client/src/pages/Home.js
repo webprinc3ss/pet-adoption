@@ -1,46 +1,29 @@
 import React, { useState } from 'react';
 import PetSearchResults from "../components/PetSearchResults";
-import { Container, Form, Header, Button, Segment, Grid } from 'semantic-ui-react'
+import { Container, Form, Header, Button, Segment, Grid } from 'semantic-ui-react';
+import { savePetIds, getSavedPetIds } from '../utils/localStorage'; // - dont think this is needed here
+import { useMutation } from '@apollo/client'; // - dont think this is needed here
+import { SAVE_PET } from '../utils/mutations'; // - dont think this is needed here
 
 const Home = () => {
 
-    const [filter, setFilter] = useState({type:'', sex:'', ageClass:''});
+    // create state for holding returned search - dont think this is needed here
+    const [searchedPets, setSearchedPets] = useState([]);
+    // create state for holding filter field data
+    const [filter, setFilter] = useState();
+    // create state for holding saved petId values - dont think this is needed here
+    const [savedPetIds, setSavedPetIds] = useState(getSavedPetIds());
+
+    // - dont think this is needed here
+    const [savePet, { error }] = useMutation(SAVE_PET);
 
     // create method to search for pets and set state on form submit
     const handleFormSubmit = async (event) => {
+        
         event.preventDefault();
-        const newFilter = Object.fromEntries(new FormData(event.target).entries())
         
-        console.log("filter: ", newFilter);
-        newFilter.behavior = [];
-        // check if medical has an "on" value (has been checked) - if so assign to true
-        if (newFilter.medical) {
-            newFilter.medical = true;
-        }
-
-        if (newFilter.kids) {
-            delete newFilter.kids
-            newFilter.behavior.push("kids");
-        }
-
-        if (newFilter.cats) {
-            delete newFilter.cats
-            newFilter.behavior.push("cats");
-        }
-
-        if (newFilter.dogs) {
-            delete newFilter.dogs
-            newFilter.behavior.push("dogs"); 
-        }
-
-        
-        if (!newFilter.behavior.length) {
-            delete newFilter.behavior
-        }
-        console.log("newFilter", newFilter);
-        // set filter to form values
-        setFilter(newFilter)
-
+        // set filter state to search form values
+        setFilter(Object.fromEntries(new FormData(event.target).entries())); 
     }
 
     return (
@@ -75,15 +58,15 @@ const Home = () => {
                         
                         <Form.Group widths='2'>
                             <Form.Group grouped name="behavior">
-                                <label>Behavior</label>
-                                <Form.Field label='No kids' control='input' type='checkbox'
-                                    name="kids"
+                                <label>Pet Compatibility</label>
+                                <Form.Field label='Kids Ok' control='input' type='checkbox'
+                                    name="kids" value="Y"
                                 />
-                                <Form.Field label='No Cats' control='input' type='checkbox'
-                                    name="cats"
+                                <Form.Field label='Cats Ok' control='input' type='checkbox'
+                                    name="cats" value="Y"
                                 />
-                                <Form.Field label='No dogs' control='input' type='checkbox'
-                                    name="dogs"
+                                <Form.Field label='Dogs Ok' control='input' type='checkbox'
+                                    name="dogs" value="Y"
                                 />
                             </Form.Group>
                             

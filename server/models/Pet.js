@@ -9,38 +9,44 @@ const petSchema = new Schema(
         },
         type: {
             type: String,
-            required: true,
+            required: true
         },
         age: {
             type: String,
-            required: true,
+            required: true
         },
         ageClass: {
             type: String,
-            required: true,
+            required: true
         },
         enterDate: {
             type: Date,
             required: true,
-            default: Date.now,
+            default: Date.now
         },
         size: {
             type: String,
-            required: true,
+            required: true
         },
-        behavior: [
-            {
-                type: String,
-                required: false,
-            }
-        ],
+        kids: {
+            type: String,
+            required: true
+        },
+        dogs: {
+            type: String,
+            required: true
+        },
+        cats: {
+            type: String,
+            required: true
+        },
         medical: {
             type: Boolean,
-            required: true,
+            required: true
         },
         photo: {
             type: String,
-            required: false,
+            required: false
         },
         sex: {
             type: String,
