@@ -29,15 +29,17 @@ export const CREATE_PET = gql`
         createPet(petData: $petData) {
             _id
             name
-            ageClass
-            enterDate
+            type
             age
+            ageClass
             size
-            behavior
+            kids
+            cats
+            dogs
             medical
             photo
-            about
             sex
+            about
         }
     }
 `;

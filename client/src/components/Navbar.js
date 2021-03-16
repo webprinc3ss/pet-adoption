@@ -27,7 +27,6 @@ const Navbar = () => {
 
                 <Menu.Item as="a" header as={Link} to="/">
                     <Image
-
                         src={logo}
                         centered
                         style={{ height: "60px" }}

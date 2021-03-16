@@ -46,57 +46,57 @@ if (process.env.NODE_ENV === 'production') {
 app.post("/api/files", async (req, res) => {
   const form = new multiparty.Form();
   try {
-  const [fields, files] = await new Promise((resolve, reject) => {
-    form.parse(req, (err, fields, files) => {
-      if (err) reject(err);
-      else resolve([fields, files])
+    const [fields, files] = await new Promise((resolve, reject) => {
+      form.parse(req, (err, fields, files) => {
+        if (err) reject(err);
+        else resolve([fields, files])
+      });
     });
-  });
-  // console.log(fields, "test");
-  const {photo: [{path}] } = files;
-  // console.log({path})
-  const {url: photo, ...result} = await cloudinary.uploader.upload(path);
-  const pet =  {
-    ...Object.fromEntries(
-      Object.entries(fields)
-        .map(([key, [value]]) => [key, value])
-    ),
-    photo
-  };
-  
-
-    
-        if (pet.medical == 'on') {
-            pet.medical = true;
-        }
-
-        if (pet.kids == 'on') {
-            pet.kids = "kids";
-        }
-
-        if (pet.otherCats == 'on') {
-            pet.otherCats = "cats";
-        }
-
-        if (pet.otherDogs == 'on') {
-            pet.otherDogs = "dogs";
-        }
-
-        if (pet.onlyPet == 'on') {
-          pet.onlyPet = "only pet";
-        }
+    // console.log(fields, "test");
+    const { photo: [{ path }] } = files;
+    // console.log({path})
+    const { url: photo, ...result } = await cloudinary.uploader.upload(path);
+    const pet = {
+      ...Object.fromEntries(
+        Object.entries(fields)
+          .map(([key, [value]]) => [key, value])
+      ),
+      photo
+    };
 
 
-  // console.log( "result", result);
-  // console.log( "pet", pet);
-  // sends response object from server to client SubmitPet to mutate 
-  res.status(201).send(pet);
-} catch (err) {
-  console.error(err);
-  res.status(500).send({
-    message: "internal server error"
-  });
-}
+
+    if (pet.medical == 'on') {
+      pet.medical = true;
+    }
+
+    if (pet.kids == 'on') {
+      pet.kids = "Y";
+    } else { pet.kids = "N" }
+
+    if (pet.cats == 'on') {
+      pet.cats = "Y";
+    } else { pet.cats = "N" }
+
+    if (pet.dogs == 'on') {
+      pet.dogs = "Y";
+    } else { pet.dogs = "N" }
+
+    // if (pet.onlyPet == 'on') {
+    //   pet.onlyPet = "only pet";
+    // }
+
+
+    // console.log( "result", result);
+    // console.log( "pet", pet);
+    // sends response object from server to client SubmitPet to mutate 
+    res.status(201).send(pet);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({
+      message: "internal server error"
+    });
+  }
 });
 
 app.get('*', (req, res) => {

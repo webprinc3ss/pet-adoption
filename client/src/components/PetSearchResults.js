@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
-//import { useMutation } from '@apollo/react-hooks';
+// import { useMutation } from '@apollo/react-hooks';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
@@ -13,8 +13,8 @@ const PetSearchResults = ({ filter }) => {
     // create state for holding returned pet data
     const [filteredPets, setFilteredPets] = useState([]);
     // use SAVE_PET mutation to save pet to database
-    //const [savePet, { error }] = useMutation(SAVE_PET);
-    
+    // const [savePet, { error }] = useMutation(SAVE_PET);
+
     // filter gets ageClass, sex, type, medical and behavior
     console.log("Pet Search Filter:", filter);
     //const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } });
@@ -30,12 +30,12 @@ const PetSearchResults = ({ filter }) => {
     // const {pets} = data;
     //console.log("filteredPets:", filteredPets)
     console.log("pets:", pets)
-    
+
     // // create function to handle saving Pet to database
     // const handleSavePet = async (petId) => {
     //     // find the pet in 'searchedPets state by the matching id
     //     const petToSave = pets.find((pet) => pet._id === petId);
-        
+
     //     // check for user token - get token
     //     //const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -93,11 +93,11 @@ const PetSearchResults = ({ filter }) => {
                                                 {pet.kids === "Y"
                                                     ? <p>Ok With Kids </p>
                                                     : ''}
-                                              
+
                                                 {pet.cats === "Y"
                                                     ? <p>Ok With Cats</p>
                                                     : ''}
-                                                
+
                                                 {pet.dogs === "Y"
                                                     ? <p>Ok With Dogs</p>
                                                     : ''}
