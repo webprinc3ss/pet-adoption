@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { CREATE_PET } from '../utils/mutations';
 import { Container, Form, Header, Button, Segment, Grid, Input, TextArea } from 'semantic-ui-react';
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 
 const SubmitPet = () => {
     const [fileInputState, setFileInputState] = useState('');
     const [selectedFile, setSelectedFile] = useState();
     const [previewSource, setPreviewSource] = useState('');
+    const [data, setData] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     // const [formState, setFormState] = useState({ name: '', type: '', sex: '', ageClass: '', kids: '', otherCats: '', otherDogs: '', medical: '', about: '' });
     const [createPet, { error }] = useMutation(CREATE_PET);
@@ -41,7 +42,18 @@ const SubmitPet = () => {
                 body: formData
             })
                 .then(res => res.json())
-                .then(data => console.log(data));
+                .then(data =>
+
+                    console.log(data));
+            setData(data)
+
+
+            await createPet({
+                variables: { ...data }
+            });
+
+
+
         } catch (err) {
             console.error(err);
             setShowAlert('Something went wrong!');
@@ -97,11 +109,9 @@ const SubmitPet = () => {
                                 name="size"
                             // value={formState.ageClass}
                             >
-                                <option value='extra-small'>Extra Small</option>
                                 <option value='small'>Small</option>
                                 <option value='medium'>medium</option>
                                 <option value='large'>large</option>
-                                <option value='extra-large'>extra-large</option>
                             </Form.Field>
                         </Form.Group>
                         <Form.Group>
