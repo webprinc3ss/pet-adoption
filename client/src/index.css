@@ -74,6 +74,9 @@ div.right.menu a.item {
   font-size: 16px;
 }
 
+.ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
+  width: 60% !important;
+}
 
 .footer-container {
   text-align: center;
@@ -92,26 +95,25 @@ div.right.menu a.item {
   vertical-align: baseline !important;
 }
 
-.ui.form .field>label {  
+.ui.form  .field>label {  
   width: 200px;
 
   position: relative;
-  right: -20px;
+  right:-5px;
 
   display: inline-block;
   vertical-align: baseline !important;
 }
 
-/* #root > div > main > section > div > div > form > label > input[type=checkbox] */
+.ui.form .fields>label {  
+  width: 200px;
 
+  position: relative;
+  right:0px;
 
-
-/* input.ui.input[type=checkbox] */
- /* {
-  vertical-align:text-bottom !important;
-} */
-
-/* #root > div > main > section > div > div > form > div.two.fields > div:nth-child(2) > div > label > input[type=checkbox] */
+  display: inline-block;
+  vertical-align: baseline !important;
+}
 
 
 input#fileInput {
@@ -126,23 +128,44 @@ button {
   background-color: #0292c9;
 }
 
+@media only screen and (max-width: 992px) {
+  .ui.form .fields {
+  display:block;
+}
+}
+
 @media only screen and (max-width: 772px) {
   .ui.menu .item {
       padding-top: 5px;
-      padding-bottom: 5px;
-    
+      padding-bottom: 5px; 
   }
+  .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
+    width: 100% !important;
+  } 
 }
 
 
 @media only screen and (min-width: 600px) {
   /* For tablets: */
+  .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
+    width: 80% !important;
+  }
  
 }
 
 /* Small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+  input#fileInput {
+    width: 185px;
+    font-size: 12px;
+  }
+    #root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
+      width: 300px !important;
+    }
 
+    .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
+     width: 100% !important;
+   }
 }
 
 /* Small devices (phones, 480px and down) */
