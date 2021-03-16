@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
-import { useMutation } from '@apollo/react-hooks';
+//import { useMutation } from '@apollo/react-hooks';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
@@ -17,16 +17,17 @@ const PetSearchResults = ({ filter }) => {
     
     // filter gets ageClass, sex, type, medical and behavior
     console.log("Pet Search Filter:", filter);
-    const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } })
+    //const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } });
+    const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
 
-    
     // if data isn't here yet - loading
     if (loading) {
         return <>loading</> //spinning cat here
     }
     
+    const pets = data?.pets || [];
     //setFilteredPets(data.pets);
-    const { pets } = data;
+    // const {pets} = data;
     //console.log("filteredPets:", filteredPets)
     console.log("pets:", pets)
     
