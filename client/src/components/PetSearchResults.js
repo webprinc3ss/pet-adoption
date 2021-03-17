@@ -101,7 +101,8 @@ const PetSearchResults = ({ filter }) => {
                                                     ? <p>Ok With Dogs</p>
                                                     : ''}
 
-                                                {pet.medical ? (`Medical Condition`) : ""}
+                                                {pet.medical === "Y"
+                                                    ? <p>Medical Condition</p> : ''}
                                             </i>
 
                                         </Card.Description>

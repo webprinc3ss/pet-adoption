@@ -19,11 +19,11 @@ const Home = () => {
 
     // create method to search for pets and set state on form submit
     const handleFormSubmit = async (event) => {
-        
+
         event.preventDefault();
-        
+
         // set filter state to search form values
-        setFilter(Object.fromEntries(new FormData(event.target).entries())); 
+        setFilter(Object.fromEntries(new FormData(event.target).entries()));
     }
 
     return (
@@ -32,7 +32,7 @@ const Home = () => {
                 <Header as='h1' textAlign="center">Search for Pets</Header>
                 <Segment>
                     <Form onSubmit={handleFormSubmit}>
-                        
+
                         <Form.Group widths='equal'>
                             <Form.Field label='Type' control='select'
                                 name="type"
@@ -47,7 +47,7 @@ const Home = () => {
                                 <option value='M'>Male</option>
                                 <option value='F'>Female</option>
                             </Form.Field>
-                            
+
                             <Form.Field label='Age' control='select' name="ageClass"    >
                                 <option value='young'>Young</option>
                                 <option value='adult'>Adult</option>
@@ -55,7 +55,7 @@ const Home = () => {
                             </Form.Field>
 
                         </Form.Group>
-                        
+
                         <Form.Group widths='2'>
                             <Form.Group grouped name="behavior">
                                 <label>Pet Compatibility</label>
@@ -69,12 +69,12 @@ const Home = () => {
                                     name="dogs" value="Y"
                                 />
                             </Form.Group>
-                            
+
                             <Form.Group grouped>
                                 <label>Medical Condition?</label>
-                                <Form.Field label='Yes' control='input' type='checkbox' name="medical" value={true} />
+                                <Form.Field label='Yes' control='input' type='checkbox' name="medical" value="Y" />
                             </Form.Group>
-                        
+
                         </Form.Group>
                         <Grid>
                             <Grid.Column textAlign="center">

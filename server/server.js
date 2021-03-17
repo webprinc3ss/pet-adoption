@@ -67,9 +67,9 @@ app.post("/api/files", async (req, res) => {
 
 
     if (pet.medical == 'on') {
-      pet.medical = true;
+      pet.medical = "Y";
     } else {
-      pet.medical = false;
+      pet.medical = "N";
     }
 
     if (pet.kids == 'on') {

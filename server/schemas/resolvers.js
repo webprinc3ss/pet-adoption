@@ -56,13 +56,6 @@ const resolvers = {
 
     // mutations
     Mutation: {
-        addUser: async (parent, args) => {
-            const user = await User.create(args);
-            // create and sign user token
-            const token = signToken(user);
-
-            return { token, user };
-        },
 
         login: async (parent, { email, password }) => {
             // find user by email
@@ -84,19 +77,15 @@ const resolvers = {
             return { token, user };
         },
 
-        createPet: async (parent, { petData }, context) => {
-            console.log("R_petData:", petData);
-            if (context.user) {
-                // console.log("Context.user-createPet", context.user);
-                const createdPet = await Pet.create(petData);
-                console.log("Context.user-createPet", context.user);
-                return createdPet;
-            }
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            // create and sign user token
+            const token = signToken(user);
+            return { token, user };
         },
 
         savePet: async (parent, { petData }, context) => {
             console.log("petData:", petData);
-
             // if user logged in - add petData to savedPets
             if (context.user) {
                 console.log("Context.user-savePet", context.user);
@@ -124,6 +113,17 @@ const resolvers = {
 
                 return updatedUser;
             }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+
+        createPet: async (parent, { petData }, context) => {
+            console.log("R_petData:", petData);
+            // if (context.user) {
+            // console.log("Context.user-createPet", context.user);
+            const createdPet = await Pet.create(petData);
+            // console.log("Context.user-createPet", context.user);
+            return createdPet;
+            // }
         }
     }
 };

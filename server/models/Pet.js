@@ -41,7 +41,7 @@ const petSchema = new Schema(
             required: true
         },
         medical: {
-            type: Boolean,
+            type: String,
             required: true
         },
         photo: {
