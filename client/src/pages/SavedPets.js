@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Header, Grid } from 'semantic-ui-react';
-// import { useQuery, useMutation } from '@apollo/react-hooks';
+// import { useQuery, useMutation } from '@apollo/client';
 // import { REMOVE_BOOK } from '../utils/mutations';
 // import { GET_ME } from '../utils/queries';
 

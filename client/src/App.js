@@ -13,9 +13,26 @@ import Upload from './pages/Upload.js';
 import Auth from "./utils/auth";
 import './index.css';
 
+const cache = new InMemoryCache();
+
+// const client = new ApolloClient({
+//   uri: '/graphql',
+//   cache: new InMemoryCache(),
+//   request:
+//     (operation) => {
+//       const token = Auth.getToken();
+//       operation.setContext({
+//         headers: {
+//           authorization: token ? `Bearer ${token}` : ''
+//         }
+//       })
+//     }
+// });
+
 const client = new ApolloClient({
+  // Provide required constructor fields
+  cache: cache,
   uri: '/graphql',
-  cache: new InMemoryCache(),
   request:
     (operation) => {
       const token = Auth.getToken();
@@ -24,7 +41,7 @@ const client = new ApolloClient({
           authorization: token ? `Bearer ${token}` : ''
         }
       })
-    }
+    },
 });
 
 function App() {
