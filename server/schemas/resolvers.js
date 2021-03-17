@@ -83,12 +83,12 @@ const resolvers = {
         },
 
         createPet: async (parent, { petData }, context) => {
-            console.log("petData:", petData);
-            if (context.user) {
-                const createdPet = await Pet.Create(petData);
+            console.log("R_petData:", petData);
+            // if (context.user) {
+            const createdPet = await Pet.create(petData);
 
-                return createdPet;
-            }
+            return createdPet;
+            // }
         },
 
         savePet: async (parent, { petData }, context) => {

@@ -82,6 +82,8 @@ app.post("/api/files", async (req, res) => {
       pet.dogs = "Y";
     } else { pet.dogs = "N" }
 
+    if (pet.age) { pet.age = parseInt(pet.age) }
+
     // if (pet.onlyPet == 'on') {
     //   pet.onlyPet = "only pet";
     // }
