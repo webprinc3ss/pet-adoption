@@ -32,15 +32,17 @@ const resolvers = {
     Query: {
         // get single user - check authentication from context
         me: async (parent, args, context) => {
-            console.log(context.user);
+            console.log("Context.user", context.user);
 
             // if authenticated user exists
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     // exclude mongoose id and pw
                     .select('-__v -password')
-
+                console.log("Context.user_id", context.user._id);
+                console.log("userData ", userData)
                 return userData;
+
             }
             // if user does not exist
             throw new AuthenticationError('Not Logged In');
@@ -84,11 +86,12 @@ const resolvers = {
 
         createPet: async (parent, { petData }, context) => {
             console.log("R_petData:", petData);
-            // if (context.user) {
-            const createdPet = await Pet.create(petData);
-
-            return createdPet;
-            // }
+            if (context.user) {
+                // console.log("Context.user-createPet", context.user);
+                const createdPet = await Pet.create(petData);
+                console.log("Context.user-createPet", context.user);
+                return createdPet;
+            }
         },
 
         savePet: async (parent, { petData }, context) => {
@@ -96,6 +99,7 @@ const resolvers = {
 
             // if user logged in - add petData to savedPets
             if (context.user) {
+                console.log("Context.user-savePet", context.user);
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { savedPets: petData } },
@@ -111,6 +115,7 @@ const resolvers = {
         removePet: async (parent, { petId }, context) => {
 
             if (context.user) {
+                console.log("Context.user-removePet", context.user);
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $pull: { savedPets: { petId } } },
