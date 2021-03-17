@@ -42,14 +42,14 @@ const SubmitPet = () => {
             })
                 .then(res => res.json())
                 .then(
-                    // petData =>
+                    petData =>
                     // createPet({ variables: { petData } }))
                    
                     // createPet({ variables: { ...petData } })
-                    // console.log(petData))
+                    console.log(petData))
                     // await petData = {petData}
-                    await createPet({ variables: { ...petData } })
-                )
+                    // await createPet({ variables: { ...petData } })
+                
             }
         // const { data } = await addUser({
         //     variables: { ...formState }
