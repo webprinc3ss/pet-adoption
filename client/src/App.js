@@ -9,7 +9,6 @@ import Home from './pages/Home';
 import SavedPets from './pages/SavedPets';
 import Mission from './pages/Mission';
 import SubmitPet from './pages/SubmitPet';
-import Upload from './pages/Upload.js';
 import Auth from "./utils/auth";
 import './index.css';
 
@@ -65,7 +64,6 @@ function App() {
               overflowY: "auto",
             }}>
               <Switch>
-                <Route exact path='/upload' component={Upload} />
                 <Route exact path='/' component={Home} />
                 <Route exact path='/saved' component={SavedPets} />
                 <Route exact path='/mission' component={Mission} />
