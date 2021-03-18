@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
-//import { useMutation } from '@apollo/react-hooks';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
@@ -59,7 +58,7 @@ const PetSearchResults = ({ filter }) => {
                 throw new Error('Something Went Wrong!');
             }
 
-            // if Pet successfully saves to user's account, save book id to state
+            // if Pet successfully saves to user's account, save pet id to state
             //setSavedPet([...savedPetIds, petToSave.petId]);
 
         } catch (err) {
@@ -89,7 +88,7 @@ const PetSearchResults = ({ filter }) => {
                                     <Card.Content>
                                         <Card.Header>{pet.name}</Card.Header>
                                         <Card.Meta>
-                                            <span className='date'>{new Date(pet.enterDate).toLocaleDateString()} , {pet.age} , {pet.sex} </span>
+                                            <span className='date'>{new Date(pet.enterDate).toLocaleDateString()}, {pet.age}, {pet.sex} </span>
                                         </Card.Meta>
                                         <Card.Description>
                                             {pet.about}
@@ -108,7 +107,10 @@ const PetSearchResults = ({ filter }) => {
                                                     ? <p>Ok With Dogs</p>
                                                     : ''}
 
-                                                {pet.medical ? (`Medical Condition`) : ""}
+                                                {pet.medical === "Y"
+                                                    ? <p>Medical Condition
+                                                        
+                                                    </p> : ''}
                                             </i>
 
                                         </Card.Description>
@@ -125,7 +127,7 @@ const PetSearchResults = ({ filter }) => {
                             )}
                         </Card.Group>
 
-                        <Pagination
+                        {/* <Pagination
                             boundaryRange={0}
                             defaultActivePage={1}
                             ellipsisItem={null}
@@ -133,7 +135,7 @@ const PetSearchResults = ({ filter }) => {
                             lastItem={null}
                             siblingRange={1}
                             totalPages={5}
-                        />
+                        /> */}
 
                     </Segment>
                 </Grid.Column>

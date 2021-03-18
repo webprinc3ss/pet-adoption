@@ -24,7 +24,7 @@ const typeDefs = gql`
         kids: String
         dogs: String
         cats: String
-        medical: Boolean
+        medical: String
         photo: String
         about: String
         sex: String
@@ -40,7 +40,7 @@ const typeDefs = gql`
         kids: String
         dogs: String
         cats: String
-        medical: Boolean
+        medical: String
         photo: String
         sex: String
         about: String
@@ -53,7 +53,7 @@ const typeDefs = gql`
         kids: String
         dogs: String
         cats: String
-        medical: Boolean
+        medical: String
     }
 
     type Query {

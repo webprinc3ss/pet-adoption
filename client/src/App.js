@@ -9,13 +9,14 @@ import Home from './pages/Home';
 import SavedPets from './pages/SavedPets';
 import Mission from './pages/Mission';
 import SubmitPet from './pages/SubmitPet';
-import Upload from './pages/Upload.js';
 import Auth from "./utils/auth";
 import './index.css';
 
+
 const client = new ApolloClient({
-  
+  // Provide required constructor fields
   cache: new InMemoryCache(),
+  uri: '/graphql',
   request:
     (operation) => {
       const token = Auth.getToken();
@@ -23,9 +24,8 @@ const client = new ApolloClient({
         headers: {
           authorization: token ? `Bearer ${token}` : ""
         }
-      });
+      })
     },
-    uri: '/graphql',
 });
 
 function App() {
@@ -49,7 +49,6 @@ function App() {
               overflowY: "auto",
             }}>
               <Switch>
-                <Route exact path='/upload' component={Upload} />
                 <Route exact path='/' component={Home} />
                 <Route exact path='/saved' component={SavedPets} />
                 <Route exact path='/mission' component={Mission} />

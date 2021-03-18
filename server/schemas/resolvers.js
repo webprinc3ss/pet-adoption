@@ -33,35 +33,32 @@ const resolvers = {
         // get single user - check authentication from context
         me: async (parent, args, context) => {
             console.log(context.req);
+            console.log("Context.user", context.user);
 
             // if authenticated user exists
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     // exclude mongoose id and pw
                     .select('-__v -password')
-                    // do we need to populate pets here?
-
+                console.log("Context.user_id", context.user._id);
+                console.log("userData ", userData)
                 return userData;
+
             }
             // if user does not exist
             throw new AuthenticationError('Not Logged In');
         },
 
         pets: async (parent, { filter }) => {
-            console.log(filter);
-            return Pet.find(filter);
+            console.log("filter:", filter);
+            const petData = await Pet.find(filter)
+                .select('-__typename');
+            return petData;
         }
     },
 
     // mutations
     Mutation: {
-        addUser: async (parent, args) => {
-            const user = await User.create(args);
-            // create and sign user token
-            const token = signToken(user);
-
-            return { token, user };
-        },
 
         login: async (parent, { email, password }) => {
             // find user by email
@@ -84,22 +81,19 @@ const resolvers = {
             return { token, user };
         },
 
-        createPet: async (parent, { petData }, context) => {
-            console.log("petData:", petData);
-            if (context.user) {
-                const createdPet = await Pet.create(petData);
-
-                return createdPet;
-            }
+        addUser: async (parent, args) => {
+            const user = await User.create(args);
+            // create and sign user token
+            const token = signToken(user);
+            return { token, user };
         },
 
         savePet: async (parent, { petData }, context) => {
             
             console.log("petData:", petData);
-            console.log("context.req", context.req);
-            
             // if user logged in - add petData to savedPets
             if (context.user) {
+                console.log("Context.user-savePet", context.user);
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { savedPets: petData } },
@@ -115,6 +109,7 @@ const resolvers = {
         removePet: async (parent, { petId }, context) => {
 
             if (context.user) {
+                console.log("Context.user-removePet", context.user);
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $pull: { savedPets: { petId } } },
@@ -123,6 +118,17 @@ const resolvers = {
 
                 return updatedUser;
             }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+
+        createPet: async (parent, { petData }, context) => {
+            console.log("R_petData:", petData);
+            // if (context.user) {
+            // console.log("Context.user-createPet", context.user);
+            const createdPet = await Pet.create(petData);
+            // console.log("Context.user-createPet", context.user);
+            return createdPet;
+            // }
         }
     }
 };

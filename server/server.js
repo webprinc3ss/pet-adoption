@@ -67,7 +67,9 @@ app.post("/api/files", async (req, res) => {
 
 
     if (pet.medical == 'on') {
-      pet.medical = true;
+      pet.medical = "Y";
+    } else {
+      pet.medical = "N";
     }
 
     if (pet.kids == 'on') {
@@ -81,6 +83,8 @@ app.post("/api/files", async (req, res) => {
     if (pet.dogs == 'on') {
       pet.dogs = "Y";
     } else { pet.dogs = "N" }
+
+    if (pet.age) { pet.age = parseInt(pet.age) }
 
     // if (pet.onlyPet == 'on') {
     //   pet.onlyPet = "only pet";
