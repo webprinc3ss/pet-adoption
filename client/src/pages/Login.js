@@ -79,6 +79,14 @@ const Login = () => {
                         </Button>
                         </Form>
                     </Segment>
+
+                    {
+                        error ? <Message>
+                            The provided credentials are incorrect
+            </Message> : null
+                    }
+
+
                     <Message>
                         Not registered yet?  <Link to="/signup">Sign Up</Link>
                     </Message>

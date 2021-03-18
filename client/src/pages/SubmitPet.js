@@ -46,9 +46,14 @@ const SubmitPet = () => {
                 .then(res => res.json())
                 .then(
                     petData =>
-                        createPet({ variables: { petData } }))
+                        createPet({ variables: { petData } })
 
+
+                )
+            // .then(this.props.router.push('/'))
+            // .then(this.refs.myForm.submit())
             // .then(setName(""))
+            // .then(this.props.history.push('/'));
         }
 
 
@@ -59,6 +64,8 @@ const SubmitPet = () => {
     };
 
     Auth.loggedIn();
+
+
 
     return (
         <section>

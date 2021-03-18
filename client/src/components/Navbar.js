@@ -25,7 +25,7 @@ const Navbar = () => {
             //clear semantic-ui style
             >
 
-                <Menu.Item as="a" header as={Link} to="/">
+                <Menu.Item header as={Link} to="/">
                     <Image
                         src={logo}
                         centered
@@ -34,22 +34,22 @@ const Navbar = () => {
                 </Menu.Item>
 
                 <Menu.Menu position="right">
-                    <Menu.Item as="a" name="Find Pets" as={Link} to="/">
+                    <Menu.Item name="Find Pets" as={Link} to="/">
                         Find Pets
         </Menu.Item>
 
-                    <Menu.Item as="a" name="Mission" as={Link} to="/mission">
+                    <Menu.Item name="Mission" as={Link} to="/mission">
                         Mission
         </Menu.Item>
 
                     {/* Use this menu below for Auth */}
                     {Auth.loggedIn() ? (
                         <>
-                            <Menu.Item as="a" name="Saved Pets" as={Link} to="/saved">
+                            <Menu.Item name="Saved Pets" as={Link} to="/saved">
                                 Saved Pets
         </Menu.Item>
 
-                            <Menu.Item as="a" name="Submit Pet" as={Link} to="/submit_pet">
+                            <Menu.Item name="Submit Pet" as={Link} to="/submit_pet">
                                 Submit Pet
         </Menu.Item>
 
@@ -61,7 +61,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Menu.Item as="a" name="login" as={Link} to="/login">
+                            <Menu.Item name="login" as={Link} to="/login">
                                 Login
         </Menu.Item>
                         </>
