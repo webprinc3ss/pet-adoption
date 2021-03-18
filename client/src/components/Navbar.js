@@ -25,7 +25,7 @@ const Navbar = () => {
             //clear semantic-ui style
             >
 
-                <Menu.Item header as={Link} to="/">
+                <Menu.Item as={Link} to="/">
                     <Image
                         src={logo}
                         centered

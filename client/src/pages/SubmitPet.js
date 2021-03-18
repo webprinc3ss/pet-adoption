@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Login from '../pages/Login';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { CREATE_PET } from '../utils/mutations';
 import { Container, Form, Header, Button, Segment, Grid, Input, Message } from 'semantic-ui-react';

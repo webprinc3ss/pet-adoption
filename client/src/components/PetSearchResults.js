@@ -23,15 +23,12 @@ const PetSearchResults = ({ filter }) => {
 
 
     // if data isn't here yet - loading
-    if (loading) {
-        if (loading)
+    if (loading)
         return <><LottieLoader
             animationData={catAnimationData}
             autoplay='true'
             active
-            // style={{height: "300px"}}
         /></>
-    }
 
     //setFilteredPets(data.pets);
     const { pets } = data;
