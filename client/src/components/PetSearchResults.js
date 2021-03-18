@@ -7,6 +7,8 @@ import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
 import { savePetIds, getSavedPetIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
+import catAnimationData from '../utils/36318-cat-preloader.json';
+import LottieLoader from 'react-lottie-loader';
 
 const PetSearchResults = ({ filter }) => {
 
@@ -22,7 +24,13 @@ const PetSearchResults = ({ filter }) => {
 
     // if data isn't here yet - loading
     if (loading) {
-        return <>loading</> //spinning cat here
+        if (loading)
+        return <><LottieLoader
+            animationData={catAnimationData}
+            autoplay='true'
+            active
+            // style={{height: "300px"}}
+        /></>
     }
 
     //setFilteredPets(data.pets);
