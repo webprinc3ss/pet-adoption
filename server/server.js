@@ -18,6 +18,8 @@ var cors = require('cors');
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  // allows headers to pass context to resolvers on incoming request
+  // performs authentication check on every request
   context: authMiddleware
 });
 app.use(morgan("tiny"));

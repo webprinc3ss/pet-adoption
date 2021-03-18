@@ -20,6 +20,7 @@ const client = new ApolloClient({
   request:
     (operation) => {
       const token = Auth.getToken();
+      console.log("client token:", token);
       operation.setContext({
         headers: {
           authorization: token ? `Bearer ${token}` : ""
