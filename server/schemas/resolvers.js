@@ -32,13 +32,14 @@ const resolvers = {
     Query: {
         // get single user - check authentication from context
         me: async (parent, args, context) => {
-            console.log(context.user);
+            console.log(context.req);
 
             // if authenticated user exists
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     // exclude mongoose id and pw
                     .select('-__v -password')
+                    // do we need to populate pets here?
 
                 return userData;
             }
@@ -79,21 +80,24 @@ const resolvers = {
 
             // create and sign user token
             const token = signToken(user);
+            //console.log("userToken:", token);
             return { token, user };
         },
 
         createPet: async (parent, { petData }, context) => {
             console.log("petData:", petData);
             if (context.user) {
-                const createdPet = await Pet.Create(petData);
+                const createdPet = await Pet.create(petData);
 
                 return createdPet;
             }
         },
 
         savePet: async (parent, { petData }, context) => {
+            
             console.log("petData:", petData);
-
+            console.log("context.req", context.req);
+            
             // if user logged in - add petData to savedPets
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(

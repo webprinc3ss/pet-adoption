@@ -53,15 +53,18 @@ export const SAVE_PET = gql`
             savedPets {
                 _id
                 name
-                ageClass
+                type
+                sex
+                about
+                # ageClass
                 enterDate
                 age
-                size
-                behavior
+                # size
+                kids
+                cats
+                dogs
                 medical
                 photo
-                about
-                sex
             }
         }
     }

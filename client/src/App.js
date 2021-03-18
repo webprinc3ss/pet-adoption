@@ -14,17 +14,18 @@ import Auth from "./utils/auth";
 import './index.css';
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  
   cache: new InMemoryCache(),
   request:
     (operation) => {
       const token = Auth.getToken();
       operation.setContext({
         headers: {
-          authorization: token ? `Bearer ${token}` : ''
+          authorization: token ? `Bearer ${token}` : ""
         }
-      })
-    }
+      });
+    },
+    uri: '/graphql',
 });
 
 function App() {

@@ -40,7 +40,6 @@ export const GET_PETS = gql`
             dogs
             age
             medical
-            
         }
     }
 `;

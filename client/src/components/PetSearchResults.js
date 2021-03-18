@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
-// import { useMutation } from '@apollo/react-hooks';
+//import { useMutation } from '@apollo/react-hooks';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
-import { savePetIds, getSavedPetIds } from '../utils/localStorage';
+//import { savePetIds, getSavedPetIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
 
 const PetSearchResults = ({ filter }) => {
 
     // create state for holding returned pet data
-    const [filteredPets, setFilteredPets] = useState([]);
+    // const [filteredPets, setFilteredPets] = useState([]);
     // use SAVE_PET mutation to save pet to database
-    // const [savePet, { error }] = useMutation(SAVE_PET);
+    const [savePet, { error }] = useMutation(SAVE_PET);
 
     // filter gets ageClass, sex, type, medical and behavior
     console.log("Pet Search Filter:", filter);
@@ -29,38 +29,44 @@ const PetSearchResults = ({ filter }) => {
     //setFilteredPets(data.pets);
     // const {pets} = data;
     //console.log("filteredPets:", filteredPets)
-    console.log("pets:", pets)
+    console.log("pets:", pets);
 
     // // create function to handle saving Pet to database
-    // const handleSavePet = async (petId) => {
-    //     // find the pet in 'searchedPets state by the matching id
-    //     const petToSave = pets.find((pet) => pet._id === petId);
+    const handleSavePet = async (petId) => {
+        
+        // find the pet in 'searchedPets state (variable) by the matching id
+        const petToSave = pets.find((pet) => pet._id === petId);
+        const newPetToSave = {...petToSave};
+        delete newPetToSave.__typename;
+        delete newPetToSave._id;
+        //console.log("petToSave:", petToSave);
+        console.log("newpetToSave:", newPetToSave);
+        
+        // check for user token - get token
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        console.log("token: ", token);
+        if (!token) {
+            return false;
+        }
+        console.log("Hello world");
+        try {
+            // savePet mutation to save Pet
+            await savePet({
+                variables: {petData: newPetToSave}
+            });
 
-    //     // check for user token - get token
-    //     //const token = Auth.loggedIn() ? Auth.getToken() : null;
+            if (error) {
+                throw new Error('Something Went Wrong!');
+            }
 
-    //     // if (!token) {
-    //     //     return false;
-    //     // }
+            // if Pet successfully saves to user's account, save book id to state
+            //setSavedPet([...savedPetIds, petToSave.petId]);
 
-    //     try {
-    //         // savePet mutation to save Pet
-    //         await savePet({
-    //             variables: {petData: petToSave}
-    //         });
-
-    //         if (error) {
-    //             throw new Error('Something Went Wrong!');
-    //         }
-
-    //         // if Pet successfully saves to user's account, save book id to state
-    //         //setSavedPet([...savedPetIds, petToSave.petId]);
-
-    //     } catch (err) {
-    //         console.log(err);
-    //         console.error(err);
-    //     }
-    // };
+        } catch (err) {
+            console.log(err);
+            console.error(err);
+        }
+    };
 
     return (
         <Container>
@@ -109,8 +115,8 @@ const PetSearchResults = ({ filter }) => {
                                     </Card.Content>
                                     <Card.Content extra>
                                         {/* Save Pet button  */}
-                                        {/* <span className="save-pet" onClick={() => handleSavePet(pet._id)}> */}
-                                        <span className="save-pet">
+                                        <span className="save-pet" onClick={() => handleSavePet(pet._id)}>
+                                        {/* <span className="save-pet"> */}
                                             <Icon name='paw' /> Save
                                         </span>
                                     </Card.Content>
