@@ -70,6 +70,7 @@ const Signup = () => {
                                 placeholder="Email address"
                                 value={formState.email}
                                 onChange={handleChange}
+
                             // header='Action Forbidden'
                             // content='You can only sign up for an account once with a given e-mail address.'
                             />
@@ -83,6 +84,7 @@ const Signup = () => {
                                 value={formState.username}
                                 onChange={handleChange}
 
+
                             />
 
                             <Form.Input
@@ -95,6 +97,7 @@ const Signup = () => {
                                 id='password'
                                 value={formState.password}
                                 onChange={handleChange}
+
 
                             />
 

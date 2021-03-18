@@ -36,6 +36,7 @@ const SubmitPet = () => {
     // Submit form to server side including all form inputs
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+
         const formData = new FormData(e.target);
         console.log(e.target);
         try {
@@ -50,6 +51,7 @@ const SubmitPet = () => {
 
 
                 )
+                .then(window.location.reload(false));
             // .then(this.props.router.push('/'))
             // .then(this.refs.myForm.submit())
             // .then(setName(""))

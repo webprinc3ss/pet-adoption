@@ -87,7 +87,7 @@ const PetSearchResults = ({ filter }) => {
                             {pets.map((pet) => (
                                 <Card key={pet._id} >
                                     {pet.photo ? (
-                                        <Image src={pet.photo} alt={`Image of ${pet.name}`} wrapped ui={false} />
+                                        <Image src={pet.photo} alt={`Image of ${pet.name}`} wrapped ui={false} loading/>
 
                                     ) : <Image src={defaultImage} wrapped ui={false} />}
                                     <Card.Content>
