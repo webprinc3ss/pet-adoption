@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Header, Grid } from 'semantic-ui-react';
+import { Container, Header, Grid, Image } from 'semantic-ui-react';
+import dash from '../assets/images/pets.jpg';
 // import { useQuery, useMutation } from '@apollo/client';
 // import { REMOVE_BOOK } from '../utils/mutations';
 // import { GET_ME } from '../utils/queries';
@@ -11,7 +12,11 @@ const SavedPets = () => {
             <Grid centered columns={2}>
                 <Grid.Column>
                     <section>
-
+                        <Image
+                            src={dash}
+                            centered
+                        // style={{ height: "60px" }}
+                        />
                     </section></Grid.Column>
             </Grid>
         </Container>

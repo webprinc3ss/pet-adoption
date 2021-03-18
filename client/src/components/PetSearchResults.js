@@ -121,7 +121,7 @@ const PetSearchResults = ({ filter }) => {
                             )}
                         </Card.Group>
 
-                        <Pagination
+                        {/* <Pagination
                             boundaryRange={0}
                             defaultActivePage={1}
                             ellipsisItem={null}
@@ -129,7 +129,7 @@ const PetSearchResults = ({ filter }) => {
                             lastItem={null}
                             siblingRange={1}
                             totalPages={5}
-                        />
+                        /> */}
 
                     </Segment>
                 </Grid.Column>

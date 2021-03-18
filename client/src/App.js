@@ -12,7 +12,7 @@ import SubmitPet from './pages/SubmitPet';
 import Auth from "./utils/auth";
 import './index.css';
 
-const cache = new InMemoryCache();
+
 
 // const client = new ApolloClient({
 //   uri: '/graphql',
@@ -27,7 +27,7 @@ const cache = new InMemoryCache();
 //       })
 //     }
 // });
-
+const cache = new InMemoryCache();
 const client = new ApolloClient({
   // Provide required constructor fields
   cache: cache,
