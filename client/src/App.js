@@ -70,7 +70,6 @@ function App() {
                 <Route exact path='/submit_pet' component={SubmitPet} />
                 <Route exact path='/login' component={Login} />
                 <Route exact path='/signup' component={Signup} />
-                <Route exact path='/' component={Results} />
                 <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
               </Switch>
             </main>
