@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Login from '../pages/Login';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { CREATE_PET } from '../utils/mutations';
 import { Container, Form, Header, Button, Segment, Grid, Input, Message } from 'semantic-ui-react';
@@ -46,9 +46,14 @@ const SubmitPet = () => {
                 .then(res => res.json())
                 .then(
                     petData =>
-                        createPet({ variables: { petData } }))
+                        createPet({ variables: { petData } })
 
+
+                )
+            // .then(this.props.router.push('/'))
+            // .then(this.refs.myForm.submit())
             // .then(setName(""))
+            // .then(this.props.history.push('/'));
         }
 
 
@@ -59,6 +64,8 @@ const SubmitPet = () => {
     };
 
     Auth.loggedIn();
+
+
 
     return (
         <section>
@@ -132,13 +139,10 @@ const SubmitPet = () => {
                                     <Form.Field label='Can live with dogs' name="dogs" control='input' type='checkbox' // value={formState.otherDogs}
                                     />
                                 </Form.Group>
-                                <Form.Group>
-                                    <Form.Field label='Tell us about this pet' control='input' type='textarea' name="about"
-                                        style={{ width: "400px", height: "150px" }}
-                                    />
-                                </Form.Group>
+
                                 <Form.Group grouped>
-                                    <Form.Input
+                                    <label>Age</label>
+                                    <Input
                                         label="Age"
                                         name="age"
                                         style={{ width: "100%" }}
@@ -146,7 +150,8 @@ const SubmitPet = () => {
                                     >
                                         <input placeholder='Pet age'
                                         />
-                                    </Form.Input>
+                                    </Input>
+                                    <br></br><br></br>
                                     <Form.Group grouped >
                                         <Input label='Photo Upload'
                                             id="fileInput"
@@ -169,7 +174,11 @@ const SubmitPet = () => {
                                 </Form.Group>
 
                             </Form.Group>
-
+                            <Form.Group>
+                                <Form.Field label='Tell us about this pet' control='input' type='textarea' name="about"
+                                    style={{ width: "250px", height: "150px" }}
+                                />
+                            </Form.Group>
                             <Grid>
                                 <Grid.Column textAlign="center">
                                     <Button type='submit' fluid color='blue'>Submit</Button>

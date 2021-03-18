@@ -66,6 +66,7 @@ const Signup = () => {
                                 icon="user"
                                 iconPosition="left"
                                 name="email"
+                                type='email'
                                 placeholder="Email address"
                                 value={formState.email}
                                 onChange={handleChange}
@@ -102,6 +103,11 @@ const Signup = () => {
       </Button>
                         </Form>
                     </Segment>
+                    {
+                        error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
+                            You must fill out this form completely.
+            </Message> : null
+                    }
                     <Message
                         success
                         header='Form Completed'
