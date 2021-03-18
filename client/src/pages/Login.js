@@ -81,7 +81,7 @@ const Login = () => {
                     </Segment>
 
                     {
-                        error ? <Message>
+                        error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
                             The provided credentials are incorrect
             </Message> : null
                     }
