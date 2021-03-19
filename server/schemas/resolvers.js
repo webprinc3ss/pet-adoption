@@ -40,6 +40,8 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                     // exclude mongoose id and pw
                     .select('-__v -password')
+                    //See typeDefs on how to declare this array under User 
+                    .populate('savedPets');
                 console.log("Context.user_id", context.user._id);
                 console.log("userData ", userData)
                 return userData;
@@ -89,12 +91,12 @@ const resolvers = {
         },
 
         savePet: async (parent, { petId }, context) => {
-            
+
             console.log("petId:", petId);
             console.log("context.user", context.user);
             // if user logged in - add petData to savedPets
             if (context.user) {
-                
+
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { savedPets: petId } },

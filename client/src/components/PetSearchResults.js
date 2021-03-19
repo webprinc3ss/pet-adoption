@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
-import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
+import { Container, Grid, Segment, Card, Icon, Image} from 'semantic-ui-react';
 //import { savePetIds, getSavedPetIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import catAnimationData from '../utils/36318-cat-preloader.json';
@@ -21,12 +21,12 @@ const PetSearchResults = ({ filter }) => {
     const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
 
     // if data isn't here yet - loading
-    if (loading)
+    if (loading) {
     return <><LottieLoader
         animationData={catAnimationData}
         autoplay='true'
         active
-    /></>
+    /></>}
     
     // assign query data to pets
     //const pets = data?.pets || [];
