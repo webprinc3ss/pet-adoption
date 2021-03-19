@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Login from '../pages/Login';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { CREATE_PET } from '../utils/mutations';
 import { Container, Form, Header, Button, Segment, Grid, Input, Message } from 'semantic-ui-react';
@@ -173,13 +172,13 @@ const SubmitPet = () => {
                                             />
                                         )}
                                     </Form.Group>
+
                                 </Form.Group>
 
                             </Form.Group>
                             <Form.Group>
-                                <Form.Field label='Tell us about this pet' control='input' type='textarea' name="about"
-                                    style={{ width: "250px", height: "150px" }}
-                                />
+
+                                <textarea placeholder="Tell us more" rows="3" label='Tell us about this pet' control='input' type='textarea' name="about"></textarea>
                             </Form.Group>
                             <Grid>
                                 <Grid.Column textAlign="center">
