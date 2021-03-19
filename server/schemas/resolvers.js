@@ -125,7 +125,7 @@ const resolvers = {
         },
 
         createPet: async (parent, { petData }, context) => {
-            console.log("R_petData:", petData);
+            // console.log("R_petData:", petData);
             // if (context.user) {
             // console.log("Context.user-createPet", context.user);
             const createdPet = await Pet.create(petData);

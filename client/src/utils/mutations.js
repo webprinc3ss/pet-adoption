@@ -70,3 +70,28 @@ export const SAVE_PET = gql`
         }
     }
 `;
+
+export const REMOVE_PET = gql`
+mutation removePet($petId: ID!) {
+    removePet(petId: $petId) {
+        _id
+        username
+        email
+        savedPets {
+             _id
+            name
+            ageClass
+            enterDate
+            age
+            size
+            kids
+            cats
+            dogs
+            medical
+            photo
+            about
+            sex
+      }
+    }
+  }
+`;

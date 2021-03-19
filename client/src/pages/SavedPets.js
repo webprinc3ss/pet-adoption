@@ -1,18 +1,16 @@
 import React from 'react';
 import { Container, Grid, Segment, Card, Icon, Image, Header } from 'semantic-ui-react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-
+import { REMOVE_PET } from '../utils/mutations';
 import catAnimationData from '../utils/36318-cat-preloader.json';
 import LottieLoader from 'react-lottie-loader';
-// import { useQuery, useMutation } from '@apollo/client';
-// import { REMOVE_BOOK } from '../utils/mutations';
-// import dash from '../assets/images/pets.jpg';
 import defaultImage from '../assets/images/card_default.png';
 import Auth from '../utils/auth';
 
 const SavedPets = () => {
     const { loading, data } = useQuery(GET_ME);
+    const [removePet, { error }] = useMutation(REMOVE_PET);
     console.log ("Data", data )
     
     const userData = data?.me || {};
