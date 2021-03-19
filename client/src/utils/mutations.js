@@ -79,18 +79,18 @@ mutation removePet($petId: ID!) {
         email
         savedPets {
              _id
-            name
-            ageClass
-            enterDate
-            age
-            size
-            kids
-            cats
-            dogs
-            medical
-            photo
-            about
-            sex
+            # name
+            # ageClass
+            # enterDate
+            # age
+            # size
+            # kids
+            # cats
+            # dogs
+            # medical
+            # photo
+            # about
+            # sex
       }
     }
   }

@@ -115,7 +115,7 @@ const resolvers = {
                 console.log("Context.user-removePet", context.user);
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedPets: { petId } } },
+                    { $pull: { savedPets: petId } },
                     { new: true }
                 )
 
@@ -126,12 +126,12 @@ const resolvers = {
 
         createPet: async (parent, { petData }, context) => {
             // console.log("R_petData:", petData);
-            // if (context.user) {
-            // console.log("Context.user-createPet", context.user);
-            const createdPet = await Pet.create(petData);
-            // console.log("Context.user-createPet", context.user);
-            return createdPet;
-            // }
+            if (context.user) {
+
+                const createdPet = await Pet.create(petData);
+
+                return createdPet;
+            }
         }
     }
 };
