@@ -10,13 +10,12 @@ import Auth from '../utils/auth';
 const PetSearchResults = ({ filter }) => {
 
     // create state for holding returned pet data
-    // const [filteredPets, setFilteredPets] = useState([]);
+    const [filteredPets, setFilteredPets] = useState([]);
+    
     // use SAVE_PET mutation to save pet to database
     const [savePet, { error }] = useMutation(SAVE_PET);
 
-    // filter gets ageClass, sex, type, medical and behavior
-    console.log("Pet Search Filter:", filter);
-    //const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } });
+    // filter pets - gets ageClass, sex, type, medical and behavior
     const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
 
     // if data isn't here yet - loading
@@ -24,34 +23,29 @@ const PetSearchResults = ({ filter }) => {
         return <>loading</> //spinning cat here
     }
     
-    const pets = data?.pets || [];
-    //setFilteredPets(data.pets);
-    // const {pets} = data;
-    //console.log("filteredPets:", filteredPets)
-    console.log("pets:", pets);
+    // assign query data to pets
+    //const pets = data?.pets || [];
+    console.log({data});
+    const {pets} = data;
+   
+    console.log("pets", pets);
 
-    // // create function to handle saving Pet to database
+    // create function to handle saving Pet to database - receives petId from pet card
     const handleSavePet = async (petId) => {
         
-        // find the pet in 'searchedPets state (variable) by the matching id
-        const petToSave = pets.find((pet) => pet._id === petId);
-        const newPetToSave = {...petToSave};
-        delete newPetToSave.__typename;
-        delete newPetToSave._id;
-        //console.log("petToSave:", petToSave);
-        console.log("newpetToSave:", newPetToSave);
-        
+        console.log("handleSavePet function")
+        console.log({pets});
         // check for user token - get token
         const token = Auth.loggedIn() ? Auth.getToken() : null;
-        console.log("token: ", token);
+
         if (!token) {
             return false;
         }
-        console.log("Hello world");
+       
         try {
             // savePet mutation to save Pet
             await savePet({
-                variables: {petData: newPetToSave}
+                variables: {petId}
             });
 
             if (error) {

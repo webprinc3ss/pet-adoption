@@ -88,15 +88,16 @@ const resolvers = {
             return { token, user };
         },
 
-        savePet: async (parent, { petData }, context) => {
+        savePet: async (parent, { petId }, context) => {
             
-            console.log("petData:", petData);
+            console.log("petId:", petId);
+            console.log("context.user", context.user);
             // if user logged in - add petData to savedPets
             if (context.user) {
-                console.log("Context.user-savePet", context.user);
+                
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedPets: petData } },
+                    { $addToSet: { savedPets: petId } },
                     { new: true }
                 );
 
