@@ -50,7 +50,7 @@ const SubmitPet = () => {
 
 
                 )
-                .then(window.location.reload(false));
+            // .then(window.location.reload(false));
             // .then(this.props.router.push('/'))
             // .then(this.refs.myForm.submit())
             // .then(setName(""))
@@ -62,6 +62,7 @@ const SubmitPet = () => {
             console.error(err);
             setShowAlert('Something went wrong!');
         }
+        window.location.reload();
     };
 
     Auth.loggedIn();
