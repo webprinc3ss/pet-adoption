@@ -45,27 +45,28 @@ export const CREATE_PET = gql`
 `;
 
 export const SAVE_PET = gql`
-    mutation savePet($petData: PetInput!) {
-        savePet(petData: $petData) {
+    mutation savePet($petId: ID!) {
+        savePet(petId: $petId) {
             _id
-            username
-            email
-            savedPets {
-                _id
-                name
-                type
-                sex
-                about
-                # ageClass
-                enterDate
-                age
-                # size
-                kids
-                cats
-                dogs
-                medical
-                photo
-            }
+            # commented out due to card rendering issue null values
+            # username
+            # email
+            # savedPets {
+            #     _id
+            #     name
+            #     type
+            #     sex
+            #     about
+            #     # ageClass
+            #     enterDate
+            #     age
+            #     # size
+            #     kids
+            #     cats
+            #     dogs
+            #     medical
+            #     photo
+            # }
         }
     }
 `;

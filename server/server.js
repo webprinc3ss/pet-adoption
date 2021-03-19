@@ -22,6 +22,7 @@ const server = new ApolloServer({
   // performs authentication check on every request
   context: authMiddleware
 });
+
 app.use(morgan("tiny"));
 
 // app.use(express.static('public'));
