@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Login from '../pages/Login';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { CREATE_PET } from '../utils/mutations';
 import { Container, Form, Header, Button, Segment, Grid, Input, Message } from 'semantic-ui-react';
@@ -36,6 +35,7 @@ const SubmitPet = () => {
     // Submit form to server side including all form inputs
     const handleFormSubmit = async (e) => {
         e.preventDefault();
+
         const formData = new FormData(e.target);
         console.log(e.target);
         try {
@@ -50,6 +50,7 @@ const SubmitPet = () => {
 
 
                 )
+                .then(window.location.reload(false));
             // .then(this.props.router.push('/'))
             // .then(this.refs.myForm.submit())
             // .then(setName(""))
@@ -171,13 +172,13 @@ const SubmitPet = () => {
                                             />
                                         )}
                                     </Form.Group>
+
                                 </Form.Group>
 
                             </Form.Group>
                             <Form.Group>
-                                <Form.Field label='Tell us about this pet' control='input' type='textarea' name="about"
-                                    style={{ width: "250px", height: "150px" }}
-                                />
+
+                                <textarea placeholder="Tell us more" rows="3" label='Tell us about this pet' control='input' type='textarea' name="about"></textarea>
                             </Form.Group>
                             <Grid>
                                 <Grid.Column textAlign="center">
