@@ -12,6 +12,7 @@ import {
     Segment,
     Container
 } from 'semantic-ui-react';
+import { validateEmail } from '../utils/helpers';
 
 
 
@@ -19,8 +20,9 @@ const Signup = () => {
 
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
     const [addUser, { error }] = useMutation(ADD_USER);
+    const [validationErrors, setValidationErrors] = useState({})
 
-
+    console.log("Error message", error)
     // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -34,7 +36,11 @@ const Signup = () => {
     // submit form (notice the async!)
     const handleFormSubmit = async event => {
         event.preventDefault();
-
+        if (!validateEmail(formState.email)) {
+            setValidationErrors({ email: true })
+        } else {
+            setValidationErrors({})
+        }
         // use try/catch instead of promises to handle errors
         try {
             const { data } = await addUser({
@@ -58,7 +64,9 @@ const Signup = () => {
                     <Segment>
                         <Form size="large"
                             // noValidate validated={validated} 
-                            onSubmit={handleFormSubmit}>
+                            onSubmit={handleFormSubmit}
+
+                        >
                             {/* show alert if server response is bad */}
 
                             <Form.Input
@@ -66,10 +74,16 @@ const Signup = () => {
                                 icon="user"
                                 iconPosition="left"
                                 name="email"
-                                type='email'
+                                // type='email'
                                 placeholder="Email address"
                                 value={formState.email}
                                 onChange={handleChange}
+                                error={
+                                    error?.message.includes('email') &&
+                                    {
+                                        content: 'Please enter a valid email address',
+                                        pointing: 'below',
+                                    }}
 
                             // header='Action Forbidden'
                             // content='You can only sign up for an account once with a given e-mail address.'
@@ -83,6 +97,12 @@ const Signup = () => {
                                 type="username"
                                 value={formState.username}
                                 onChange={handleChange}
+                                error={
+                                    error?.message.includes('username') &&
+                                    {
+                                        content: 'Please enter a valid username',
+                                        pointing: 'below',
+                                    }}
 
 
                             />
@@ -97,6 +117,12 @@ const Signup = () => {
                                 id='password'
                                 value={formState.password}
                                 onChange={handleChange}
+                                error={
+                                    error?.message.includes('password') &&
+                                    {
+                                        content: 'Your password must be at least 6 characters long.',
+                                        pointing: 'below',
+                                    }}
 
 
                             />
@@ -109,7 +135,7 @@ const Signup = () => {
                     {
                         error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
                             You must fill out this form completely.
-            </Message> : null
+                        </Message> : null
                     }
                     <Message
                         success
