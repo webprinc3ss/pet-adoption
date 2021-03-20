@@ -46,7 +46,7 @@ main {
   z-index:799;
 }
 
-.save-pet {
+.save-pet , .remove-pet{
   transition-property: color;
   transition-duration: .1s;
   transition-timing-function: ease;
@@ -55,6 +55,14 @@ main {
 
 .save-pet:hover {
   color: #1e70bf;
+}
+
+.remove-pet:hover {
+  color: grey;
+}
+
+.remove-pet {
+  color: red;
 }
 
 .ui.inverted.menu {
@@ -81,6 +89,10 @@ div.right.menu a.item {
   color: #392402;
   font-weight:600;
   font-size: 16px;
+}
+
+div.ui.cards {
+  justify-content: center;
 }
 
 .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {

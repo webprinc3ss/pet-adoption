@@ -10,13 +10,17 @@ import Auth from '../utils/auth';
 
 const SavedPets = () => {
     const { loading, data } = useQuery(GET_ME);
+//Not the best way, but this can work too:
+    // const { loading, data } = useQuery(GET_ME, {pollInterval: 1000});
     const [removePet, { error }] = useMutation(REMOVE_PET);
+    //Jason may code savePets using Local Storage feature
+        // import { removePetId } from '../utils/localStorage';
     console.log ("Data", data )
     
     const userData = data?.me || {};
     console.log("userData", userData)
 
- // create function that accepts the book's mongo _id value as param and deletes the book from the database
+ // create function that accepts the pets's mongo _id value as param and deletes the pet from the database
  const handleRemovePet = async (petId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 console.log("pet_Id", petId)
@@ -37,6 +41,9 @@ console.log("pet_Id", petId)
         // if Pet successfully saves to user's account, save pet id to state
         //setSavedPet([...savedPetIds, petToSave.petId]);
 
+        //May need remove from Local Storage if coded that way
+        // removeBookId(bookId);
+
     } catch (err) {
         console.log(err);
         console.error(err);
@@ -46,20 +53,26 @@ console.log("pet_Id", petId)
 
     // if data isn't here yet - loading
     if (loading) {
-        return <><LottieLoader
+        return <div style={{width: '300px', position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}><LottieLoader
             animationData={catAnimationData}
             autoplay='true'
             active
-        /></>
+        /></div>
     }
     return (
-        <Container className="topPadding">
+        <Container>
+        <Grid centered columns={1}>
+            <Grid.Column>
+                <Segment>
             <Header as='h1' textAlign="center"> {userData.savedPets?.length
                 ? `Viewing ${userData.username}'s ${userData.savedPets.length} saved ${userData.savedPets.length === 1 ? 'pet' : 'pets'}:`
-                : 'You have no saved pets!'}</Header>
-            <Grid centered columns={2}>
-                <Grid.Column>
-                    <Segment>
+                : <>You have no saved pets!
+                <div><Image src={defaultImage} alt={"logo"} size='medium'/></div></>
+                }</Header>
+            
+            {/* {!userData.savedPets
+                                ? <Image src={defaultImage} alt={"logo"} size='medium'/>
+                                : ''} */}
 
                     <Card.Group>
                             {userData.savedPets?.map((pet) => (
@@ -100,9 +113,9 @@ console.log("pet_Id", petId)
                                     </Card.Content>
                                     <Card.Content extra>
                                         {/* Save Pet button  */}
-                                        <span className="save-pet" onClick={() => handleRemovePet(pet._id)}>
+                                        <span className="remove-pet" onClick={() => handleRemovePet(pet._id)}>
                                       
-                                            <Icon name='paw' /> Remove Pet!
+                                            <Icon name='remove circle' /> Remove Pet!
                                         </span>
                                     </Card.Content>
                                 </Card>
@@ -117,7 +130,8 @@ console.log("pet_Id", petId)
                             centered
                         // style={{ height: "60px" }}
                         /> */}
-                    </Segment></Grid.Column>
+                    </Segment>
+                </Grid.Column>
             </Grid>
         </Container>
     )

@@ -6,8 +6,8 @@ import { Container, Form, Header, Button, Segment, Grid, Input, Message } from '
 import Auth from '../utils/auth';
 
 const SubmitPet = () => {
-    const [fileInputState, setFileInputState] = useState('');
-    const [selectedFile, setSelectedFile] = useState();
+    // const [fileInputState, setFileInputState] = useState('');
+    // const [selectedFile, setSelectedFile] = useState();
     const [previewSource, setPreviewSource] = useState('');
     // const [petData, setPetData] = useState('');
     const [showAlert, setShowAlert] = useState(false);
@@ -19,8 +19,8 @@ const SubmitPet = () => {
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         previewFile(file);
-        setSelectedFile(file);
-        setFileInputState(e.target.value);
+        // setSelectedFile(file);
+        // setFileInputState(e.target.value);
     };
 
     // allows to preview photo on page
@@ -62,7 +62,9 @@ const SubmitPet = () => {
             console.error(err);
             setShowAlert('Something went wrong!');
         }
-        window.location.reload();
+        e.target.reset();
+        setPreviewSource("");
+        // window.location.reload();
     };
 
     Auth.loggedIn();
@@ -160,7 +162,7 @@ const SubmitPet = () => {
                                             type="file"
                                             name="photo" //photo???
                                             onChange={handleFileInputChange}
-                                            value={fileInputState}
+                                            // value={fileInputState}
                                             className="form-input"
                                         // style={{ width: "370px" }}
                                         />

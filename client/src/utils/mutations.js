@@ -51,8 +51,8 @@ export const SAVE_PET = gql`
             # commented out due to card rendering issue null values
             # username
             # email
-            # savedPets {
-            #     _id
+            savedPets {
+                _id
             #     name
             #     type
             #     sex
@@ -66,7 +66,7 @@ export const SAVE_PET = gql`
             #     dogs
             #     medical
             #     photo
-            # }
+            }
         }
     }
 `;
