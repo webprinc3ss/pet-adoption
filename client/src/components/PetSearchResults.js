@@ -11,8 +11,9 @@ import LottieLoader from 'react-lottie-loader';
 
 const PetSearchResults = ({ filter }) => {
 
-    // create state for holding returned pet data
-    const [filteredPets, setFilteredPets] = useState([]);
+    console.log("filter: ", filter);
+    // create state for holding returned pet data - caused infinite loop
+    //const [filteredPets, setFilteredPets] = useState([]);
     
     // use SAVE_PET mutation to save pet to database
     const [savePet, { error }] = useMutation(SAVE_PET);
@@ -20,7 +21,8 @@ const PetSearchResults = ({ filter }) => {
     // filter pets - gets ageClass, sex, type, medical and behavior
     const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
 
-    // if data isn't here yet - loading
+    // if data isn't here yet load Cat
+    console.log("loading", loading);
     if (loading) {
     return <><LottieLoader
         animationData={catAnimationData}
@@ -29,9 +31,8 @@ const PetSearchResults = ({ filter }) => {
     /></>}
     
     // assign query data to pets
-    //const pets = data?.pets || [];
-    console.log({data});
-    const {pets} = data;
+    const pets = data?.pets || [];
+    //const {pets} = data;
    
     console.log("pets", pets);
 
@@ -73,7 +74,7 @@ const PetSearchResults = ({ filter }) => {
                     <Segment>
                         <h1>
                             {pets.length
-                                ? `Viewing ${pets.length} results:`
+                                ? `Viewing ${pets.length} pets:`
                                 : 'No results'}
                         </h1>
 
@@ -114,13 +115,20 @@ const PetSearchResults = ({ filter }) => {
 
                                         </Card.Description>
                                     </Card.Content>
-                                    <Card.Content extra>
-                                        {/* Save Pet button  */}
-                                        <span className="save-pet" onClick={() => handleSavePet(pet._id)}>
-                                        {/* <span className="save-pet"> */}
-                                            <Icon name='paw' /> Save
-                                        </span>
-                                    </Card.Content>
+                                        
+                                        {/* Show the save button if logged in */}
+                                        {Auth.loggedIn() ? (
+                                            <Card.Content extra>
+                                                {/* Save Pet button  */}
+                                                <span className="save-pet" onClick={() => handleSavePet(pet._id)}>
+                                                    <Icon name='paw' /> Save
+                                                </span>
+                                            </Card.Content>
+                                        ):(
+                                            <>
+                                            </>
+                                        )}  
+
                                 </Card>
                             )
                             )}
