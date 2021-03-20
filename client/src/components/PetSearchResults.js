@@ -11,7 +11,6 @@ import LottieLoader from 'react-lottie-loader';
 
 const PetSearchResults = ({ filter }) => {
 
-    console.log("filter: ", filter);
     // create state for holding returned pet data - caused infinite loop
     //const [filteredPets, setFilteredPets] = useState([]);
     
