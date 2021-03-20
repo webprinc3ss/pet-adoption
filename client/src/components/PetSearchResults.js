@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_PETS, GET_ME } from '../utils/queries';
+import { GET_PETS } from '../utils/queries';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image} from 'semantic-ui-react';
@@ -15,9 +15,7 @@ const PetSearchResults = ({ filter }) => {
     const [filteredPets, setFilteredPets] = useState([]);
     
     // use SAVE_PET mutation to save pet to database
-    const [savePet, { error }] = useMutation(SAVE_PET, {
-        // refetchQueries: ([{query: GET_ME}])
-    });
+    const [savePet, { error }] = useMutation(SAVE_PET);
 
     // filter pets - gets ageClass, sex, type, medical and behavior
     const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
