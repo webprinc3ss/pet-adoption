@@ -67,7 +67,7 @@ console.log("pet_Id", petId)
             <Header as='h1' textAlign="center"> {userData.savedPets?.length
                 ? `Viewing ${userData.username}'s ${userData.savedPets.length} saved ${userData.savedPets.length === 1 ? 'pet' : 'pets'}:`
                 : <>You have no saved pets!
-                <div><Image src={defaultImage} alt={"logo"} size='medium'/></div></>
+                <div><br/><br/><Image src={defaultImage} alt={"logo"} size='medium' centered/></div><br/><br/><br/><br/><br/></>
                 }</Header>
             
             {/* {!userData.savedPets
