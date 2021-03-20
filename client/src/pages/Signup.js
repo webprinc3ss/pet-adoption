@@ -14,8 +14,6 @@ import {
 } from 'semantic-ui-react';
 import { validateEmail } from '../utils/helpers';
 
-
-
 const Signup = () => {
 
     const [formState, setFormState] = useState({ username: '', email: '', password: '' });
@@ -100,11 +98,10 @@ const Signup = () => {
                                 error={
                                     error?.message.includes('username') &&
                                     {
-                                        content: 'Please enter a valid username',
+                                        content: 'Please enter a username of minimum 6 characters.',
                                         pointing: 'below',
-                                    }}
-
-
+                                    }
+                                }
                             />
 
                             <Form.Input
