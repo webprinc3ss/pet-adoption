@@ -51,8 +51,6 @@ const PetSearchResults = ({ filter }) => {
     // create function to handle saving Pet to database - receives petId from pet card
     const handleSavePet = async (petId) => {
         
-        //console.log("handleSavePet function")
-        //console.log({pets});
         // check for user token - get token
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
