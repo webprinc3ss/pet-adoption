@@ -1,5 +1,5 @@
 {
-  "name": "pet-adoption",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
+    "apollo-boost": "^0.4.9",
     "cloudinary-react": "^1.7.0",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",

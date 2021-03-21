@@ -66,9 +66,11 @@ const Signup = () => {
                                 icon="user"
                                 iconPosition="left"
                                 name="email"
+                                type='email'
                                 placeholder="Email address"
                                 value={formState.email}
                                 onChange={handleChange}
+
                             // header='Action Forbidden'
                             // content='You can only sign up for an account once with a given e-mail address.'
                             />
@@ -81,6 +83,7 @@ const Signup = () => {
                                 type="username"
                                 value={formState.username}
                                 onChange={handleChange}
+
 
                             />
 
@@ -95,6 +98,7 @@ const Signup = () => {
                                 value={formState.password}
                                 onChange={handleChange}
 
+
                             />
 
                             <Button color="blue" fluid size="large">
@@ -102,6 +106,11 @@ const Signup = () => {
       </Button>
                         </Form>
                     </Segment>
+                    {
+                        error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
+                            You must fill out this form completely.
+            </Message> : null
+                    }
                     <Message
                         success
                         header='Form Completed'

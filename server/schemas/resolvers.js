@@ -32,6 +32,7 @@ const resolvers = {
     Query: {
         // get single user - check authentication from context
         me: async (parent, args, context) => {
+            console.log(context.req);
             console.log("Context.user", context.user);
 
             // if authenticated user exists
@@ -49,8 +50,10 @@ const resolvers = {
         },
 
         pets: async (parent, { filter }) => {
-            console.log(filter);
-            return Pet.find(filter);
+            console.log("filter:", filter);
+            const petData = await Pet.find(filter)
+                .select('-__typename');
+            return petData;
         }
     },
 
@@ -74,6 +77,7 @@ const resolvers = {
 
             // create and sign user token
             const token = signToken(user);
+            //console.log("userToken:", token);
             return { token, user };
         },
 
@@ -85,6 +89,7 @@ const resolvers = {
         },
 
         savePet: async (parent, { petData }, context) => {
+            
             console.log("petData:", petData);
             // if user logged in - add petData to savedPets
             if (context.user) {

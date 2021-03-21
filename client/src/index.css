@@ -94,7 +94,7 @@ div.right.menu a.item {
 }
 
 /* input[type=checkbox]  */
-.ui.form input[type=checkbox], .ui.form textarea
+.ui.form input[type=checkbox]
 {
   width: 20px;
   position: relative;
@@ -123,9 +123,9 @@ input#fileInput {
   font-size: 13px;
 }
 
-#root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
+/* #root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
   width: 347px !important;
-}
+} */
 
 button {
   background-color: #0292c9;
@@ -135,7 +135,9 @@ button {
   input#fileInput {
     width: 165px;
     font-size: 10px;
-    
+  }
+  .ui.form .fields {
+    display:block;
   }
 }
 
@@ -179,9 +181,9 @@ input#fileInput {
     width: 185px;
     font-size: 12px;
   }
-    #root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
+    /* #root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
       width: 300px !important;
-    }
+    } */
 
     .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
      width: 100% !important;
@@ -189,7 +191,9 @@ input#fileInput {
 }
 
 /* Small devices (phones, 480px and down) */
-@media only screen and (max-width: 480px) {
-
-}
+/* @media only screen and (max-width: 480px) {
+  #root > div > main > section > div > div > form > div:nth-child(2) > div:nth-child(2) > div > input[type=textarea]{
+    width: 250px !important;
+  }
+} */
 

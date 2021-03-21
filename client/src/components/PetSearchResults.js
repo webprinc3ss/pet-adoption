@@ -1,65 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_PETS } from '../utils/queries';
-// import { useMutation } from '@apollo/client';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image, Pagination } from 'semantic-ui-react';
-import { savePetIds, getSavedPetIds } from '../utils/localStorage';
+//import { savePetIds, getSavedPetIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
+import catAnimationData from '../utils/36318-cat-preloader.json';
+import LottieLoader from 'react-lottie-loader';
 
 const PetSearchResults = ({ filter }) => {
 
     // create state for holding returned pet data
-    const [filteredPets, setFilteredPets] = useState([]);
+    // const [filteredPets, setFilteredPets] = useState([]);
     // use SAVE_PET mutation to save pet to database
-    // const [savePet, { error }] = useMutation(SAVE_PET);
+    const [savePet, { error }] = useMutation(SAVE_PET);
 
     // filter gets ageClass, sex, type, medical and behavior
     console.log("Pet Search Filter:", filter);
-    const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } })
-
+    //const { loading, error, data } = useQuery(GET_PETS, { variables: { filter } });
+    const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
 
     // if data isn't here yet - loading
-    if (loading) {
-        return <>loading</> //spinning cat here
-    }
-
+    if (loading)
+    return <><LottieLoader
+        animationData={catAnimationData}
+        autoplay='true'
+        active
+    /></>
+    
+    const pets = data?.pets || [];
     //setFilteredPets(data.pets);
-    const { pets } = data;
+    // const {pets} = data;
     //console.log("filteredPets:", filteredPets)
-    console.log("pets:", pets)
+    console.log("pets:", pets);
 
     // // create function to handle saving Pet to database
-    // const handleSavePet = async (petId) => {
-    //     // find the pet in 'searchedPets state by the matching id
-    //     const petToSave = pets.find((pet) => pet._id === petId);
+    const handleSavePet = async (petId) => {
+        
+        // find the pet in 'searchedPets state (variable) by the matching id
+        const petToSave = pets.find((pet) => pet._id === petId);
+        const newPetToSave = {...petToSave};
+        delete newPetToSave.__typename;
+        delete newPetToSave._id;
+        //console.log("petToSave:", petToSave);
+        console.log("newpetToSave:", newPetToSave);
+        
+        // check for user token - get token
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        console.log("token: ", token);
+        if (!token) {
+            return false;
+        }
+        console.log("Hello world");
+        try {
+            // savePet mutation to save Pet
+            await savePet({
+                variables: {petData: newPetToSave}
+            });
 
-    //     // check for user token - get token
-    //     //const token = Auth.loggedIn() ? Auth.getToken() : null;
+            if (error) {
+                throw new Error('Something Went Wrong!');
+            }
 
-    //     // if (!token) {
-    //     //     return false;
-    //     // }
+            // if Pet successfully saves to user's account, save pet id to state
+            //setSavedPet([...savedPetIds, petToSave.petId]);
 
-    //     try {
-    //         // savePet mutation to save Pet
-    //         await savePet({
-    //             variables: {petData: petToSave}
-    //         });
-
-    //         if (error) {
-    //             throw new Error('Something Went Wrong!');
-    //         }
-
-    //         // if Pet successfully saves to user's account, save book id to state
-    //         //setSavedPet([...savedPetIds, petToSave.petId]);
-
-    //     } catch (err) {
-    //         console.log(err);
-    //         console.error(err);
-    //     }
-    // };
+        } catch (err) {
+            console.log(err);
+            console.error(err);
+        }
+    };
 
     return (
         <Container>
@@ -76,13 +87,13 @@ const PetSearchResults = ({ filter }) => {
                             {pets.map((pet) => (
                                 <Card key={pet._id} >
                                     {pet.photo ? (
-                                        <Image src={pet.photo} alt={`Image of ${pet.name}`} wrapped ui={false} />
+                                        <Image src={pet.photo} alt={`Image of ${pet.name}`} wrapped ui={false} loading/>
 
                                     ) : <Image src={defaultImage} wrapped ui={false} />}
                                     <Card.Content>
                                         <Card.Header>{pet.name}</Card.Header>
                                         <Card.Meta>
-                                            <span className='date'>{new Date(pet.enterDate).toLocaleDateString()} , {pet.age} , {pet.sex} </span>
+                                            <span className='date'>{new Date(pet.enterDate).toLocaleDateString()}, {pet.age}, {pet.sex} </span>
                                         </Card.Meta>
                                         <Card.Description>
                                             {pet.about}
@@ -111,8 +122,8 @@ const PetSearchResults = ({ filter }) => {
                                     </Card.Content>
                                     <Card.Content extra>
                                         {/* Save Pet button  */}
-                                        {/* <span className="save-pet" onClick={() => handleSavePet(pet._id)}> */}
-                                        <span className="save-pet">
+                                        <span className="save-pet" onClick={() => handleSavePet(pet._id)}>
+                                        {/* <span className="save-pet"> */}
                                             <Icon name='paw' /> Save
                                         </span>
                                     </Card.Content>
@@ -121,7 +132,7 @@ const PetSearchResults = ({ filter }) => {
                             )}
                         </Card.Group>
 
-                        <Pagination
+                        {/* <Pagination
                             boundaryRange={0}
                             defaultActivePage={1}
                             ellipsisItem={null}
@@ -129,7 +140,7 @@ const PetSearchResults = ({ filter }) => {
                             lastItem={null}
                             siblingRange={1}
                             totalPages={5}
-                        />
+                        /> */}
 
                     </Segment>
                 </Grid.Column>

@@ -8,15 +8,15 @@ const petSchema = new Schema(
             trim: true
         },
         type: {
-            type: String,
+            type: String, // ["cat", "dog"]
             required: true
         },
         age: {
-            type: String,
+            type: Number, // changed from String
             required: true
         },
         ageClass: {
-            type: String,
+            type: String, // ["Young", "Adult", "Senior"]
             required: true
         },
         enterDate: {
@@ -25,23 +25,23 @@ const petSchema = new Schema(
             default: Date.now
         },
         size: {
-            type: String,
+            type: String, // ["small", "medium", "large"]
             required: true
         },
         kids: {
-            type: String,
+            type: String, // ["Y", "N"]
             required: true
         },
         dogs: {
-            type: String,
+            type: String, // ["Y", "N"]
             required: true
         },
         cats: {
-            type: String,
+            type: String, // ["Y", "N"]
             required: true
         },
         medical: {
-            type: String,
+            type: String, // ["Y", "N"]
             required: true
         },
         photo: {

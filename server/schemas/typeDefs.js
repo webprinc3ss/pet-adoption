@@ -35,6 +35,7 @@ const typeDefs = gql`
         type: String!
         age: Int
         ageClass: String
+        enterDate: Date
         size: String
         kids: String
         dogs: String
@@ -48,7 +49,6 @@ const typeDefs = gql`
     input PetFilterInput {
         type: String
         ageClass: String
-        size: String
         sex: String
         kids: String
         dogs: String
@@ -70,6 +70,7 @@ const typeDefs = gql`
     } 
 
     type Auth {
+        # must return a token and optionally other User data
         token: ID!
         user: User
     }

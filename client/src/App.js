@@ -12,32 +12,18 @@ import SubmitPet from './pages/SubmitPet';
 import Auth from "./utils/auth";
 import './index.css';
 
-const cache = new InMemoryCache();
-
-// const client = new ApolloClient({
-//   uri: '/graphql',
-//   cache: new InMemoryCache(),
-//   request:
-//     (operation) => {
-//       const token = Auth.getToken();
-//       operation.setContext({
-//         headers: {
-//           authorization: token ? `Bearer ${token}` : ''
-//         }
-//       })
-//     }
-// });
 
 const client = new ApolloClient({
   // Provide required constructor fields
-  cache: cache,
+  cache: new InMemoryCache(),
   uri: '/graphql',
   request:
     (operation) => {
       const token = Auth.getToken();
+      console.log("client token:", token);
       operation.setContext({
         headers: {
-          authorization: token ? `Bearer ${token}` : ''
+          authorization: token ? `Bearer ${token}` : ""
         }
       })
     },

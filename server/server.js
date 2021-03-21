@@ -1,6 +1,5 @@
 const { cloudinary } = require('./utils/cloudinary');
 const express = require('express');
-
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -15,9 +14,12 @@ const app = express();
 var cors = require('cors');
 
 // create a new Apollo server and pass in our schema data
+// include context using authMiddleware
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  // allows headers to pass context to resolvers on incoming request
+  // performs authentication check on every request
   context: authMiddleware
 });
 app.use(morgan("tiny"));

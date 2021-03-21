@@ -78,7 +78,7 @@ const Home = () => {
                         </Form.Group>
                         <Grid>
                             <Grid.Column textAlign="center">
-                                <Button type='submit' fluid color='blue'>Submit</Button>
+                                <Button type='submit' fluid color='blue'>Search</Button>
                             </Grid.Column>
                         </Grid>
 
