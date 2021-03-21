@@ -139,7 +139,7 @@ const Signup = () => {
                     <Message
                         success
                         header='Form Completed'
-                        content="You're all signed up for the newsletter">
+                        content="Now you are ready to save and submit pets!">
                         Already have an account?  <Link to="/login">Log in</Link>
                     </Message>
                 </Grid.Column>

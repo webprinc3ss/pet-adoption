@@ -77,7 +77,11 @@ const SubmitPet = () => {
                 <Header as="h1" textAlign="center">Submit A Pet</Header>
 
                 <Segment>
-
+                    {
+                        error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
+                            You must fill out this form completely and correctly.
+                        </Message> : null
+                    }
                     {Auth.loggedIn() ? (
 
                         < Form onSubmit={handleFormSubmit}>
@@ -190,6 +194,7 @@ const SubmitPet = () => {
                             </Grid>
                         </Form>
 
+
                     ) : (
                         <>
                             <Message style={{ textAlign: "center", backgroundColor: "#fbb540", color: "cream", fontWeight: "600", fontSize: "20px" }}>You must log in to submit a pet!</Message>
@@ -197,6 +202,7 @@ const SubmitPet = () => {
                             <Login />
                         </>
                     )}
+
                 </Segment>
             </Container>
         </section >
