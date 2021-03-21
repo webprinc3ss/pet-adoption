@@ -8,23 +8,19 @@ import catAnimationData from '../utils/36318-cat-preloader.json';
 import LottieLoader from 'react-lottie-loader';
 import defaultImage from '../assets/images/card_default.png';
 import Auth from '../utils/auth';
+import { removePetId } from '../utils/localStorage';
 
 const SavedPets = () => {
     const { loading, data } = useQuery(GET_ME);
-//Not the best way, but this can work too:
-    // const { loading, data } = useQuery(GET_ME, {pollInterval: 1000});
+
     const [removePet, { error }] = useMutation(REMOVE_PET);
-    //Jason may code savePets using Local Storage feature
-        // import { removePetId } from '../utils/localStorage';
-    console.log ("Data", data )
     
     const userData = data?.me || {};
-    console.log("userData", userData)
 
  // create function that accepts the pets's mongo _id value as param and deletes the pet from the database
  const handleRemovePet = async (petId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-console.log("pet_Id", petId)
+
     if (!token) {
         return false;
     }
@@ -39,18 +35,14 @@ console.log("pet_Id", petId)
             throw new Error('Something Went Wrong!');
         }
 
-        // if Pet successfully saves to user's account, save pet id to state
-        //setSavedPet([...savedPetIds, petToSave.petId]);
-
-        //May need remove from Local Storage if coded that way
-        // removeBookId(bookId);
+        // upon success, remove pet's id from localStorage
+        removePetId(petId);
 
     } catch (err) {
         console.log(err);
         console.error(err);
     }
 };
-
 
     // if data isn't here yet - loading
     if (loading) {
@@ -114,15 +106,13 @@ console.log("pet_Id", petId)
                                         {/* Save Pet button  */}
                                         <span className="remove-pet" onClick={() => handleRemovePet(pet._id)}>
                                       
-                                            <Icon name='remove circle' /> Remove Pet!
+                                            <Icon name='remove circle' /> Remove Pet
                                         </span>
                                     </Card.Content>
                                 </Card>
                             )
                             )}
                         </Card.Group>
-
-
 
                         {/* <Image
                             src={dash}

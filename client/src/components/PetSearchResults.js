@@ -25,12 +25,8 @@ const PetSearchResults = ({ filter }) => {
         return () => savePetIds(savedPetIds);
     });
 
-    console.log("savedPetIds:", savedPetIds);
-
     // filter pets - gets ageClass, sex, type, medical and behavior
     const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
-//To update state on savedpets - Apollo Cache issue - updating cache after mutation
-    // const { refetch} = useQuery(GET_ME);
 
     // if data isn't here yet load Cat
     console.log("loading", loading);
@@ -73,7 +69,7 @@ const PetSearchResults = ({ filter }) => {
                 setSavedPetIds([...savedPetIds, petId]);
             }
 
-        //    await refetch();
+        // await refetch();
         } catch (err) {
             console.log(err);
             console.error(err);
