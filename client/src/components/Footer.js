@@ -16,12 +16,26 @@ const Footer = () => {
             <Menu.Item>
                 <Container className="footer-container">
                     <Grid className="footer-grid">
+                        <Grid.Column>
+                            <a href="https://github.com/webprinc3ss" target="_blank">Danielle Branton</a>
+                        </Grid.Column>
+                        <Grid.Column>
+                        <a href="https://github.com/calistamayer" target="_blank">Calista Mayer</a>
+                        </Grid.Column>
+                        
                         <Grid.Column textAlign="center">
-
 
                             <span>Thank you for visiting!<br /><br />
                                     © MustFit Pets 2021
-          </span>
+                            </span>
+
+                        </Grid.Column>
+
+                        <Grid.Column>
+                            <a href="https://github.com/anthonykieu" target="_blank">Anthony Kieu</a>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <a href="https://github.com/yooperjb" target="_blank">Jason Barnes</a>
                         </Grid.Column>
                     </Grid>
                 </Container>

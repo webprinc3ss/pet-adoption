@@ -96,8 +96,13 @@ div.ui.cards {
 
 .footer-container {
   text-align: center;
-
   color: black;
+}
+
+.footer-grid {
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 div.ui.message.warning {
