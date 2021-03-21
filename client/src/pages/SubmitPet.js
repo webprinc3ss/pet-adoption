@@ -13,21 +13,18 @@ const SubmitPet = () => {
     // const [petData, setPetData] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [createPet] = useMutation(CREATE_PET);
-    const [error, setError] = useState(false)
+    // const [error, setError] = useState(false)
+    const [message, setMessage] = useState("")
 
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
     // const [photo, setPhoto] = useState("")
     const [about, setAbout] = useState("")
 
-
     //takes photo file in and saves to state
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         previewFile(file);
-
-
-
     };
 
     // allows to preview photo on page
@@ -46,7 +43,7 @@ const SubmitPet = () => {
         const formData = new FormData(e.target);
         console.log(formData);
         console.log(e.target);
-        if (name !== "" && age !== "" && about !== "") {
+        if (name !== "" && age !== "" && about !== "" && previewSource !== "") {
             try {
                 await fetch("/api/files", {
                     method: "POST",
@@ -59,7 +56,10 @@ const SubmitPet = () => {
                             e.target.reset();
 
                             setPreviewSource("");
-                            setError(false);
+                            setName("")
+                            setAbout("")
+                            setAge("")
+                            setMessage("You have successfully submitted a pet!  Submit another?");
 
                         })
             }
@@ -71,9 +71,10 @@ const SubmitPet = () => {
         } else {
             //make error message here
             console.log("Not submit")
-            setError(true)
+            setMessage("You must fill out this form completely!")
 
         }
+
         // window.location.reload();
     };
 
@@ -87,8 +88,9 @@ const SubmitPet = () => {
 
                 <Segment>
                     {
-                        error ? <Message className="warning">
-                            You must fill out this form completely and correctly.
+                        message != "" ? <Message className="warning">
+
+                            {message}
                         </Message> : null
                     }
                     {Auth.loggedIn() ? (
@@ -177,6 +179,8 @@ const SubmitPet = () => {
                                             className="form-input"
                                             // value={photo}
                                             onChange={e => handleFileInputChange(e)}
+                                        // value={photo}
+                                        // onChange={e => setPhoto(e.target.value)}
                                         />
 
                                         {previewSource && (
@@ -219,8 +223,9 @@ const SubmitPet = () => {
                         </>
                     )}
                     {
-                        error ? <Message className="warning">
-                            You must fill out this form completely and correctly.
+                        message != "" ? <Message className="warning">
+
+                            {message}
                         </Message> : null
                     }
                 </Segment>
