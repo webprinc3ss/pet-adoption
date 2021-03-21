@@ -57,6 +57,10 @@ main {
   color: #1e70bf;
 }
 
+.save-pet[data-disabled='true']:hover {
+  pointer-events: none;
+}
+
 .ui.inverted.menu {
   background-color: #fdc973;
   align-items: center;
