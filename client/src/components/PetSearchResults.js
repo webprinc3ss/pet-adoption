@@ -25,11 +25,12 @@ const PetSearchResults = ({ filter }) => {
     // if data isn't here yet load Cat
     console.log("loading", loading);
     if (loading) {
-    return <><LottieLoader
-        animationData={catAnimationData}
-        autoplay='true'
-        active
-    /></>}
+        return <div style={{width: '225px', position: "fixed", left: "50%", paddingTop: '200px',transform: "translate(-50%, -50%)"}}><LottieLoader
+            animationData={catAnimationData}
+            autoplay='true'
+            active
+        /></div>
+    }
     
     // assign query data to pets
     const pets = data?.pets || [];
