@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Grid, Segment, Card, Icon, Image, Header } from 'semantic-ui-react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
@@ -67,12 +68,10 @@ console.log("pet_Id", petId)
             <Header as='h1' textAlign="center"> {userData.savedPets?.length
                 ? `Viewing ${userData.username}'s ${userData.savedPets.length} saved ${userData.savedPets.length === 1 ? 'pet' : 'pets'}:`
                 : <>You have no saved pets!
-                <div><br/><br/><Image src={defaultImage} alt={"logo"} size='medium' centered/></div><br/><br/><br/><br/><br/></>
+                <div><br/><br/><Image src={defaultImage} alt={"logo"} size='medium' centered/></div><br/><br/></>
                 }</Header>
-            
-            {/* {!userData.savedPets
-                                ? <Image src={defaultImage} alt={"logo"} size='medium'/>
-                                : ''} */}
+{!userData.savedPetslength ? <><Container centered><Link to="/">Find</Link> some pets!</Container><br/><br/><br/></> : ""}
+
 
                     <Card.Group>
                             {userData.savedPets?.map((pet) => (
