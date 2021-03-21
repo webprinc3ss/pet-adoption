@@ -7,18 +7,11 @@ import Auth from '../utils/auth';
 
 const SubmitPet = () => {
 
-    const [fileInputState, setFileInputState] = useState('');
-    const [selectedFile, setSelectedFile] = useState();
     const [previewSource, setPreviewSource] = useState('');
-    // const [petData, setPetData] = useState('');
-    const [showAlert, setShowAlert] = useState(false);
     const [createPet] = useMutation(CREATE_PET);
-    // const [error, setError] = useState(false)
     const [message, setMessage] = useState("")
-
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
-    // const [photo, setPhoto] = useState("")
     const [about, setAbout] = useState("")
 
     //takes photo file in and saves to state
@@ -43,7 +36,10 @@ const SubmitPet = () => {
         const formData = new FormData(e.target);
         console.log(formData);
         console.log(e.target);
-        if (name !== "" && age !== "" && about !== "" && previewSource !== "") {
+
+        if //A little form validation
+            (name !== "" && age !== "" && about !== "" && previewSource !== "" && !isNaN(age)) {
+
             try {
                 await fetch("/api/files", {
                     method: "POST",
@@ -54,28 +50,25 @@ const SubmitPet = () => {
                         petData => {
                             createPet({ variables: { petData } })
                             e.target.reset();
-
                             setPreviewSource("");
                             setName("")
                             setAbout("")
                             setAge("")
                             setMessage("You have successfully submitted a pet!  Submit another?");
-
                         })
             }
-
             catch (err) {
                 console.error(err);
-                // setShowAlert('Something went wrong!');
             }
         } else {
             //make error message here
             console.log("Not submit")
-            setMessage("You must fill out this form completely!")
-
+            if (isNaN(age)) {
+                setMessage("Age must be an integer!")
+            } else {
+                setMessage("You must fill out this form completely!")
+            }
         }
-
-        // window.location.reload();
     };
 
     Auth.loggedIn();
@@ -88,7 +81,7 @@ const SubmitPet = () => {
 
                 <Segment>
                     {
-                        message != "" ? <Message className="warning">
+                        message !== "" ? <Message className="warning">
 
                             {message}
                         </Message> : null
@@ -223,7 +216,7 @@ const SubmitPet = () => {
                         </>
                     )}
                     {
-                        message != "" ? <Message className="warning">
+                        message !== "" ? <Message className="warning">
 
                             {message}
                         </Message> : null
