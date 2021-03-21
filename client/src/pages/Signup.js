@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import { validateEmail } from '../utils/helpers';
 import Auth from '../utils/auth';
 import {
     Button,
@@ -12,7 +13,6 @@ import {
     Segment,
     Container
 } from 'semantic-ui-react';
-import { validateEmail } from '../utils/helpers';
 
 const Signup = () => {
 
@@ -38,6 +38,10 @@ const Signup = () => {
             setValidationErrors({ email: true })
         } else {
             setValidationErrors({})
+        }
+
+        if (formState.username.length > 6) {
+            setValidationErrors({ username: true })
         }
         // use try/catch instead of promises to handle errors
         try {
@@ -120,8 +124,6 @@ const Signup = () => {
                                         content: 'Your password must be at least 6 characters long.',
                                         pointing: 'below',
                                     }}
-
-
                             />
 
                             <Button color="blue" fluid size="large">
@@ -131,7 +133,7 @@ const Signup = () => {
                     </Segment>
                     {
                         error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
-                            You must fill out this form completely.
+                            You must fill out this form completely and correctly.
                         </Message> : null
                     }
                     <Message
