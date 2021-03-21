@@ -52,6 +52,10 @@ main {
   color: #1e70bf;
 }
 
+.remove-pet:hover {
+  color: red;
+}
+
 .save-pet[data-disabled='true']:hover {
   pointer-events: none;
 }
