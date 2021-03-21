@@ -6,21 +6,15 @@ import { Container, Form, Header, Button, Segment, Grid, Input, Message } from '
 import Auth from '../utils/auth';
 
 const SubmitPet = () => {
-    // const [fileInputState, setFileInputState] = useState('');
-    // const [selectedFile, setSelectedFile] = useState();
+
     const [previewSource, setPreviewSource] = useState('');
-    // const [petData, setPetData] = useState('');
-    const [showAlert, setShowAlert] = useState(false);
     const [createPet, { error }] = useMutation(CREATE_PET);
-    // const [name, setName] = useState("")
 
 
     //takes photo file in and saves to state
     const handleFileInputChange = (e) => {
         const file = e.target.files[0];
         previewFile(file);
-        // setSelectedFile(file);
-        // setFileInputState(e.target.value);
     };
 
     // allows to preview photo on page
@@ -53,7 +47,7 @@ const SubmitPet = () => {
 
         catch (err) {
             console.error(err);
-            setShowAlert('Something went wrong!');
+            // setShowAlert('Something went wrong!');
         }
         e.target.reset();
         setPreviewSource("");
@@ -63,7 +57,6 @@ const SubmitPet = () => {
     Auth.loggedIn();
 
 
-
     return (
         <section>
             <Container className="topPadding">
@@ -71,7 +64,7 @@ const SubmitPet = () => {
 
                 <Segment>
                     {
-                        error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
+                        error ? <Message className="warning">
                             You must fill out this form completely and correctly.
                         </Message> : null
                     }
@@ -82,7 +75,6 @@ const SubmitPet = () => {
                                 <Form.Input
                                     label="Name"
                                     name="name"
-                                // value={name}
                                 >
                                     <input placeholder='Pet name'
                                     />
@@ -90,7 +82,6 @@ const SubmitPet = () => {
                                 <Form.Field label="Type"
                                     control='select'
                                     name="type"
-                                // value={formState.type}
                                 >
                                     <option value='cat'>Cat</option>
                                     <option value='dog'>Dog</option>
@@ -100,7 +91,6 @@ const SubmitPet = () => {
                                     label='Sex'
                                     control='select'
                                     name="sex"
-                                // value={formState.sex}
                                 >
                                     <option value='M'>Male</option>
                                     <option value='F'>Female</option>
@@ -109,7 +99,6 @@ const SubmitPet = () => {
                                     label='Age Category'
                                     control='select'
                                     name="ageClass"
-                                // value={formState.ageClass}
                                 >
                                     <option value='young'>Young</option>
                                     <option value='adult'>Adult</option>
@@ -120,7 +109,6 @@ const SubmitPet = () => {
                                     label='Size'
                                     control='select'
                                     name="size"
-                                // value={formState.ageClass}
                                 >
                                     <option value='small'>Small</option>
                                     <option value='medium'>medium</option>
@@ -147,7 +135,6 @@ const SubmitPet = () => {
                                         label="Age"
                                         name="age"
                                         style={{ width: "100%" }}
-                                    // value={formState.name}
                                     >
                                         <input placeholder='Pet age'
                                         />
@@ -157,11 +144,8 @@ const SubmitPet = () => {
                                         <Input label='Photo Upload'
                                             id="fileInput"
                                             type="file"
-                                            name="photo" //photo???
-                                            onChange={handleFileInputChange}
-                                            // value={fileInputState}
+                                            name="photo"
                                             className="form-input"
-                                        // style={{ width: "370px" }}
                                         />
 
                                         {previewSource && (
@@ -190,13 +174,13 @@ const SubmitPet = () => {
 
                     ) : (
                         <>
-                            <Message style={{ textAlign: "center", backgroundColor: "#fbb540", color: "cream", fontWeight: "600", fontSize: "20px" }}>You must log in to submit a pet!</Message>
+                            <Message className="warning"> You must log in to submit a pet!</Message>
 
                             <Login />
                         </>
                     )}
                     {
-                        error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
+                        error ? <Message className="warning">
                             You must fill out this form completely and correctly.
                         </Message> : null
                     }

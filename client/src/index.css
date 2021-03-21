@@ -15,11 +15,6 @@ html, body, #root
 	height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .ui.ui.container.topPadding {
   padding-top: 30px;
 }
@@ -105,6 +100,15 @@ div.ui.cards {
   color: black;
 }
 
+div.ui.message.warning {
+  text-align: center;
+  background-color: #fbb540;
+  color: #f9e7c9;
+  font-weight: 600;
+  font-size: 20px;
+
+}
+
 /* input[type=checkbox]  */
 .ui.form input[type=checkbox]
 {
@@ -157,7 +161,7 @@ input#fileInput {
   width: 185px;
   font-size: 12px;
   
-}
+  }
 }
 
 @media only screen and (max-width: 772px) {
