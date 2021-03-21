@@ -4,7 +4,7 @@ import { GET_PETS } from '../utils/queries';
 import { SAVE_PET } from '../utils/mutations';
 import defaultImage from '../assets/images/card_default.png';
 import { Container, Grid, Segment, Card, Icon, Image} from 'semantic-ui-react';
-//import { savePetIds, getSavedPetIds } from '../utils/localStorage';
+import { savePetIds, getSavedPetIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import catAnimationData from '../utils/36318-cat-preloader.json';
 import LottieLoader from 'react-lottie-loader';
@@ -13,9 +13,19 @@ const PetSearchResults = ({ filter }) => {
 
     // create state for holding returned pet data - caused infinite loop
     //const [filteredPets, setFilteredPets] = useState([]);
+
+    // create state to hold saved petId values - get petIds from localstorage
+    const [savedPetIds, setSavedPetIds] = useState(getSavedPetIds());
     
     // use SAVE_PET mutation to save pet to database
     const [savePet, { error }] = useMutation(SAVE_PET);
+
+    // set up useEffect hook to save `savedPetIds` list to localStorage on component unmount
+    useEffect(() => {
+        return () => savePetIds(savedPetIds);
+    });
+
+    console.log("savedPetIds:", savedPetIds);
 
     // filter pets - gets ageClass, sex, type, medical and behavior
     const { loading, data } = useQuery(GET_PETS, { variables: { filter } });
@@ -41,8 +51,6 @@ const PetSearchResults = ({ filter }) => {
     // create function to handle saving Pet to database - receives petId from pet card
     const handleSavePet = async (petId) => {
         
-        console.log("handleSavePet function")
-        console.log({pets});
         // check for user token - get token
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -59,9 +67,11 @@ const PetSearchResults = ({ filter }) => {
             if (error) {
                 throw new Error('Something Went Wrong!');
             }
-
-            // if Pet successfully saves to user's account, save pet id to state
-            //setSavedPet([...savedPetIds, petToSave.petId]);
+            
+            // if Pet successfully saves to user's account, save pet id to state if it doesn't already exist
+            if (!savedPetIds.includes(petId)){
+                setSavedPetIds([...savedPetIds, petId]);
+            }
 
         //    await refetch();
         } catch (err) {
@@ -122,10 +132,19 @@ const PetSearchResults = ({ filter }) => {
                                         {/* Show the save button if logged in */}
                                         {Auth.loggedIn() ? (
                                             <Card.Content extra>
-                                                {/* Save Pet button  */}
-                                                <span className="save-pet" onClick={() => handleSavePet(pet._id)}>
-                                                    <Icon name='paw' /> Save
+                                                
+                                                <span 
+                                                data-disabled={savedPetIds?.some((savedPetId) => savedPetId === pet._id )}
+                                                className="save-pet" 
+                                                onClick={() => handleSavePet(pet._id)}>
+                                                    
+                                                <Icon name='paw' /> 
+                                                {savedPetIds?.some((savedPetId) => savedPetId === pet._id)
+                                                    ? 'Saved'
+                                                    : 'Save'}
+                                                
                                                 </span>
+                                                
                                             </Card.Content>
                                         ):(
                                             <>
