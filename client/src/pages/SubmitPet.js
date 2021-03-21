@@ -47,14 +47,7 @@ const SubmitPet = () => {
                 .then(
                     petData =>
                         createPet({ variables: { petData } })
-
-
                 )
-            // .then(window.location.reload(false));
-            // .then(this.props.router.push('/'))
-            // .then(this.refs.myForm.submit())
-            // .then(setName(""))
-            // .then(this.props.history.push('/'));
         }
 
 
@@ -202,7 +195,11 @@ const SubmitPet = () => {
                             <Login />
                         </>
                     )}
-
+                    {
+                        error ? <Message style={{ textAlign: "center", backgroundColor: "#fbb540", fontSize: "15px" }}>
+                            You must fill out this form completely and correctly.
+                        </Message> : null
+                    }
                 </Segment>
             </Container>
         </section >
