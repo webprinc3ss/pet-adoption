@@ -57,12 +57,8 @@ main {
   color: #1e70bf;
 }
 
-.remove-pet:hover {
-  color: grey;
-}
-
-.remove-pet {
-  color: red;
+.save-pet[data-disabled='true']:hover {
+  pointer-events: none;
 }
 
 .ui.inverted.menu {
