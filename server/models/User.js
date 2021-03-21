@@ -8,6 +8,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
             trim: true,
+            minlength: 6
         },
         email: {
             type: String,
@@ -23,8 +24,8 @@ const userSchema = new Schema(
         // tell mongoose to expect an ObjectId from the Pet model
         savedPets: [
             {
-               type: Schema.Types.ObjectId,
-               ref: 'Pet',
+                type: Schema.Types.ObjectId,
+                ref: 'Pet',
             }
         ]
     },
@@ -36,20 +37,20 @@ const userSchema = new Schema(
 );
 
 // set up pre-save middleware to hash password
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
-      this.password = await bcrypt.hash(this.password, saltRounds);
-      console.log("password:", this.password);
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
+        //console.log("password:", this.password);
     }
-  
+
     next();
-  });
+});
 
 // custom method to compare and validate password for logging in using isCorrectPassword
 userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
-  };
+};
 
 // create the User model using the userSchema
 const User = model('User', userSchema);

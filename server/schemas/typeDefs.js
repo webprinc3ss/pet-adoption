@@ -35,6 +35,7 @@ const typeDefs = gql`
         type: String!
         age: Int
         ageClass: String
+        enterDate: Date
         size: String
         kids: String
         dogs: String
@@ -48,7 +49,6 @@ const typeDefs = gql`
     input PetFilterInput {
         type: String
         ageClass: String
-        size: String
         sex: String
         kids: String
         dogs: String
@@ -65,11 +65,12 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         createPet(petData: PetInput!): Pet
-        savePet(petData: PetInput!): User
+        savePet(petId: ID!): User
         removePet(petId: ID!): User
     } 
 
     type Auth {
+        # must return a token and optionally other User data
         token: ID!
         user: User
     }

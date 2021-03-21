@@ -15,11 +15,6 @@ html, body, #root
 	height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .ui.ui.container.topPadding {
   padding-top: 30px;
 }
@@ -46,7 +41,7 @@ main {
   z-index:799;
 }
 
-.save-pet {
+.save-pet , .remove-pet{
   transition-property: color;
   transition-duration: .1s;
   transition-timing-function: ease;
@@ -55,6 +50,33 @@ main {
 
 .save-pet:hover {
   color: #1e70bf;
+}
+
+.remove-pet:hover {
+  color: red;
+}
+
+.save-pet[data-disabled='true']:hover {
+  pointer-events: none;
+}
+
+ .ui div.column.footerCol
+{
+  width: 17% !important;
+  padding-right: 12px !important;
+  padding-left: 12px !important;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ui div.column.devCol
+{
+  width: 25% !important;
+  padding: 12px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .ui.inverted.menu {
@@ -83,18 +105,36 @@ div.right.menu a.item {
   font-size: 16px;
 }
 
+div.ui.cards {
+  justify-content: center;
+}
+
 .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
   width: 60% !important;
 }
 
 .footer-container {
   text-align: center;
-
   color: black;
 }
 
+.footer-grid {
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+div.ui.message.warning {
+  text-align: center;
+  background-color: #fbb540;
+  color: #f9e7c9;
+  font-weight: 600;
+  font-size: 20px;
+
+}
+
 /* input[type=checkbox]  */
-.ui.form input[type=checkbox], .ui.form textarea
+.ui.form input[type=checkbox]
 {
   width: 20px;
   position: relative;
@@ -123,10 +163,6 @@ input#fileInput {
   font-size: 13px;
 }
 
-#root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
-  width: 347px !important;
-}
-
 button {
   background-color: #0292c9;
 }
@@ -135,7 +171,9 @@ button {
   input#fileInput {
     width: 165px;
     font-size: 10px;
-    
+  }
+  .ui.form .fields {
+    display:block;
   }
 }
 
@@ -147,7 +185,7 @@ input#fileInput {
   width: 185px;
   font-size: 12px;
   
-}
+  }
 }
 
 @media only screen and (max-width: 772px) {
@@ -158,6 +196,19 @@ input#fileInput {
   .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
     width: 100% !important;
   } 
+
+  .ui div.column.footerCol
+  {
+    display:none !important;
+  }
+
+  .ui div.column.devCol
+{
+  width: 100% !important;
+  padding: 15px !important;
+  /* padding-right: 0px !important;
+  padding-left: 0px !important; */
+}
 
 
 }
@@ -179,17 +230,15 @@ input#fileInput {
     width: 185px;
     font-size: 12px;
   }
-    #root > div > main > section > div > div > form > div:nth-child(3) > div:nth-child(2) > div > input[type=textarea]{
-      width: 300px !important;
-    }
+
+  /* Photo Upload */
+   form > div:nth-child(2) > div:nth-child(2) > div.grouped.fields > div {
+    display: block;
+  }
 
     .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column  {
      width: 100% !important;
    }
 }
 
-/* Small devices (phones, 480px and down) */
-@media only screen and (max-width: 480px) {
-
-}
 

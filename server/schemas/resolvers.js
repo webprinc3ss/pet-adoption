@@ -32,6 +32,7 @@ const resolvers = {
     Query: {
         // get single user - check authentication from context
         me: async (parent, args, context) => {
+            console.log(context.req);
             console.log("Context.user", context.user);
 
             // if authenticated user exists
@@ -39,6 +40,8 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                     // exclude mongoose id and pw
                     .select('-__v -password')
+                    //See typeDefs on how to declare this array under User 
+                    .populate('savedPets');
                 console.log("Context.user_id", context.user._id);
                 console.log("userData ", userData)
                 return userData;
@@ -49,8 +52,10 @@ const resolvers = {
         },
 
         pets: async (parent, { filter }) => {
-            console.log(filter);
-            return Pet.find(filter);
+            console.log("filter:", filter);
+            const petData = await Pet.find(filter)
+                .select('-__typename');
+            return petData;
         }
     },
 
@@ -74,6 +79,7 @@ const resolvers = {
 
             // create and sign user token
             const token = signToken(user);
+            //console.log("userToken:", token);
             return { token, user };
         },
 
@@ -84,14 +90,16 @@ const resolvers = {
             return { token, user };
         },
 
-        savePet: async (parent, { petData }, context) => {
-            console.log("petData:", petData);
+        savePet: async (parent, { petId }, context) => {
+
+            console.log("petId:", petId);
+            console.log("context.user", context.user);
             // if user logged in - add petData to savedPets
             if (context.user) {
-                console.log("Context.user-savePet", context.user);
+
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedPets: petData } },
+                    { $addToSet: { savedPets: petId } },
                     { new: true }
                 );
 
@@ -107,7 +115,7 @@ const resolvers = {
                 console.log("Context.user-removePet", context.user);
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { savedPets: { petId } } },
+                    { $pull: { savedPets: petId } },
                     { new: true }
                 )
 
@@ -117,13 +125,13 @@ const resolvers = {
         },
 
         createPet: async (parent, { petData }, context) => {
-            console.log("R_petData:", petData);
-            // if (context.user) {
-            // console.log("Context.user-createPet", context.user);
-            const createdPet = await Pet.create(petData);
-            // console.log("Context.user-createPet", context.user);
-            return createdPet;
-            // }
+            // console.log("R_petData:", petData);
+            if (context.user) {
+
+                const createdPet = await Pet.create(petData);
+
+                return createdPet;
+            }
         }
     }
 };

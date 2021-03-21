@@ -45,24 +45,53 @@ export const CREATE_PET = gql`
 `;
 
 export const SAVE_PET = gql`
-    mutation savePet($petData: PetInput!) {
-        savePet(petData: $petData) {
+    mutation savePet($petId: ID!) {
+        savePet(petId: $petId) {
             _id
-            username
-            email
+            # commented out due to card rendering issue null values
+            # username
+            # email
             savedPets {
                 _id
-                name
-                ageClass
-                enterDate
-                age
-                size
-                behavior
-                medical
-                photo
-                about
-                sex
+            #     name
+            #     type
+            #     sex
+            #     about
+            #     # ageClass
+            #     enterDate
+            #     age
+            #     # size
+            #     kids
+            #     cats
+            #     dogs
+            #     medical
+            #     photo
             }
         }
     }
+`;
+
+export const REMOVE_PET = gql`
+mutation removePet($petId: ID!) {
+    removePet(petId: $petId) {
+        _id
+        username
+        email
+        savedPets {
+             _id
+            # name
+            # ageClass
+            # enterDate
+            # age
+            # size
+            # kids
+            # cats
+            # dogs
+            # medical
+            # photo
+            # about
+            # sex
+      }
+    }
+  }
 `;

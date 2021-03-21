@@ -16,12 +16,26 @@ const Footer = () => {
             <Menu.Item>
                 <Container className="footer-container">
                     <Grid className="footer-grid">
-                        <Grid.Column textAlign="center">
+                        <Grid.Column className="footerCol" >
+                            <a href="https://github.com/webprinc3ss" target="_blank">Danielle Branton</a>
+                        </Grid.Column>
+                        <Grid.Column className="footerCol" >
+                            <a href="https://github.com/calistamayer" className="footerCol" target="_blank">Calista Mayer</a>
+                        </Grid.Column>
 
+                        <Grid.Column textAlign="center" className="devCol" >
 
-                            <span>Thank you for visiting!<br /><br />
-                                    © MustFit Pets 2021
-          </span>
+                            <span>Thank you for visiting!<br /><br /><a href="https://github.com/calistamayer/pet-adoption" target="_blank">The Island of Misfit Developers</a><br /><br />
+                                    ©2021
+                            </span>
+
+                        </Grid.Column>
+
+                        <Grid.Column className="footerCol"  >
+                            <a href="https://github.com/anthonykieu" target="_blank">Anthony Kieu</a>
+                        </Grid.Column>
+                        <Grid.Column className="footerCol"  >
+                            <a href="https://github.com/yooperjb" target="_blank">Jason Barnes</a>
                         </Grid.Column>
                     </Grid>
                 </Container>
