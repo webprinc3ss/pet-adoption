@@ -64,13 +64,13 @@ console.log("pet_Id", petId)
         <Container>
         <Grid centered columns={1}>
             <Grid.Column>
-                <Segment>
+                <Segment centered>
             <Header as='h1' textAlign="center"> {userData.savedPets?.length
                 ? `Viewing ${userData.username}'s ${userData.savedPets.length} saved ${userData.savedPets.length === 1 ? 'pet' : 'pets'}:`
                 : <>You have no saved pets!
-                <div><br/><br/><Image src={defaultImage} alt={"logo"} size='medium' centered/></div><br/><br/></>
+                <div><br/><Image src={defaultImage} alt={"logo"} size='medium' centered/></div></>
                 }</Header>
-{!userData.savedPetslength ? <><Container centered><Link to="/">Find</Link> some pets!</Container><br/><br/><br/></> : ""}
+{!userData.savedPets.length > 0 ? <><Container textAlign="center" ><Link to="/">Find</Link> some pets!</Container><br/><br/><br/><br/><br/></> : ""}
 
 
                     <Card.Group>
