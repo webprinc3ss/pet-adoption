@@ -8,8 +8,11 @@ import Auth from '../utils/auth';
 const SubmitPet = () => {
 
     const [previewSource, setPreviewSource] = useState('');
-    const [createPet, { error }] = useMutation(CREATE_PET);
-
+    const [createPet] = useMutation(CREATE_PET);
+    const [message, setMessage] = useState("")
+    const [name, setName] = useState("")
+    const [age, setAge] = useState("")
+    const [about, setAbout] = useState("")
 
     //takes photo file in and saves to state
     const handleFileInputChange = (e) => {
@@ -31,27 +34,41 @@ const SubmitPet = () => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
+        console.log(formData);
         console.log(e.target);
-        try {
-            await fetch("/api/files", {
-                method: "POST",
-                body: formData
-            })
-                .then(res => res.json())
-                .then(
-                    petData =>
-                        createPet({ variables: { petData } })
-                )
-        }
 
+        if //A little form validation
+            (name !== "" && age !== "" && about !== "" && previewSource !== "" && !isNaN(age)) {
 
-        catch (err) {
-            console.error(err);
-            // setShowAlert('Something went wrong!');
+            try {
+                await fetch("/api/files", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(
+                        petData => {
+                            createPet({ variables: { petData } })
+                            e.target.reset();
+                            setPreviewSource("");
+                            setName("")
+                            setAbout("")
+                            setAge("")
+                            setMessage("You have successfully submitted a pet!  Submit another?");
+                        })
+            }
+            catch (err) {
+                console.error(err);
+            }
+        } else {
+            //make error message here
+            console.log("Not submit")
+            if (isNaN(age)) {
+                setMessage("Age must be an integer!")
+            } else {
+                setMessage("You must fill out this form completely!")
+            }
         }
-        e.target.reset();
-        setPreviewSource("");
-        // window.location.reload();
     };
 
     Auth.loggedIn();
@@ -64,8 +81,9 @@ const SubmitPet = () => {
 
                 <Segment>
                     {
-                        error ? <Message className="warning">
-                            You must fill out this form completely and correctly.
+                        message !== "" ? <Message className="warning">
+
+                            {message}
                         </Message> : null
                     }
                     {Auth.loggedIn() ? (
@@ -75,6 +93,9 @@ const SubmitPet = () => {
                                 <Form.Input
                                     label="Name"
                                     name="name"
+                                    value={name}
+                                    onChange={e => setName(e.target.value)}
+
                                 >
                                     <input placeholder='Pet name'
                                     />
@@ -99,6 +120,7 @@ const SubmitPet = () => {
                                     label='Age Category'
                                     control='select'
                                     name="ageClass"
+
                                 >
                                     <option value='young'>Young</option>
                                     <option value='adult'>Adult</option>
@@ -135,6 +157,8 @@ const SubmitPet = () => {
                                         label="Age"
                                         name="age"
                                         style={{ width: "100%" }}
+                                        value={age}
+                                        onChange={e => setAge(e.target.value)}
                                     >
                                         <input placeholder='Pet age'
                                         />
@@ -146,6 +170,10 @@ const SubmitPet = () => {
                                             type="file"
                                             name="photo"
                                             className="form-input"
+                                            // value={photo}
+                                            onChange={e => handleFileInputChange(e)}
+                                        // value={photo}
+                                        // onChange={e => setPhoto(e.target.value)}
                                         />
 
                                         {previewSource && (
@@ -162,7 +190,15 @@ const SubmitPet = () => {
                             </Form.Group>
                             <Form.Group>
 
-                                <textarea placeholder="Tell us more" rows="3" label='Tell us about this pet' control='input' type='textarea' name="about"></textarea>
+                                <textarea
+                                    placeholder="Tell us more"
+                                    rows="3" label='Tell us about this pet'
+                                    control='input'
+                                    type='textarea'
+                                    name="about"
+                                    value={about}
+                                    onChange={e => setAbout(e.target.value)}
+                                ></textarea>
                             </Form.Group>
                             <Grid>
                                 <Grid.Column textAlign="center">
@@ -180,8 +216,9 @@ const SubmitPet = () => {
                         </>
                     )}
                     {
-                        error ? <Message className="warning">
-                            You must fill out this form completely and correctly.
+                        message !== "" ? <Message className="warning">
+
+                            {message}
                         </Message> : null
                     }
                 </Segment>
